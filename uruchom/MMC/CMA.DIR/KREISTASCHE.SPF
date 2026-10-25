@@ -1,0 +1,52 @@
+PROC KREISTASCHE(REAL DIAM, REAL TIEF)
+D1
+
+N101 R1=DIAM               ; KREISDURCHMESSER
+N102 R2=5                  ; LETZTER FRAESGANG
+N103 R3=$P_TOOLR;TC_DP6[4,1]       ; 2  WERKZEUGRADIUS
+N104 R20=R1                ; Aussendurchmesser gesichert
+N105 R21=R2/4              ; Viertelkreiserhoehung Aussenradius
+N106 R4=R3+1               ; EINTAUCHRADIUS
+N107 R5=R1/2               ; KREISRADIUS
+N108 R5=R5-R2              ; Radius um letzten Fraesgang reduziert
+N109 R6=R5-R4              ; Differenz Aussenradius - Innenradius
+N110 R7=R6/((R3*2)-1)              ; Anzahl der Umlaeufe
+N111 R8=TRUNC(R7)          ; Ganzzahliger Anteil - Umfraesungen
+N112 R9=R7-R8              ; Nachkommawert ?
+N113 IF R9==0 GOTOF WEITER ; Wenn NEIN dann weiter
+N114 R8=R8+1               ; Wenn JA dann plus eins
+N115 WEITER:
+N116 R10=R6/R8             ; Radiusvergroesserung pro einem Umlauf
+N117 R11=R10/4             ; Radiusvergroesserung pro Viertelkreis
+N118 R12=0 ; Zaehler auf null setzen
+
+N122 G90 G0 D1 X0 Y0 Z10 B0 C0
+N123 Z1
+
+N130 $SC_MINFEED=2200
+N131 $SC_CONTPREC=0.1
+;N132 CPRECON
+N124 G641 ADIS=2 G91 G1 G41 X0 Y=-R4 F4000
+N125 G3 X0 Y=(R4*2) CR=R4 Z=AC(-TIEF) ;TURN=TIEF
+N126 X0 Y0 I0 J=-R4
+N127 ANFANG:G91 G3 X=-(R4+R11) Y=-(R4+R11) CR=R4+R11 
+N128 X=R4+(R11*2) Y=-(R4+(R11*2)) CR=R4+(R11*2)
+N129 X=R4+(R11*3) Y=(R4+(R11*3)) CR=R4+(R11*3)
+N130 X=-(R4+(R11*4)) Y=(R4+(R11*4)) CR=R4+(R11*4)
+N131 R12=R12+1
+N132 IF R12==R8 GOTOF ENDE
+N133 R4=R4+R10
+N134 GOTOB ANFANG
+N135 ENDE:R4=R4+R10
+N136 CPRECON G91 G3 X=-(R4+R21) Y=-(R4+R21) CR=R4+R21
+N137 X=R4+(R21*2) Y=-(R4+(R21*2)) CR=R4+(R21*2)
+N138 X=R4+(R21*3) Y=(R4+(R21*3)) CR=R4+(R21*3)
+N139 X0 Y0 I=-(R4+(R21*4)) J0
+N140 X=-(R4+(R21*4)) Y=(R4+(R21*4)) CR=(R4+(R21*4)) Z=AC(10)
+N141 G1 G40 X-10 Y0
+G64 CPRECOF
+
+
+;N143 G53 S0 G90 G0 D0 Z470
+
+N144 M17

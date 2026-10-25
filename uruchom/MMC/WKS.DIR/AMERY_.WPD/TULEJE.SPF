@@ -1,0 +1,277 @@
+N5 if r8==0 gotof koniec
+N10 if r8==1 gotof kratka
+N15 if r8==9 gotof tul9
+N20 IF R8<=-1 GOTOF PODCIECIE
+
+;tymczasowo
+N25 r53=478
+N30 r50=(r6-r53)/2
+N35 r71=(r53/r8)+2;odstep miedzy tulejkami
+N40 R72=41 ; SREDNICA TULEJKI
+;Program
+
+N45 g53 g40 g0 g90 d0 z340
+
+N50 wechsel(1,3,180)
+
+N55 g0 g41 d1 x=r7-((r7-1820)/2) y=((r50-r71/2)-(R72/2)) z=-37+R15+10
+
+N60 m21 
+
+N65 tulejka p=r8
+;zakonczenie
+N70 g90 g53 g0 g40 d0 z340
+N75 m17
+
+N80 koniec:
+N85 m17
+
+N90 tul9:
+
+N95 r53=478
+N100 r50=(r6-r53)/2
+N105 r71=r53/5;odstep miedzy tulejkami
+
+N110 g53 g40 g0 g90 d0 z340
+;Narzedzie
+N115 wechsel(1,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+;N120 g90 g0 g41 d1 x=r7-((r7-1820-40)/2) y=((r50-r71/2)-20.5) z50
+N120 g0 g41 d1 x=r7-85 y=((r50-r71/2)-(R72/2)) z60
+N125 m21 
+N130 tulejka p5
+;     4 tuleje
+N135 r53=400
+N140 r50=(r6-r53)/2
+N145 r71=r53/4;odstep miedzy tulejkami
+
+;N155 g90 g0 g41 d1 x=r7-((r7-1820+40)/2) y=((r50-r71/2)-20.5) z50
+N150 g0 g41 d1 x=r7-85 y=((r50-r71/2)-(R72/2)) z60
+N155 m21 
+
+N160 tulejka p4
+
+;zakonczenie
+N165 g90 g53 g0 g40 d0 z340
+N170 m17
+
+N175 koniec:
+N180 m17
+
+N185 kratka:
+
+N190 r52=101; (152 ppoz) ; wysokosc kratki /os X/ 101 ST
+N195 r53=429; (504 ppoz) ; szerokosc kratki/os Y/ 429 ST
+N200 r50=(r6-r53)/2; odleg. od kraw. do kratki w osi y
+N205 r60=-43 ; glebokosc wycinania szprosow
+
+;Program
+N210 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N215 wechsel(1,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+
+N220 g0 g90 x=r7-45 y=r50 z50 g41 d1  ;-45 ;(-100 ppoz)
+N225 g1 y=r50+150 z=r60 m21 f5000; zjazd w materjal
+N230 y=r50+r53
+N235 x=r7-45-r52  ;-45; (-100 ppoz)
+N240 y=r50
+N245 x=r7-45   ;-45; (-100 ppoz)
+N250 y=r50+150
+N255 y=r50+250 z50
+N260 x=ic(1) g40 d1
+N265 rot
+N270 g53 g40 g0 g90 d0 z340
+
+N275 koniec:
+N280 m17
+
+
+N285 PODCIECIE:
+;-----------
+N290 wechsel(1,3,180)
+N295 cprecon
+
+N300 M21
+N305 R52=70 ; WYMIAR OD ZEW. KRAW. SKRZ. DO POCZ. FREZ.
+
+
+N310 G0 G90 X=r7+30 y=R6-R52 z50 G41 D1
+N315 G0 Z=-37-10
+N320 G1 X=R7 F1500
+N325 G0 Z=50
+
+N330 G0 X=r7+30 y=R52 z50 G42 D1
+N335 G0 Z=-37-10
+N340 G1 X=R7 F1500
+N345 G2 X=R7+R8 Y=R52-R8 CR=-R8 F2000
+N350 G1 Y=R6-R52+R8 F3000
+N355 G2 X=R7 Y=R6-R52 CR=-R8 F2000
+N360 G1 X=R7+30
+N365 G0 Z=50
+
+N370 g90 g53 g0 g40 d0 z340 
+N375 rot
+
+N380 M17
+
+
+N385 CATALINA:
+
+N390 R50=34 ; SREDNICA TULEJKI
+N395 WECHSEL(1,3,180)
+N400 CPRECON
+
+N405 IF R3==2 GOTOF SZER_70
+N410 IF R3==3 GOTOF SZER_80
+N415 IF R3==4 GOTOF SZER_90
+N420 M17
+
+N425 SZER_90:
+
+; PIERWSZA
+N430 G0 G90 X=R7-3-35 Y=116-(R50/2) Z=20 G41 D1
+N435 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N440 g91 g3 x0 y0 i0 j=R50/2 f4000
+N445 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; DRUGA
+N450 G0 G90 X=R7-3-35 Y=201-(R50/2) Z=20 G41 D1
+N455 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N460 g91 g3 x0 y0 i0 j=R50/2 f4000
+N465 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; TRZECIA
+N470 G0 G90 X=R7-3-35 Y=286-(R50/2) Z=20 G41 D1
+N475 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N480 g91 g3 x0 y0 i0 j=R50/2 f4000
+N485 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; CZWARTA
+N490 G0 G90 X=R7-3-35 Y=371-(R50/2) Z=20 G41 D1
+N495 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N500 g91 g3 x0 y0 i0 j=R50/2 f4000
+N505 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; PIATA
+N510 G0 G90 X=R7-3-35 Y=456-(R50/2) Z=20 G41 D1
+N515 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N520 g91 g3 x0 y0 i0 j=R50/2 f4000
+N525 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; SZUSTA
+N530 G0 G90 X=R7-3-35 Y=541-(R50/2) Z=20 G41 D1
+N535 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N540 g91 g3 x0 y0 i0 j=R50/2 f4000
+N545 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; SIUDMA
+N550 G0 G90 X=R7-3-35 Y=626-(R50/2) Z=20 G41 D1
+N555 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N560 g91 g3 x0 y0 i0 j=R50/2 f4000
+N565 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; OSMA
+N570 G0 G90 X=R7-3-35 Y=711-(R50/2) Z=20 G41 D1
+N575 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N580 g91 g3 x0 y0 i0 j=R50/2 f4000
+N585 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; DZIEWIATA
+N590 G0 G90 X=R7-3-35 Y=796-(R50/2) Z=20 G41 D1
+N595 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N600 g91 g3 x0 y0 i0 j=R50/2 f4000
+N605 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+N610 g0 g90 g40 g53 d0 z340
+N615 CPRECOF
+N620 M17
+
+N625 SZER_80:
+
+; PIERWSZA
+N630 G0 G90 X=R7-3-35 Y=66-(R50/2) Z=20 G41 D1
+N635 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N640 g91 g3 x0 y0 i0 j=R50/2 f4000
+N645 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; DRUGA
+N650 G0 G90 X=R7-3-35 Y=151-(R50/2) Z=20 G41 D1
+N655 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N660 g91 g3 x0 y0 i0 j=R50/2 f4000
+N665 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; TRZECIA
+N670 G0 G90 X=R7-3-35 Y=236-(R50/2) Z=20 G41 D1
+N675 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N680 g91 g3 x0 y0 i0 j=R50/2 f4000
+N685 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; CZWARTA
+N690 G0 G90 X=R7-3-35 Y=321-(R50/2) Z=20 G41 D1
+N695 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N700 g91 g3 x0 y0 i0 j=R50/2 f4000
+N705 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; PIATA
+N710 G0 G90 X=R7-3-35 Y=406-(R50/2) Z=20 G41 D1
+N715 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N720 g91 g3 x0 y0 i0 j=R50/2 f4000
+N725 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; SZUSTA
+N730 G0 G90 X=R7-3-35 Y=491-(R50/2) Z=20 G41 D1
+N735 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N740 g91 g3 x0 y0 i0 j=R50/2 f4000
+N745 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; SIUDMA
+N750 G0 G90 X=R7-3-35 Y=576-(R50/2) Z=20 G41 D1
+N755 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N760 g91 g3 x0 y0 i0 j=R50/2 f4000
+N765 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; OSMA
+N770 G0 G90 X=R7-3-35 Y=661-(R50/2) Z=20 G41 D1
+N775 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N780 g91 g3 x0 y0 i0 j=R50/2 f4000
+N785 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; DZIEWIATA
+N790 G0 G90 X=R7-3-35 Y=746-(R50/2) Z=20 G41 D1
+N795 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N800 g91 g3 x0 y0 i0 j=R50/2 f4000
+N805 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+N810 g0 g90 g40 g53 d0 z340
+N815 CPRECOF
+N820 M17
+
+
+N825 SZER_70:
+
+
+; PIERWSZA
+N830 G0 G90 X=R7-3-35 Y=101-(R50/2) Z=20 G41 D1
+N835 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N840 g91 g3 x0 y0 i0 j=R50/2 f4000
+N845 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; DRUGA
+N850 G0 G90 X=R7-3-35 Y=186-(R50/2) Z=20 G41 D1
+N855 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N860 g91 g3 x0 y0 i0 j=R50/2 f4000
+N865 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; TRZECIA
+N870 G0 G90 X=R7-3-35 Y=271-(R50/2) Z=20 G41 D1
+N875 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N880 g91 g3 x0 y0 i0 j=R50/2 f4000
+N885 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; CZWARTA
+N890 G0 G90 X=R7-3-35 Y=356-(R50/2) Z=20 G41 D1
+N895 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N900 g91 g3 x0 y0 i0 j=R50/2 f4000
+N905 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; PIATA
+N910 G0 G90 X=R7-3-35 Y=441-(R50/2) Z=20 G41 D1
+N915 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N920 g91 g3 x0 y0 i0 j=R50/2 f4000
+N925 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; SZUSTA
+N930 G0 G90 X=R7-3-35 Y=526-(R50/2) Z=20 G41 D1
+N935 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N940 g91 g3 x0 y0 i0 j=R50/2 f4000
+N945 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+; SIUDMA
+N950 G0 G90 X=R7-3-35 Y=611-(R50/2) Z=20 G41 D1
+N955 g91 g3 x0 y0 i0 j=R50/2 z=ac(-45) f3000
+N960 g91 g3 x0 y0 i0 j=R50/2 f4000
+N965 g91 g3 x0 y0 i0 j=R50/2 z=ac(20)
+N970 g0 g90 g40 g53 d0 z340
+N975 CPRECOF
+N980 M17
+

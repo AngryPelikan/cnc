@@ -1,0 +1,77 @@
+; DODATEK DO ZAMKOW "TAK"
+; 
+; PARAMETRY
+R63=79.2 ; GLEBOKOSC KIESZENI
+
+;*******************************
+ZAMEK_TAK:
+
+wechsel(0,0,0)
+
+h12
+g18 t13 d3
+h92
+m3
+s150
+
+R61=(r45/10)
+R62=1
+G0 X=R27+R43+10 Y=R6+R39+10 G40 D3
+G0 Z=R44-(R41/2)
+G1 Y=R6-(R63*0.33) F3000
+G0 Y=R6+10
+G1 Y=R6-(R63*0.66)
+G0 Y=R6+10
+G1 Y=R6-R63
+G0 Y=R6+10
+R62=R62+1
+IF R62>=R61 GOTOF DALEJ
+TAK:
+G0 X=IC(10)
+R62=R62+1
+G1 Y=R6-R63 F5000
+G0 Y=R6+10
+IF R62>=R61 GOTOF DALEJ
+GOTOB TAK
+DALEJ:
+;********************************
+N470 g0 x=r27+r40-(r41/2) y=r6+r39+10 g41 d3
+N475 z=r44 
+
+N480 kieszen:
+N485 g1 x=r27+r43 z=r44-r47-r46 f6000
+N490 y=r6-r42 
+N495 ruch1:
+N500 y=ic(-R63/6) 
+N505 g3 z=r44-r47 cr=200
+N510 g1 x=r27+r43+r45
+N515 y=ic(-R63/6)
+N520 g3 z=r44-r47-r46 cr=200
+N525 g1 x=r27+r43
+N530 ruch2:
+N535 y=ic(-R63/6) z=r44-r47
+N540 x=r27+r43+r45
+N545 y=ic(-R63/6) z=r44-r47-r46
+N550 x=r27+r43
+N555 ruch3:
+N560 y=ic(-R63/6) z=r44-r47
+N565 x=r27+r43+r45
+N570 y=ic(-R63/6) z=r44-r47-r46
+N575 x=r27+r43
+
+N655 zakonczenie:
+N660 z=r44-r47
+N665 x=r27+r45+r43 
+N670 z=r44-r47-r46
+N675 x=r27+r43 y=r6+r39+20
+N680 y=ic(1) g40 d3
+
+;***************************
+
+N685 koniec:
+N690 h90
+N695 s0
+N700 h11
+N705 g17
+N710 g90 g53 g0 g40 d0 z340 s0 
+N715 m30

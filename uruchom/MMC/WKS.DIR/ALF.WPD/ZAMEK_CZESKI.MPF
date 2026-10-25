@@ -1,0 +1,256 @@
+N5 r2=1        ; 0 - BEZ LOGA  1 - LOGO
+N10 r6=812.6    ; szer.skrzydla; do nowych baz  1050
+N15 r7=2049   ; wysokosc skrzydla
+N20 r15=52    ; grubosc skrzydla   
+N25 r27=R7-1105-86 ;ST.1105  od dolu drzwi do pocz.szyld
+N30 r40=220.4  ;(prawe220.4,lewe 220.2) dlugosc szyldu
+N35 r41=20     ; szerokosc szyldu
+N40 r42=2.9      ; glebokosc szyldu
+N45 r43=30     ; odstep miedzy szyldem a kieszenia w x
+N50 r44=-37+9.2+r41;  wys. szyldu w "Z"
+N55 r39=13     ; felc
+N60 r45=160    ; dlugosc kieszeni
+N65 r46=17     ; szerokosc kieszeni
+N70 r47=1.5    ; odstep miedzy szyldem a kieszenia w z
+N75 otwory:
+N80 r51=51;50.5   ; odleglosc od szyldu do centrum otworu w osi y
+N85 r52=86     ; odl. miedzy pocz. szyldu a pierwszym otw.
+N90 r57=22     ; srednica otworu
+N95 r53=157.5  ; odleglosc miedzy pocz. szyldu a drugim otworem
+N100 r58=21    ; srednica otworu
+
+N105 r54=168   ; odleglosc miedzy pocz. szyldu a trzecim otw.                   ; 168-zwykly  174-patent
+N110 r59=20    ; srednica otworu
+N115 r56=60    ; bezpieczna wysokosc
+N120 r60=1     ; ilosc otworow
+
+; program dla otworow:
+
+N125 m70 h11 g54 m51 g64
+N130 g53 g40 g0 g90 d0 z340
+
+;N135 atrans x=r7 ;dla prawych uaktywnic
+;N140 amirror x0 ;dla prawych uaktywnic
+
+N145 g17
+N150 wechsel(1,3,180)
+
+N155 pierwszy:
+N160 g0 g90 x=r27+r52 y=r6-r51-(r57/2) z=r56 g41 d1
+N165 g3 g91 x0 y0 i0 j=r57/2 z=ac(-30) f3000
+N170 g3 g91 x0 y0 i0 j=r57/2 z=ac(-42) f3000
+N175 g3 x0 y0 i0 j=r57/2
+N180 g3 x0 y0 i0 j=r57/2 z=ac(r56)
+
+N185 drugi:
+N190 if r60==1 gotof end
+N195 g0 g90 x=r27+r53 y=r6-r51-(r58/2) g41 d1
+N200 g3 g91 x0 y0 i0 j=r58/2 z=ac(-30) f3000
+N205 g3 g91 x0 y0 i0 j=r58/2 z=ac(-42) f3000
+N210 g3 x0 y0 i0 j=r58/2
+N215 g3 x0 y0 i0 j=r58/2 z=ac(r56)
+
+N220 trzeci:
+N225 if r60==2 gotof end
+N230 g0 g90 x=r27+r54 y=r6-r51-(r59/2) g41 d1
+N235 g3 g91 x0 y0 i0 j=r59/2 z=ac(-30)
+N240 g3 g91 x0 y0 i0 j=r59/2 z=ac(-42)
+N245 g3 x0 y0 i0 j=r59/2
+N250 g3 x0 y0 i0 j=r59/2 z=r56
+
+N255 end:
+N260 g90 g53 g0 g40 d0 z340 s0 
+N265 g1 x=ic(1) g40 d1
+
+N270 IF R2==1  ; LOGO:
+;----------------
+N275 R73=20-.4      ; SREDNICA LOGO
+N280 R70=R27-54     ;   WYSOKOSC LOGO NA SKRZYDLE W X
+N285 R71=-37+(33/2) ; WYSOKOSC LOGO NA SKRZYDLE W Z
+N290 R72=1.1        ; GLEBOKOSC FREZOWANIA OTWORU NA LOGO
+
+N295 WECHSEL(4,3,40)
+N300 G18
+N305 CPRECON
+
+N310 G0 X=R70 Y=R6+50 G40 C180 D3
+N315 G0 X=R70 Z=R71-(R73/2) G41
+N320 G1 Y=R6+1 F5000
+N325 G3 X=R70 Z=R71+(R73/2) CR=R73/2 Y=R6-R72 F1000
+N330 G3 X=R70 Z=R71-(R73/2) CR=R73/2
+N335 G3 X=R70 Z=R71+(R73/2) CR=R73/2
+N340 G3 X=R70 Z=R71-(R73/2) CR=R73/2 Y=R6+1
+N345 G1 Y=R6+50 F5000
+N350 G0 G90 G53 G40 D0 Z340
+
+N355 ENDIF
+
+N360 gotof inaczej
+
+N365 kiesz:
+; program dla kieszeni:
+N370 h12
+N375 g18 t13 d3
+N380 h92
+N385 m3
+N390 s150
+
+N395 g0 x=r27+r41 y=r6+r39+10 g41 d3
+N400 z=r44
+N405 g1 x=r27+r40-(r41/2) y=r6+r39-8 f3000
+N410 g3 z=ic(-r41) cr=r41/2
+N415 g1 x=r27+(r41/2)
+N420 g3 z=r44 cr=r41/2
+
+N425 g1 y=r6-r42
+N430 g1 x=r27+r40-(r41/2) 
+N435 g3 z=ic(-r41) cr=r41/2
+N440 g1 x=r27+(r41/2)
+N445 g3 z=r44 cr=r41/2
+N450 g1 x=r27+r40-(r41/2)
+
+N455 kieszen:
+N460 g1 x=r27+r43 z=r44-r47-r46 f6000
+N465 ruch1:
+N470 y=ic(-6.6) 
+N475 g3 z=r44-r47 cr=200
+N480 g1 x=r27+r43+r45
+N485 y=ic(-6.6) 
+N490 g3 z=r44-r47-r46 cr=200
+N495 g1 x=r27+r43
+N500 ruch2:
+N505 y=ic(-6.6) z=r44-r47
+N510 x=r27+r43+r45
+N515 y=ic(-6.6) z=r44-r47-r46
+N520 x=r27+r43
+N525 ruch3:
+N530 y=ic(-6.6) z=r44-r47
+N535 x=r27+r43+r45
+N540 y=ic(-6.6) z=r44-r47-r46
+N545 x=r27+r43
+N550 ruch4:
+N555 y=ic(-6.6) z=r44-r47
+N560 x=r27+r43+r45
+N565 y=ic(-6.6) z=r44-r47-r46
+N570 x=r27+r43
+N575 ruch5:
+N580 y=ic(-6.6) z=r44-r47
+N585 x=r27+r43+r45
+N590 y=ic(-6.6) z=r44-r47-r46
+N595 x=r27+r43
+N600 ruch6:
+N605 y=ic(-6.6) z=r44-r47
+N610 x=r27+r43+r45
+N615 y=ic(-6.6) z=r44-r47-r46
+N620 x=r27+r43
+
+N625 zakonczenie:
+N630 z=r44-r47
+N635 x=r27+r45+r43 
+N640 z=r44-r47-r46
+N645 x=r27+r43 y=r6+r39+20
+N650 y=ic(1) g40 d3
+
+N655 koniec:
+N660 h90
+N665 s0
+N670 h11
+N675 g17
+N680 g90 g53 g0 g40 d0 z340 s0 
+N685 m30
+
+
+N690 inaczej:
+
+; program dla kieszeni:
+;************************************
+N695 wechsel(4,3,30)
+N700 g18
+N705 c180 d3
+N710 cprecon
+
+
+N715 g0 x=r27+r41 y=r6+r39+10 g41 d3
+N720 z=r44
+N725 g1 x=r27+r40-(r41/2) y=r6+r39-8 f2000
+N730 g3 z=ic(-r41) cr=r41/2
+N735 g1 x=r27+(r41/2)
+N740 g3 z=r44 cr=r41/2
+
+N745 g1 y=r6-r42
+N750 g1 x=r27+r40-(r41/2) 
+N755 g3 z=ic(-r41) cr=r41/2
+N760 g1 x=r27+(r41/2)
+N765 g3 z=r44 cr=r41/2
+N770 g1 x=r27+r40-(r41/2)
+
+N775 y=r6+r39+10 g41 d3
+
+N780 g90 g53 g0 g40 d0 z340 s0 cprecof
+
+;gotof koniec
+N785 kieszen0:
+N790 wechsel(0,0,0)
+
+;*********************************
+N795 h12
+N800 g18 t13 d3
+N805 h92
+N810 m3
+N815 s150
+;**********************************
+N820 g0 x=r27+r40-(r41/2) y=r6+r39+10 g41 d3
+N825 z=r44 
+;N360 g1 y=r6 f6000
+N830 kieszen:
+N835 g1 x=r27+r43 z=r44-r47-r46 f6000
+N840 y=r6-r42 
+N845 ruch1:
+N850 y=ic(-6.6) 
+N855 g3 z=r44-r47 cr=200
+N860 g1 x=r27+r43+r45
+N865 y=ic(-6.6) 
+N870 g3 z=r44-r47-r46 cr=200
+N875 g1 x=r27+r43
+N880 ruch2:
+N885 y=ic(-6.6) z=r44-r47
+N890 x=r27+r43+r45
+N895 y=ic(-6.6) z=r44-r47-r46
+N900 x=r27+r43
+N905 ruch3:
+N910 y=ic(-6.6) z=r44-r47
+N915 x=r27+r43+r45
+N920 y=ic(-6.6) z=r44-r47-r46
+N925 x=r27+r43
+N930 ruch4:
+N935 y=ic(-6.6) z=r44-r47
+N940 x=r27+r43+r45
+N945 y=ic(-6.6) z=r44-r47-r46
+N950 x=r27+r43
+N955 ruch5:
+N960 y=ic(-6.6) z=r44-r47
+N965 x=r27+r43+r45
+N970 y=ic(-6.6) z=r44-r47-r46
+N975 x=r27+r43
+N980 ruch6:
+N985 y=ic(-6.6) z=r44-r47
+N990 x=r27+r43+r45
+N995 y=ic(-6.6) z=r44-r47-r46
+N1000 x=r27+r43
+
+N1005 zakonczenie:
+N1010 z=r44-r47
+N1015 x=r27+r45+r43 
+N1020 z=r44-r47-r46
+N1025 x=r27+r43 y=r6+r39+20
+N1030 y=ic(1) g40 d3
+
+N1035 koniec:
+N1040 h90
+N1045 s0
+N1050 h11
+N1055 g17
+N1060 g90 g53 g0 g40 d0 z340 s0 
+N1065 m30
+
+

@@ -1,0 +1,143 @@
+;Program
+N5 m70 h11 g56 m52 g64  ;1-stol g54 m51   2-stol g56 m52
+N10 g53 g40 g0 g90 d0 z340
+
+N15 r10=3 ; ilosc zawiasow (2,3)
+
+
+N20 sfs15:;przesuniecie o -5 w X zewzg. na zle zawiasy
+;Narzedzie
+N25 wechsel(6,4,30)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+
+;zawias pierwszy
+
+;N160 atrans x12.5 y12.5
+N30 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N35 g0 d1 x=205-4 y=-11.7;-2 ;x200   $$$$$$$$$$$$$$$
+N40 c270
+N45 g1 z=1.3 f8000;z=1.3+2+1+1
+
+N50 arot x351         ;LEWE
+N55 g91 g1 y30 f1000  ;1
+N60 y=-30 f3000
+N65 y=30 f3000        ;2
+N70 y=10 f1000
+N75 y=-40 f3000
+N80 y=40 f3000        ;3
+N85 y=10 f1000
+N90 y=-50 f3000
+N95 y=50 f3000        ;4
+N100 y=10 f1000
+N105 y=-65 f3000       ;wyjscie
+
+N110 rot
+N115 z50 f5000
+
+;1 pomocniczy
+;N215 atrans x12.5 y12.5
+N120 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+N125 g90 g0 d1 x=ic(24) y=-11.7;-2  ;  $$$$$$$$$$$$$$$$ 
+N130 g1 z=1.3 f8000;z=1.3+2+1+1
+
+N135 arot x351
+N140 g91 g1 y30 f1000
+;N240 y-20
+;N245 y30
+N145 y-65
+
+N150 rot
+N155 z50 f5000
+
+N160 if r10==2 gotof trzeci
+
+N165 zaw2:
+;drugi zawias
+;N265 atrans x12.5 y12.5
+N170 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N175 g90 g0 d1 x=743+1-4 y=-11.7;-2 ;x738   $$$$$$$$$$$$
+N180 g1 z=1.3 f8000;z=1.3+2+1+1
+
+N185 arot x351         ;LEWE
+N190 g91 g1 y30 f1000  ;1
+N195 y=-30 f3000
+N200 y=30 f3000        ;2
+N205 y=10 f1000
+N210 y=-40 f3000
+N215 y=40 f3000        ;3
+N220 y=10 f1000
+N225 y=-50 f3000
+N230 y=50 f3000        ;4
+N235 y=10 f1000
+N240 y=-65 f3000       ;wyjscie
+
+N245 rot
+N250 z50 f5000
+
+;2 pomocniczy
+;N315 atrans x12.5 y12.5
+N255 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N260 g90 g0 d1 x=ic(24) y=-11.7;-2    ;$$$$$$$$$$$$$$$4
+N265 g1 z=1.3 f8000;z=1.3+2+1+1
+
+N270 arot x351
+N275 g91 g1 y30 f1000
+;N340 y-20
+;N345 y30
+N280 y-65
+
+N285 rot
+N290 z50 f5000
+
+N295 trzeci:
+
+;trzeci zawias
+
+;N365 atrans x12.5 y12.5
+N300 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N305 g90 g0 d1 x=1685-4 y=-11.7 ;x1680   $$$$$$$$$$$$$$
+N310 g1 z=1.3 f8000;z=1.3+2+1+1
+
+N315 arot x351         ;LEWE
+N320 g91 g1 y30 f1000  ;1
+N325 y=-30 f3000
+N330 y=30 f3000        ;2
+N335 y=10 f1000
+N340 y=-40 f3000
+N345 y=40 f3000        ;3
+N350 y=10 f1000
+N355 y=-50 f3000
+N360 y=50 f3000        ;4
+N365 y=10 f1000
+N370 y=-65 f3000       ;wyjscie
+
+N375 rot
+N380 z50 f5000
+
+;3 pomocniczy
+;N415 atrans x12.5 y12.5
+N385 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N390 g90 g0 d1 x=ic(24) y=-11.7;-2   ;$$$$$$$$$$$$$$$$$
+N395 g1 z=1.3 f8000;z=1.3+2+1+1
+
+N400 arot x351
+N405 g91 g1 y30 f1000
+;N440 y-20
+;N445 y30
+N410 y-65
+
+N415 rot
+N420 z50 f5000
+
+N425 z100
+
+N430 koniec:
+N435 g90 g53 g0 g40 d0 z340 s0
+
+N440 m30

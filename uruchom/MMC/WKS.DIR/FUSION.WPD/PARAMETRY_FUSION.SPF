@@ -1,0 +1,12 @@
+N101 R100=1
+N102 R1=1    ; formatowanie 1-tak 0-nie
+N103 R2=2   ; 1-STANDARD 2-BGB
+N104 R6=812-.75 ; szerokosc skrzydla
+N105 R7=2603-.5; Wysokosc skrzydla st 2049(mm)
+N106 R8=0 ; ilosc tulejek 0-brak   ;PW-20 sT ; 1-kratka
+N107 R12=0   ; 0-NIE 1-TAK ; PROG/SUWANE 
+N108 R15=50.25  ; GRUBOSC MATERIALU
+N109 R21=13 ;13;10 ;10.5 saraduo GLEBOKOSC FELCA OS Z
+N110 R22=11 ; 9 saraduo SZEROKOSC FELCA OS Y
+
+N111 m17

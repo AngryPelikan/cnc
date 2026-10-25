@@ -1,0 +1,370 @@
+
+;Program
+N5 m70 h11 g54 m51 g64
+N10 g53 g40 g0 g90 d0 z340
+
+N15 r6=816
+N20 r10=3 ; Ilosc zawiasow 
+
+;N25 gotof sfs15
+
+;Narzedzie
+N30 wechsel(6,4,30)
+
+N35 gotof new_14
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+
+;pierwszy zawias
+
+;N150 atrans x13.5 y13.5
+
+N40 g0 d2 x=238-9-24 y=r6+11.7 ;pierwszy x=238-14-24
+N45 c90
+N50 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N55 arot x9           ;PRAWE
+N60 g91 g1 y-30 f1000  ;1
+N65 y=30 f3000
+N70 y=-30 f3000        ;2
+N75 y=-10 f1000
+N80 y=40 f3000
+N85 y=-40 f3000        ;3
+N90 y=-10 f1000
+N95 y=50 f3000
+N100 y=-50 f3000        ;4
+N105 y=-10 f1000
+N110 y=65 f3000       ;wyjscie
+
+N115 rot
+N120 z50 f5000
+
+;N205 atrans x13.5 y13.5
+N125 g90 g0  x=ic(24) y=r6+11.7
+
+N130 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N135 arot x9
+N140 g91 g1 y-30 f1000
+;N230 y20
+;N235 y-30
+N145 y65
+
+N150 rot
+N155 z50 f5000
+
+N160 if r10==2 gotof trzeci
+
+;drugi zawias
+
+;N255 atrans x13.5 y13.5
+
+N165 g90 g0 d2 x=776-9-24+1 y=r6+11.7 
+N170 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N175 arot x9           ;PRAWE
+N180 g91 g1 y-30 f1000  ;1
+N185 y=30 f3000
+N190 y=-30 f3000        ;2
+N195 y=-10 f1000
+N200 y=40 f3000
+N205 y=-40 f3000        ;3
+N210 y=-10 f1000
+N215 y=50 f3000
+N220 y=-50 f3000        ;4
+N225 y=-10 f1000
+N230 y=65 f3000       ;wyjscie
+
+N235 rot
+N240 z50 f5000
+
+;N305 atrans x13.5 y13.5
+N245 g90 g0 x=ic(24) y=r6+11.7
+
+N250 g1 z=1.3 f8000 ;1.3+2+1+1
+N255 arot x9
+N260 g91 g1 y-30 f1000
+;N330 y20
+;N335 y-30
+N265 y65
+
+N270 rot
+N275 z50 f5000
+
+N280 trzeci:
+
+;trzeci zawias
+
+;N355 atrans x13.5 y13.5
+
+N285 g90 g0 d2 x=1718-9-24 y=r6+11.7 
+N290 c90
+N295 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N300 arot x9           ;PRAWE
+N305 g91 g1 y-30 f1000  ;1
+N310 y=30 f3000
+N315 y=-30 f3000        ;2
+N320 y=-10 f1000
+N325 y=40 f3000
+N330 y=-40 f3000        ;3
+N335 y=-10 f1000
+N340 y=50 f3000
+N345 y=-50 f3000        ;4
+N350 y=-10 f1000
+N355 y=65 f3000       ;wyjscie
+
+N360 rot
+N365 z50 f5000
+
+;N405 atrans x13.5 y13.5
+N370 g90 g0 x=ic(24) y=r6+11.7
+
+N375 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N380 arot x9
+N385 g91 g1 y-30 f1000
+;N430 y20
+;N435 y-30
+N390 y65
+
+N395 rot
+N400 z50 f5000
+
+
+N405 koniec:
+N410 g90 g53 g0 g40 d0 z340 s0
+N415 m17
+
+N420 sfs15:
+;N425 gotof aaa
+;Narzedzie
+N430 wechsel(6,4,30)
+
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+
+;pierwszy zawias
+
+;N150 atrans x13.5 y13.5
+
+N435 g0 d2 x=238-9-24-4 y=r6+11.7 ;pierwszy x=238-14-24
+N440 c90
+N445 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N450 arot x9           ;PRAWE
+N455 g91 g1 y-30 f1000  ;1
+N460 y=30 f3000
+N465 y=-30 f3000        ;2
+N470 y=-10 f1000
+N475 y=40 f3000
+N480 y=-40 f3000        ;3
+N485 y=-10 f1000
+N490 y=50 f3000
+N495 y=-50 f3000        ;4
+N500 y=-10 f1000
+N505 y=65 f3000       ;wyjscie
+
+N510 rot
+N515 z50 f5000
+
+;N205 atrans x13.5 y13.5
+N520 g90 g0  x=ic(24) y=r6+11.7
+
+N525 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N530 arot x9
+N535 g91 g1 y-30 f1000
+;N230 y20
+;N235 y-30
+N540 y65
+
+N545 rot
+N550 z50 f5000
+
+N555 if r10==2 gotof trzeci
+
+;drugi zawias
+
+;N255 atrans x13.5 y13.5
+
+N570 g90 g0 d2 x=776-9-24+1-4 y=r6+11.7 
+N575 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N580 arot x9           ;PRAWE
+N585 g91 g1 y-30 f1000  ;1
+N590 y=30 f3000
+N595 y=-30 f3000        ;2
+N600 y=-10 f1000
+N605 y=40 f3000
+N610 y=-40 f3000        ;3
+N615 y=-10 f1000
+N620 y=50 f3000
+N625 y=-50 f3000        ;4
+N630 y=-10 f1000
+N635 y=65 f3000       ;wyjscie
+
+N640 rot
+N645 z50 f5000
+
+;N305 atrans x13.5 y13.5
+N650 g90 g0 x=ic(24) y=r6+11.7
+
+N655 g1 z=1.3 f8000 ;1.3+2+1+1
+N660 arot x9
+N665 g91 g1 y-30 f1000
+;N330 y20
+;N335 y-30
+N670 y65
+
+N675 rot
+N680 z50 f5000
+
+N685 trzeci:
+
+;trzeci zawias
+
+;N355 atrans x13.5 y13.5
+
+N690 g90 g0 d2 x=1718-9-24-4 y=r6+11.7 
+N695 c90
+N700 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N705 arot x9           ;PRAWE
+N710 g91 g1 y-30 f1000  ;1
+N715 y=30 f3000
+N720 y=-30 f3000        ;2
+N725 y=-10 f1000
+N730 y=40 f3000
+N735 y=-40 f3000        ;3
+N740 y=-10 f1000
+N745 y=50 f3000
+N750 y=-50 f3000        ;4
+N755 y=-10 f1000
+N760 y=65 f3000       ;wyjscie
+
+N765 rot
+N770 z50 f5000
+
+;N405 atrans x13.5 y13.5
+N775 g90 g0 x=ic(24) y=r6+11.7
+
+N780 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N785 arot x9
+N790 g91 g1 y-30 f1000
+;N430 y20
+;N435 y-30
+N795 y65
+
+N800 rot
+N805 z50 f5000
+
+
+N810 koniec:
+N815 g90 g53 g0 g40 d0 z340 s0
+N820 m17
+;***********************
+N825 new_14:
+;Narzedzie
+N830 wechsel(6,4,30)
+
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+
+;pierwszy zawias
+
+;N150 atrans x13.5 y13.5
+
+N835 g0 d2 x=238-9-24 y=r6+11.7 ;pierwszy x=238-14-24
+N840 c90
+N845 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N850 arot x9           ;PRAWE
+N855 g91 g1 y-30 f1000  ;1
+
+N860 y=65 f3000       ;wyjscie
+
+N865 rot
+N870 z50 f5000
+
+;N205 atrans x13.5 y13.5
+N875 g90 g0  x=ic(24) y=r6+11.7
+
+N880 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N885 arot x9
+N890 g91 g1 y-30 f1000
+;N230 y20
+;N235 y-30
+N895 y65
+
+N900 rot
+N905 z50 f5000
+
+N910 if r10==2 gotof trzeci
+
+;drugi zawias
+
+;N255 atrans x13.5 y13.5
+
+N915 g90 g0 d2 x=776-9-24+1 y=r6+11.7 
+N920 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N925 arot x9           ;PRAWE
+N930 g91 g1 y-30 f1000  ;1
+
+N935 y=65 f3000       ;wyjscie
+
+N940 rot
+N945 z50 f5000
+
+;N305 atrans x13.5 y13.5
+N950 g90 g0 x=ic(24) y=r6+11.7
+
+N955 g1 z=1.3 f8000 ;1.3+2+1+1
+N960 arot x9
+N965 g91 g1 y-30 f1000
+;N330 y20
+;N335 y-30
+N970 y65
+
+N975 rot
+N980 z50 f5000
+
+N985 trzeci:
+
+;trzeci zawias
+
+;N355 atrans x13.5 y13.5
+
+N990 g90 g0 d2 x=1718-9-24 y=r6+11.7 
+N995 c90
+N1000 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N1005 arot x9           ;PRAWE
+N1010 g91 g1 y-30 f1000  ;1
+
+N1015 y=65 f3000       ;wyjscie
+
+N1020 rot
+N1025 z50 f5000
+
+;N405 atrans x13.5 y13.5
+N1030 g90 g0 x=ic(24) y=r6+11.7
+
+N1035 g1 z=1.3 f8000 ;1.3+2+1+1
+
+N1040 arot x9
+N1045 g91 g1 y-30 f1000
+;N430 y20
+;N435 y-30
+N1050 y65
+
+N1055 rot
+N1060 z50 f5000
+
+N1065 koniec:
+N1070 g90 g53 g0 g40 d0 z340 s0
+N1075 m17
+

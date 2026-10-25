@@ -1,0 +1,11 @@
+N115 m70 h11 g54 m51 g64
+N120 g53 g40 g0 g90 d0 z340
+
+wechsel(0,0,0)
+g0 g90 g40 g53 d0 z340 
+aaa:
+g0 z=-100 
+g0 z170
+gotob aaa
+m30
+

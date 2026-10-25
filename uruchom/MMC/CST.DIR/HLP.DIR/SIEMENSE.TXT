@@ -1,0 +1,585 @@
+
+
+
+*******************************************************************************
+*                                                                             
+*                                                                             
+* Software component:     Drilling/Milling/Turning Cycles for 840D/810D       
+*                                                                             
+* Order No.:              6FC5250 - 6AX00 - 4AB0                              
+*                                                                             
+* Material number:        570886.3901.64                                      
+*                                                                             
+* Software version:       ;VERSION: 06.04.24 Mar 26, 2004                                                
+*                                                                             
+*******************************************************************************
+
+
+
+						Press the Page key !
+
+==============================================================================
+
+This file provides information on how to start up and use the standard cycles for SINUMERIK 840D/810D.
+
+--------------------------- TITLE -------------------------------------------
+
+
+        Standard Cycles for SINUMERIK 840D/810D
+
+
+
+--------------------------- CONTENTS ----------------------------------------
+
+ 1. Requirements
+ 2. Documentation
+ 3. Contents of floppy disks
+ 4. Machine data settings and start-up
+ 5. Loading the cycles to the control
+ 6. Special notes on how to use this cycle version
+ 7. New functions
+
+-------------------------------------------------------------------------------
+
+1. REQUIREMENTS:
+================
+
+In order to be able to use the standard cycle version, NC software version 5.3
+and higher for 840D or 3.1 and higher for 810D will be required.
+CYCLE800 will require NC software version 6.3.
+
+Machine data of the control are by default configured in a way that these cycles
+can be loaded and executed. Please see items 4. and 6. for notes on important
+machine data settings.
+
+
+-------------------------------------------------------------------------------
+
+2. DOCUMENTATION:
+=================
+
+The following documentation material is available for the current version of
+standard cycles:
+
+     Title                            !  Version  !  Order number
+     -----------------------------------------------------------------------
+     Programming Guide Cycles         !  01.04    !  6FC5298 - 6AB40 - 0BP3
+     -----------------------------------------------------------------------
+
+
+3. CONTENTS OF FLOPPY DISKS:
+===========================
+
+The cycle version comprises five floppy disks.
+
+They contain the cycles, data and macro definitions for the cycles, the files
+for cycle operator control for control types 840D/840Di/810D with HMI Embedded
+and HMI Advanced.
+The subdirectories of the floppy disks contain all HMI configurations for the
+individual files required.
+
+Directory HMI_EMB\TOOLS contains the files for the help screens of the cycles
+with HMI Embedded, SW6.2 and higher.
+
+3.1. Basic structure:
+
+     Disk1:
+	\CYCLES		  Cycle archives (for loading to the control)
+	\CYCLE\CYP_FILE   Cycle package lists (SW 6.3 HMI and higher)
+	\CYCLES\DEU	  Language-dependent cycle programs, German
+	\CYCLES\ENG	  Language-dependent cycle programs, English
+	\CYCLES\SPF_FILE  Individual cycle programs
+	\DEFINE		  Archive file data and macro definitions
+	\DEFINE\DEF_FILE  Individual definition files	
+	\DEMO		  Sample programs for the new cycle functions
+	\HELP_SW4	  Files for the support of older NCU software versions
+	SIEMENSD.TXT
+	SIEMENSE.TXT
+
+     Disk2:
+	\HMI_ADV	  Cycle support files for HMI Advanced
+
+     Disk3
+	\HMI_ADV	  Archive file for cycles update in HMI Advanced, SW 6.3 and higher
+
+     Disk4:
+	\HMI_EMB	  Cycle support files for HMI Embedded
+
+     Disk5:
+	\HMI_EMB\TOOLS	  Tools for integrating modified bitmaps for HMI Embedded		  
+
+
+
+3.2. CYCLES subdirectory:
+
+These programs can be loaded via RS-232-C or from the floppy disk.
+
+        \CYCLES\CYP_FILE\CYC_SC.CYP	Package list for standard cycles
+                     ...\CYC_SCS.CYP    Package list for cycle support
+
+	\CYCLES\DEU\CYC_832T.SPF	User cycle CYC_832T with German comments	
+	    ...\DEU\ST_CUST.SPF		User cycle ST_CUST with German comments
+	    ...\DEU\TOOLCARR.SPF	User cycle TOOLCARR with German comments
+
+	\CYCLES\ENG\CYC_832T.SPF	User cycle CYC_832T with English comments
+	    ...\ENG\ST_CUST.SPF		User cycle ST_CUST with English comments
+	    ...\ENG\TOOLCARR.SPF	User cycle TOOLCARR with English comments
+
+
+	\CYCLES\SPF_FILE\CYCLE81.SPF    Individual cycle programs
+	    ...\SPF_FILE\CYCLE82.SPF
+	    ...\SPF_FILE\CYCLE83.SPF
+	    ...\SPF_FILE\CYCLE84.SPF
+	    ...\SPF_FILE\CYCLE840.SPF
+	    ...\SPF_FILE\CYCLE85.SPF
+	    ...\SPF_FILE\CYCLE86.SPF
+	    ...\SPF_FILE\CYCLE87.SPF
+	    ...\SPF_FILE\CYCLE88.SPF
+	    ...\SPF_FILE\CYCLE89.SPF
+	    ...\SPF_FILE\HOLES1.SPF
+	    ...\SPF_FILE\HOLES2.SPF
+	    ...\SPF_FILE\CYCLE801.SPF
+	    ...\SPF_FILE\LONGHOLE.SPF
+	    ...\SPF_FILE\SLOT1.SPF
+	    ...\SPF_FILE\SLOT2.SPF
+	    ...\SPF_FILE\CYCLE60.SPF
+            ...\SPF_FILE\CYCLE71.SPF
+            ...\SPF_FILE\CYCLE72.SPF
+            ...\SPF_FILE\CYCLE76.SPF
+            ...\SPF_FILE\CYCLE77.SPF
+	    ...\SPF_FILE\POCKET1.SPF
+	    ...\SPF_FILE\POCKET2.SPF
+            ...\SPF_FILE\POCKET3.SPF
+            ...\SPF_FILE\POCKET4.SPF
+	    ...\SPF_FILE\CYCLE90.SPF
+	    ...\SPF_FILE\CYCLE93.SPF
+	    ...\SPF_FILE\CYCLE94.SPF
+	    ...\SPF_FILE\CYCLE95.SPF
+	    ...\SPF_FILE\CYCLE96.SPF
+	    ...\SPF_FILE\CYCLE97.SPF
+	    ...\SPF_FILE\CYCLE98.SPF
+	    ...\SPF_FILE\CYCLE800.SPF
+            ...\SPF_FILE\PROG_EVT.SPF	(PROG_EVENT cycle)	
+            ...\SPF_FILE\CYCPE_SC.SPF
+	    ...\SPF_FILE\CYCLE832.SPF	
+            ...\SPF_FILE\STEIGUNG.SPF	Cycle support subprogram
+
+        \CYCLES\CYCCUST_GR.ARC		Archive file of all user cycles with German comments
+            ...\CYCCUST_UK.ARC	Archive file of all user cycles with English comments
+	    ...\CYCLES.ARC		Archive file of all cycles
+	    ...\CYCLIST.ARC		Archive file of all cycle package lists (HMI SW 6.3 and higher)
+	    ...\CYCMILL.ARC		Archive file of all cycles for Milling technology 
+	    ...\CYCTURN.ARC		Archive file of all cycles for Turning technology (without drilling cycles)
+	    ...\SIEMENSD.ARC		Archive file of siemensd.txt					
+	    ...\SIEMENSE.ARC		Archive file of siemense.txt	
+	    ...\VERSION.ARC		Archive file version cycle version	
+
+
+3.3. DEFINE subdirectory:
+
+These programs can be loaded via RS-232-C or from the floppy disk.
+
+	\DEFINE\DEFINES.ARC		Definition files for cycles
+	\DEFINE\DEF_FILE\GUD7.DEF	Data block for cycles
+	    ...\DEF_FILE\SMAC.DEF	Macro definition file
+            ...\DEF_FILE\GUD7_SC.DEF	Auxiliary definition programs
+            ...\DEF_FILE\SMAC_SC.DEF
+
+3.4. DEMO subdirectory:
+
+	\DEMO\BSP_C800.ARC		Sample program for how to use CYCLE800
+	\DEMO\BSP_C832.ARC		Sample program for how to use CYCLE832 and CYC_832T
+
+3.5. HELP_SW4 subdirectory:
+
+This directory contains cycle files for using the cycles with older NCU versions.
+
+The programs can be loaded via RS-232-C or from the floppy disk.
+The following files are available for NCU versions up to SW 6.2:
+
+        \HELP_SW4\GUD7.DEF
+	      ...\SMAC.DEF
+
+3.6. HMI_ADV subdirectory:
+
+The subdirectory HMI_ADV is provided on 2 floppy disks. 
+The included archives can be loaded via V.24 or from the floppy disk.
+
+        \HMI_ADV\SCSUPP.ARC		Archive file of all cycle support files
+             ...\BMP_1024.EXE      	Bitmaps packed as archive files (for 1024 * 764)
+             ...\BMP_800.EXE      	Bitmaps packed as archive files (for 800 * 600)
+             ...\BMP_640.EXE      	Bitmaps packed as archive files (for 640 * 480)
+
+        \HMI_ADV\SC_ARC63.ARC		Archive file of all cycle archives
+
+Files BMP_*.EXE must be unpacked on an external computer.
+
+They contain loadable archive files of the help screens:
+	CONT1BMP.ARC	Help screens for the contour definitions, part 1
+	CONT2BMP.ARC	Help screens for the contour definitions, part 2
+	CYC1BMP.ARC	Help screens for cycle support in the editor, part 1
+	CYC2BMP.ARC	Help screens for cycle support in the editor, part 2
+	CYC3BMP.ARC	Help screens for cycle support in the editor, part 3
+	CYC4BMP.ARC	Help screens for cycle support in the editor, part 4
+	CYC5BMP.ARC	Help screens for cycle support in the editor, part 5
+	CYC6BMP.ARC	Help screens for cycle support in the editor, part 6
+	CYC7BMP.ARC	Help screens for cycle support in the editor, part 7 (for 1024 * 768 only)
+	CYC8BMP.ARC	Help screens for cycle support in the editor, part 8 (for 1024 * 768 only)
+	CYC9BMP.ARC	Help screens for cycle support in the editor, part 9 (for 1024 * 768 only)
+	CYC10BMP.ARC	Help screens for cycle support in the editor, part 10 (for 1024 * 768 only)
+	DP1BMP.ARC	Help screens for interactive programming of the cycles, part 1		
+	DP2BMP.ARC	Help screens for interactive programming of the cycles, part 2		
+
+3.7. HMI_EMB subdirectory:
+
+The HMI_EMB subdirectory is provided on 2 floppy disks. 
+
+These files can be loaded via RS-232-C.
+	
+	\HIM_EMB\COMMON.COM		Definition file for entry softkeys of cycle
+						support in the editor
+             ...\SC.COM		        Cycle support file
+				 	      (for recompiling cycles up to SW 4 only)
+
+These files will be required, if the cycle support shall be upgraded in HMI
+Embedded up to SW 6.2.
+
+	\HIM_EMB\AEDITOR.COM		Cycle support files for SW 5.2 and higher		
+	     ...\BOHREN.COM
+	     ...\BOHREN1.COM
+	     ...\DREHEN.COM
+	     ...\DREHEN2.COM
+	     ...\FRAESEN.COM
+	     ...\GEWINDE.COM
+	     ...\KONTUR.COM				
+	     ...\MA_JOG.COM
+	     ...\SCHWENK1.COM		only as of SW 6.2
+	     ...\SCHWENK2.COM		only as of SW 6.2
+	     ...\STARTUP.COM		only as of SW 6.2
+	     ...\TOLERANZ.COM		only as of SW 6.3
+	
+
+These files will be required, if help screens must be reloaded in HMI Embedded
+or if additional help screens shall be integrated in HMI Embedded.
+			
+        \HMI_EMB\TOOLS\ARJ_IDX.EXE	Tool for creating cst.idx
+                   ...\BMP_1024.EXE     Bitmaps in *.bmp format (for 1024 * 768)
+		   ...\BMP_800.EXE	Bitmaps in *.bmp format (for 800 * 600)
+		   ...\BMP_640.EXE	Bitmaps in *.bmp format (for 640 * 480)
+                   ...\BMP2BIN.EXE      Conversion tool
+		   ...\BMPCON.EXE	Conversion tool for bitmap colors
+                   ...\MCST_640.BAT	Batch files for creating cst.arj
+                   ...\MCST_800.BAT	
+                   ...\MCST1024.BAT
+                   ...\SYS_CONV.COL     Color table for conversion
+
+Please see the cycle documentation (see release above) for a description of how
+to handle them.
+
+
+3.8. Part packages and memory requirements for the standard cycles:
+
+As the standard cycles support the Turning, Milling and Drilling technologies,
+in most cases not all cycles are used in a machine.
+It makes sense to load only those cycles to the part program memory of the
+control which are required according to the machine configuration.
+
+3.8.1. Part package of standard cycles for milling machines:
+
+The part package of drilling and milling cycles comprises the following
+programs, which have to be loaded to the part program memory:
+
+	CYCLE81.SPF
+	CYCLE82.SPF
+	CYCLE83.SPF
+	CYCLE84.SPF
+	CYCLE840.SPF
+	CYCLE85.SPF
+	CYCLE86.SPF
+	CYCLE87.SPF
+	CYCLE88.SPF
+	CYCLE89.SPF
+	STEIGUNG.SPF
+	HOLES1.SPF
+	HOLES2.SPF
+	CYCLE801.SPF
+	CYCLE60.SPF
+        CYCLE71.SPF
+        CYCLE72.SPF
+        CYCLE76.SPF
+        CYCLE77.SPF
+	LONGHOLE.SPF
+	SLOT1.SPF
+	SLOT2.SPF
+	POCKET1.SPF
+	POCKET2.SPF
+        POCKET3.SPF
+        POCKET4.SPF
+	CYCLE90.SPF
+	CYCLE800.SPF
+	TOOLCARR.SPF
+	PROG_EVT.SPF		(PROG_EVENT cycle)
+	CYCPE_SC.SPF
+	CYCLE832.SPF
+	CYC_832T.SPF
+
+
+Pocket milling cycles POCKET1 and POCKET2 are intended to guarantee the
+compatibility of the cycle version with the existing part programs.
+For new applications you should use the pocket milling cycles POCKET3 and 
+POCKET4 with extended functions.
+
+3.8.2. Part package of standard cycles for turning machines:
+
+The part package of turning cycles comprises the following programs, which have
+to be loaded to the part program memory:
+
+	CYCLE93.SPF
+	CYCLE94.SPF
+	CYCLE95.SPF
+	CYCLE96.SPF
+	CYCLE97.SPF
+	CYCLE98.SPF
+	STEIGUNG.SPF
+
+
+3.8.3. Memory requirements in the part program memory:
+
+The memory requirements are indicated MMC-dependent, since the operator guide
+file SC.COM does not have to be loaded to the part program memory when using
+configurations with HMI Advanced.
+
+ !      ! Package / part package ...............! Memory requirements in KB!
+ ! ---- ! ------------------------------------- ! ------------------------ !
+ !  1   ! HMI Advanced configuration:           !                          !
+ !      !  all standard cycles                  !           210            !
+ ! ---- ! ------------------------------------- ! ------------------------ !
+ !  2   ! HMI Advanced configuration:           !                          !
+ !      !  standard cycles for milling machines !                          !
+ !      !                                       !           125            !
+ ! ---- ! ------------------------------------- ! ------------------------ !
+ !  3   ! HMI Advanced configuration:           !                          !
+ !      !  standard cycles for turning machines !                          !
+ !      !                                       !           100            !
+ ! ---- ! ------------------------------------- ! ------------------------ !
+
+
+
+4. MACHINE DATA SETTINGS AND START-UP:
+======================================
+
+4.1.  Memory-configuring machine data for user cycles:
+If user cycles are loaded to the control in addition to the Siemens cycles, it
+is recommended to increase the two memory-configuring machine data.
+
+        18170   $MN_MM_NUM_MAX_FUNC_NAMES
+        18180   $MN_MM_NUM_MAX_FUNC_PARAM
+
+The following values will be required for executing the Siemens cycles:
+
+        18170   $MN_MM_NUM_MAX_FUNC_NAMES = 40
+        18180   $MN_MM_NUM_MAX_FUNC_PARAM = 450.
+
+4.2.  Start-up for thread recutting for HMI Advanced:
+Thread recutting requires operation in basic JOG display. For this purpose,
+softkey HS8 "Thread recutting" in file MA_JOG.COM has to be activated.
+Open file MA_JOG.COM and remove the semicolon in the following lines:
+   ;HS8=($80720,,se1)
+   ;PRESS(HS8)
+   ;LM("GENS","DREHEN2.com")
+   ;END_PRESS
+The file is stored in directory "Standard cycles".
+The softkey is now active.
+	
+4.3.  Start-up for thread recutting for HMI Embedded:
+Thread recutting requires operation in basic JOG display. For this purpose,
+softkey HS8 "Thread recutting" in file COMMON.COM has to be activated.
+Open file COMMON.COM and delete the ";" in front of SC108. The file is stored in
+directory "User cycles".
+MMC has to be restarted afterwards.
+
+
+5. LOADING THE CYCLES TO THE CONTROL:
+=====================================
+
+5.1. Special notes on how to load the cycles with HMI Embedded configuration:
+RS-232-C user interface. The files are automatically loaded to the correct 
+directory in the file system.
+
+Before being able to execute the cycles, you have to execute a Power ON of the
+control after having loaded the cycles.
+
+5.2. How to upgrade these cycles in HMI Advanced up to SW 6.2:
+
+All *.SPF files in directory HMI_ADV are available as punched tape archive while
+files *.COM, *.AWB and *.LST are stored in PC format.
+Read-in to the control is executed in the Services area with function "Data
+in" either directly from the floppy disk or via an RS-232-C interface.
+The cycles will be transferred automatically to directory "Standard cycles" and
+the file from subdirectory DEFINE to directory "Definitions". (You are not
+allowed to use function "Copy" from the floppy disk !).
+
+5.3. How to upgrade these cycles in HMI_Advanced SW 6.3 or higher:
+
+In HMI_Advanced SW 6.3 or higher, the cycles are stored as archives under
+ "Archives", "Cycle archives". 
+To upgrade the cycles, archive SC_ARC63.ARC must be read in from directory 
+HMI_ADV. It will unpack the cycle archives and overwrite the available archive
+of the previous cycle version.
+The following archives belong to cycle version 6.4:
+ARC.DIR\CYC.DIR\CYCCUST_GR.ARC		Archive file of all user cycles with
+German comments
+            ...\CYCCUST_UK.ARC		Archive file of all user cycles with
+ English comments
+	    ...\CYCLES.ARC		Archive file of all cycles
+	    ...\CYCLIST.ARC		Archive file of all cycle package lists (HMI
+ SW 6.3 and higher)
+	    ...\CYCMILL.ARC		Archive file of all cycles for Milling technology
+	    ...\CYCTURN.ARC		Archive file of all cycles for Turning technology (without drilling cycles) 
+ 	    ...\DEFINES.ARC		Archive file of the definition files
+	    ...\SCSUPP.ARC		Archive file of all cycle support files
+	    ...\SIEMENSD.ARC		Archive file of siemensd.txt					
+	    ...\SIEMENSE.ARC		Archive file of siemense.txt	
+	    ...\VERSION.ARC		Archive file version cycle version	
+The archive TOOLCARR.ARC in cycle version SW 6.3 will no longer be required for
+this cycle version. This archive should therefore be deleted before upgrading.
+The TOOLCARR cycle is stored language-dependent in archive CYCCUST_GR.ARC or
+CYCCUST_UK.ARC. 
+The archives from the HMI cycle archive must now be read in technology-dependent
+(turning, milling...) or language-dependent via "Data in". 
+
+5.4. Special notes on how to install the cycles:
+
+Transfer the cycles to the control file by file. You are not allowed to use the
+PCIN function "Mark several files and transfer in one block"!
+
+
+6. SPECIAL NOTES ON HOW TO USE THIS CYCLE VERSION:
+==================================================
+
+1. Machine data setting for stock removal cycle CYCLE95:
+For this version and higher, stock removal cycle CYCLE95 requires the following
+machine data settings:
+        MD 11410 $MN_SUPPRESS_ALARM_MASK = 02H
+        MD 20240 $MC_CUTCOM_MAXNUM_CHECK_BLOCKS = 4
+
+2. Cycles 6.4 can be used for 840D with NCU version 6.3 and higher or for
+810D with CCU version 6.3 and higher. The following special requirements
+apply:
+- CYCLE800 cannot be executed and requires NCK 6.3 or higher
+- The following machine data settings are required
+  MD 28020 MC_NUM_LUD_NAMES_TOTAL = 400         for pre-recompiling the cycles
+  MD 20250 $MC_CUTCOM_MAXNUM_DUMMY_BLOCKS=5     for CYCLE72
+  MD 9424 MA_COORDINATE_SYSTEM = 1              for displaying WCS of CYCLE95
+
+3. How to activate the screens for swivel cycle CYCLE800 in HMI:
+Operating the swivel cycle includes an entry screen in the cycle support and a
+screen in the 'Start-up' operating area used to start up the kinematics and the
+rotary axes.
+The screen in the 'Start-up' operating area must be activated as follows. 
+For HMI Embedded:
+  The softkey HS14 "Swivel cycle" in file COMMON.COM must be activated.
+  Open file COMMON.COM and delete the ";" in front of SC616. 
+  The file is stored in the directory "User cycles". Afterwards an NC reset is
+ required.
+For HMI Advanced:
+  Open file startup.com and delete the ";" in front of the following lines:
+	;HS14=($82084,ac7)
+	;PRESS(HS14)
+	;LM("SCHWENK1a","SCHWENK1.com")
+	;END_PRESS
+  The file is also stored in the directory "Standard cycles".
+  Restart HMI Advanced after these two changes.
+
+
+7. New functions in SW 6.4:
+===========================
+
+7.1. New cycle: CYCLE60 engraving cycle
+
+With the new engraving cycle CYCLE60 any single-line text can be engraved. The
+ basic form of the characters is fixed, while the width of the lines depends
+ on the tool. Via different input parameters, the font size, position and
+ alignment of the text on the part can be selected. The text can be max. 91
+ characters long and is transferred to the cycle as string parameter.
+A support screen for the cycle will not be available before SW 6.5.
+
+7.2. How to handle ST_CUST.SPF
+
+User cycle ST_CUST.SPF SW 6.4 and higher is called by many standard cycles.
+It must be loaded to the control.
+The cycle is delivered language-dependent with German or English comments
+ together with the archives CYCCUST_GR.ARC or CYCCUST_UK.ARC. It must be adapted
+ by the machine OEM, if required.
+
+7.3. Cycle subroutine MESSAGE deleted
+
+In SW 6.4 and higher the cycle subroutine MESSAGE will no longer be required.
+ The messages are output in the cycles directly through MSG command.
+For SW upgrades, the cycle MESSAGE.SPF can be deleted from directory CST.DIR.
+
+7.4 Changes / extensions in CYCLE800
+
+7.4.1. Start-up screen for swiveling
+
+- New rotary axes mode "semi-auto"
+  Mode "semi-auto" is used to fade out messages 62180/62181 (display of angle
+ values to be set).
+  Application: Manual rotary axes, which are positioned to the calculated angle
+ via an appropriate mechanical system.
+  For this purpose, the machine OEM has to modify the user cycle TOOLCARR
+ accordingly.
+  (marks _M21.. for manual rotary axes).
+- New rotary axes input field "Offset kinematics"
+  Input field "Offset kinematics" can be used to enter the offset value of
+ rotary axis 1 ($TC_CARR24[n]) or rotary axis 2 ($TC_CARR25[n], if the position
+ of the rotary axes does not equal 0 in the inital setting of the kinematics.
+- Input field "automatic offset" for rotary axes with Hirth tooth system is no
+ longer available.
+
+7.4.2. Note on kinematics (inclinable head/mixed kinematics) with Hirth tooth
+ system:
+  Depending on the active plane (G17,G18,G19) the command TOROT (or TOROTX,
+ TOROTY) is programmed in CYCLE800 to calculate(in NCU) the compensation frames
+ of the Hirth tooth system (G-Gruppe 53). 
+  If the Hirth tooth system causes the programmed rotation to deviate from the
+ possible positions of the rotary axes, a TOOLFRAME will be created for
+ inclinable head kinematics and mixed kinematics (see HMI active WO/details tool
+ reference).
+  The calculation depends on setting data SD 42980 $SC_TOFRAME_MODE and on
+ machine data MD 21110 $MC_X_AXIS_IN_OLD_X_Z_PLANE=1 (standard)
+  Set the kinematics (inclinable head/mixed kinematics) with Hirth tooth system
+ setting data SD 42980 $SC_TOFRAME_MODE=1000 ! 
+  If the compensation frame (TOOLFRAME) shall be maintained after reset or
+ programm exit, set MD 20150 $MC_GCODE_RESET_VALUES[52]=2, for G17 TOROT (for
+ G18=3  TOROTY,bei G19 =4 TOROTX).
+
+7.5. New user cycle CYC_832T for CYCLE832
+
+If the machine OEM requires any additional behavior of CYCLE832 that goes beyond
+ the technological adjustments, the required changes can be made in cycle
+ CYC_832T. For this purpose, CYC_832T should be copied to directory CMA.dir (HMI
+ supplier) and loaded to the NCU.
+CYC_832T is a basic program. Any changes must be documented by the machine OEM.
+ In case of any changes made in CYC_832T , it will not be necessary to change
+ CYCLE832. 
+
+Parameter
+CYC_832T(_ASVS,_FACTOR,_OVL_on)
+
+_ASVS Machine-specific adjustments can be made at the marks _M0 through _M4.
+      _M4 = Init CYCLE832 is called prior to the program run of CYCL832 
+      _M0 = Deselection of CYCLE832
+      _M1 = Finishing cut machining
+      _M2 = Rough-finishing machining
+      _M3 = Roughing machining
+
+_FACTOR - factor of rotary axis tolerance
+_OVL_on - 1=overload factor MD $MA_MAX_ACCEL_OVL_FACTOR is adjusted  0=is not
+ adjusted.
+
+==============================================================================
+
+End of read-me file.
+
+==============================================================================

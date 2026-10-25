@@ -1,0 +1,190 @@
+; r44=-12.8 dla towerow  ;  r44=-1.8 dla plotowN5 rot
+
+N10 m70 h11 g54 m51 g64 g17  ;stol 1
+;N10 m70 h11 g56 m52 g64 g17  ;stol 2
+N15 g53 g40 g0 g90 d0 z340
+
+;                 start
+N20 r7=2015 ; wysokosc skrz.
+N25 r6=916-.2 ; szerokosc skrz.
+N30 r44=-12.2  ;wysokosc w z Tawer=-12.2    
+
+atrans x=59
+
+;N40 atrans x=r7 ;/dla lewych uaktywnic!!/
+;N45 amirror x0 ;/dla lewych uaktywnic!!/
+
+;gotof gniazda
+
+N35 gotof otwory
+
+N40 szyld:
+
+N45 wechsel(4,3,40)
+N50 g18
+N55 c180 d3
+
+N60 g0 x=-130 y=r6-2.5 g41 d3
+N65 z=r44
+N70 g1 x=2030 f5000
+N75 z=ic(-21.8);-23
+N80 x=-130
+N85 y=r6+20
+;nuta************************************
+N90 nuta:
+
+N95 g0 g40 d3 x=210+15 z=r44-11.25
+N100 g1 y=r6-5 f4000
+N105 x=1860-7
+N110 y=r6-9
+N115 x=210+15
+N120 y=r6-13
+N125 x=1860-7
+N130 y=r6+20
+
+N135 GNIAZDA:
+
+N140 g53 g40 g0 g90 d0 z340
+;gotof koniec
+
+N145 wechsel(0,0,0)
+
+N150 h12
+N155 g18 t13
+N160 h92
+N165 m3
+N170 s150
+
+;N175 awaria2:            ;   *** UWAGA AWARIA ***
+
+N175 g0 x=-130 y=r6-2.5 g41 d3
+N180 z=r44
+
+;           pierwszy zamek (maly)
+
+N185 g0 x=230+20+3 z=r44-2.5          ;pozycja startowa
+N190 ruch_zm1 p4             ;6,3*6
+N195 g0 y=r6-2.5
+
+;           drugi zamek (duzy)
+
+N200 g0 x=920+20+3 z=r44-0.5
+N205 ruch_zd1 p6             ;6,6*11
+N210 g0 y=r6-2.5
+
+;         trzeci zamek (du¿y)
+
+N215 g0 x=1320+20+3 z=r44-0.5
+N220 ruch_zd2 p6 ;
+N225 g0 y=r6-2.5
+
+;          czwarty zamek (maly)
+
+N230 g0 x=1730+20+2 z=r44-2.5
+N235 ruch_zm2 p4
+N240 g0 y=r6+30                      ;poza materjalem
+N245 x=ic(12)
+N250 z=ic(1) g40
+
+N255 h90
+N260 s0
+N265 gotof koniec
+
+N270 otwory:
+;             otwory
+;Program
+
+N275 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N280 wechsel(1,3,180)
+
+g53 g40 g0 g90 d0 z340
+
+;    pierwszy patent
+N285 g0 x=932+10 y=r6-45 z=50 g42 d1
+N290 g1 x=ic(16) z=-10 f3000
+N295 g2 y=ic(-22) cr=11
+N300 g1 x=ic(-16)
+N305 g2 y=ic(22) cr=11
+
+N290 g1 x=ic(16) z=-46 f3000
+N295 g2 y=ic(-22) cr=11
+N300 g1 x=ic(-16)
+N305 g2 y=ic(22) cr=11
+
+N310 g1 x=ic(16)
+
+N315 g0 z=50
+
+;     klamka
+N320 g0 x=1030-1+1 y=r6-46 z=50
+N325 g2 g91 x0 y0 i0 j-10 z=ac(-10) f3000
+N330 g2 x0 y0 i0 j-10
+
+N325 g2 g91 x0 y0 i0 j-10 z=ac(-46) f3000
+N330 g2 x0 y0 i0 j-10
+
+N335 g2 x0 y0 i0 j-10 z=ac(50)
+
+;N375 g90 g53 g0 g40 d0 z340 s0
+;N380 gotob szyld  ;  bez drugiego patentu
+
+;     drugi patent
+N340 g90 g0 x=1330+11+2 y=r6-45 z=50
+N345 g1 x=ic(16) z=-10 f3000
+N350 g2 y=ic(-22) cr=11
+N355 g1 x=ic(-16)
+N360 g2 y=ic(22) cr=11
+
+N345 g1 x=ic(16) z=-46 f3000
+N350 g2 y=ic(-22) cr=11
+N355 g1 x=ic(-16)
+N360 g2 y=ic(22) cr=11
+
+N365 g1 x=ic(16)
+N370 g0 z=50
+N375 g90 g53 g0 g40 d0 z340 s0
+
+;N385 gotof awaria1 ;         *** UWAGA AWARIA ***
+N380 gotob szyld
+
+N385 koniec:
+N390 rot
+N395 g90 g53 g0 g40 d0 z340 s0 
+;N400 x-2000
+N405 m30
+
+;koniec
+
+
+
+N420 awaria1: ;             *** UWAGA AWARIA ***
+
+
+;N410 wechsel(0,0,0)
+N415 h12
+N420 g18 t13
+N425 h92
+N430 m3
+N435 s150
+
+N440 g0 x=-30 y=r6-2.5 g41 d3
+N445 z=r44
+N450 g1 x=2030 f5000
+N455 z=ic(-22.5);-23
+N460 x=-30
+N465 y=r6+20
+;nuta************************************
+N470 nuta:
+
+N475 g0 g40 d3 x=210 z=r44-11.25
+N480 g1 y=r6-5 f4000
+N485 x=1860
+N490 y=r6-9
+N495 x=210
+N500 y=r6-13
+N505 x=1860
+N510 y=r6+20
+
+N515 gotob awaria2

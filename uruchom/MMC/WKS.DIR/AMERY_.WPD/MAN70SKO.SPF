@@ -1,0 +1,57 @@
+;Parametry
+N5 r51=125+2 ; odleglosc od krawedzi do szpr. w osi x
+N10 r52=1084+5; wysokosc szprosu bez luku
+N15 r53=461+5 ;szerokosc wzoru
+N20 r50=(r6-r53)/2; odleglosc od krawedzi do szpr. w osi y
+N25 r54=-51; glebokosc robocza
+N30 r55=132; odstep gornej od dolnej
+N35 r56=470; wysokosc dolnego wzoru
+N40 r57=r52+r55
+N45 r58=r57+r56
+N50 r59=r51-48
+N55 r61=133; odstep miedzy wzorkami
+N60 r60=(r6-r61-(2*r50))/2; szerokosc jednego pola
+N65 r61=133; odstep miedzy wzorkami
+
+;Program
+N70 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N75 wechsel(1,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N80 g0 g41 d1 x=r51 y=r50+r53-122 z50
+
+N85 arot z348.15
+N90 z20 m21
+
+;pierwsze pole
+
+N95 g1 x=ic(100) z=r54 f6000
+N100 x=ic(1590)
+N105 y=ic(125)
+N110 x=ic(-1690)
+N115 y=ic(-125)
+N120 x=ic(100)
+N125 x=ic(100) z20
+
+;narozniki
+N130 g0 g40 x=ic(-200+10-2) y=ic(10-2)
+N135 g1 z=r54 f4000
+N140 g0 z20
+N145 g0 y=ic(125-16)
+N150 g1 z=r54 f4000
+N155 g0 z20
+N160 g0 x=ic(1690-16) 
+N165 g1 z=r54 f4000
+N170 g0 z20
+N175 g0 y=ic(-125+16)
+N180 g1 z=r54 f4000
+N185 g0 z20
+
+N190 rot
+
+;zakonczenie
+N195 g53 g0 g40 d0 z340
+N200 m17
+

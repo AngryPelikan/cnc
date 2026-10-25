@@ -1,0 +1,19 @@
+N5 if r100==1 gotof stol1 ;m41
+N10 if r100==2 gotof stol2 ;m42
+
+
+N15 stol1: ;m41
+N20 m41
+N25 h60
+N30 gotof tutaj
+
+N35 stol2: ; m42
+N40 m42
+N45 h62
+
+N50 gotof tutaj
+
+N55 tutaj:
+N60 m17
+
+

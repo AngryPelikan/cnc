@@ -1,0 +1,44 @@
+N101 R100=1
+N102 R0=1    ; 1-LEWE 2-PRAWE
+N103 R1=1    ; formatowanie 1-tak 0-nie
+N104 R2=0    ; 1wi; 2dow; 3ca;  13mht ; BOLZANO 56; ANDORA 57;                  ; ANDORA 58 Z JEDNYM NIETYP. OKIENKIEM R4=3
+             ; 14-bulaj  CLASSIC 1=51  CLASSIC 5=10
+             ; CLASSIC 6=20  CLASSIC 7=19
+N105 R3=2    ; rozmiar {1-60;2-70;3-80;4-90}
+N106 R4=1    ; {1-pel;2-msz;3-dsz;5-pio;6-sko} bul.met-4;mdf-1
+N107 R5=0    ; okienko 1-tak 0-nie
+N108 R6=950-.75  ;szerokosc skrzydla
+N109 R7=2015-.5 ; Wysokosc skrzydla st 2036(mm)
+N110 R8=0   ; ilosc tulejek 0-brak   ;PW-20 sT ; 1-kratka
+N111 R9=8    ; ZAMEK 1-ZO 2-WC 3-ZP 4-ZZ 5-ZG 6-ZG+AXA 7-LIST 8-LIS                                                              +AXA
+N112 R10=3   ; ZAWIASY 0-BRAK 2-DWA 3-TRZY 4-CZTERY
+N113 R19=0   ; ANTYWLAMY 0-BRAK 1-TAK
+N114 R20=1   ; WIZJER 0-BRAK 1-STD 2-PANORAMA
+N115 R12=0   ; 0-NIE 1-TAK ; PROG/SUWANE 
+N116 R15=50.2  ; GRUBOSC MATERIALU
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+;CON,0,0.0000,0,0,MST:2,1,AX:X,Y,I,J;*GP*;*RO*;*HD*
+;S,EX:50,EY:50,ATT:G1;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+N117 R16=4   ; WYBOR ZAMKA 1-MAGNETYCZNY  2-LOB 3-ZG  4-LISTWOWY
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+;CON,0,0.0000,0,0,MST:2,1,AX:X,Y,I,J;*GP*;*RO*;*HD*
+;S,PX:50,PY:50,L1A:70.7107,P1A:45,ATT:G1;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+N118 R70=1020; WYSOKOSC KLAMKI
+N119 R42=5.3 ; 3.2;2.8;2;6 ; GLEBOKOSC ZAMKA
+N120 R17=0.2 ; KOREKTA DL I SZER ZAMKA
+
+
+
+N121 IF R1==1
+N122   R21=13  ; GLEBOKOSC FELCA
+N123 ENDIF
+
+N124 IF R1==0
+N125   R21=0 ;GLEBOKOSC FELCA
+N126 ENDIF
+
+
+N127 m17
+

@@ -1,0 +1,208 @@
+N5 prametry:
+; szyld i kieszen:
+
+R15=42 
+R100=2
+
+N10 r6=148;916 ; szerokosc skrzydla
+N15 r7=2015 ; dlugosc skrzydla
+N20 r27=810 ;rozmieszczenie zamka odgory drzwi do pocz.szyldu
+N25 r40=230 ;dlugosc szyldu
+N30 r41=20.5 ;szerokosc szyldu
+N35 r42=3 ;glebokosc szyldu
+N40 r43=27 ;odstep miedzy szyldem a kieszenia w x
+N45 r44=-13.5 ;  Wys. szyldu w z 
+N50 r39=13 ;felc
+N55 r45=176 ;dlugosc kieszeni
+N60 r46=18 ;szerokosc kieszeni
+N65 r47=1 ;odstep miedzy szyldem a kieszenia w z
+N70 otwory:
+
+N75 IF R100==1 GOTOF STOL1
+N80 IF R100==2 GOTOF STOL2
+N85 M30
+
+N90 STOL1:
+N95 m70 h11 g54 m51 g64
+N100 g53 g40 g0 g90 d0 z340
+N105 GOTOF DALEJ
+
+N110 STOL2:
+N115 m70 h11 g56 m52 g64
+N120 g53 g40 g0 g90 d0 z340
+N125 GOTOF DALEJ
+
+N130 DALEJ:
+
+;N140 atrans x=r7 ; dla prawych uaktywnic;
+;N145 amirror x0  ; dla prawych
+
+N135 wechsel(1,3,180)
+N140 CPRECON
+
+G0 X=R27-22 Y=R6-65 G40 D1
+G0 z=-37+r15+10
+g1 z=-37+r15-(r15/2) f1000
+g1 z=-37+r15+10 f5000
+g1 z=-37+r15-(r15/2)
+g1 z=-37+5 f1000
+g1 z=-37+r15+10 f5000
+g1 z=-37+5 
+g1 z=-37-3 f500
+g1 z=-37+r15+50
+
+G0 X=R27-22 Y=R6-65 G40 D1
+G0 z=-37+r15+10
+g1 z=-37+r15-(r15/2) f1000
+g1 z=-37+r15+10 f5000
+g1 z=-37+r15-(r15/2)
+g1 z=-37+5 f1000
+g1 z=-37+r15+10 f5000
+g1 z=-37+5 
+g1 z=-37-3 f500
+g1 z=-37+r15+50
+
+
+N145 G0 X=R27+95 Y=R6-65 G41 D1
+N150 G0 Z=-37+R15+10
+N155 G91 G3 X=0 Y=0 I=0 J=10 Z=AC(-37+(R15/2)) F3000
+N160 G91 G3 X=0 Y=0 I=0 J=10 Z=AC(-37-5) F3000
+N165 G3 X=0 Y=0 I=0 J=10
+N170 G90 G0 Z=-37+R15+30
+
+N145 G0 X=R27+95+72 Y=R6-66 G41 D1
+N150 G0 Z=-37+R15+10
+N155 G91 G3 X=0 Y=0 I=0 J=11 Z=AC(-37+(R15/2)) F3000
+N160 G91 G3 X=0 Y=0 I=0 J=11 Z=AC(-37-5) F3000
+N165 G3 X=0 Y=0 I=0 J=11
+N170 G90 G0 Z=-37+R15+30
+
+N145 G0 X=R27+95+88 Y=R6-66 G41 D1
+N150 G0 Z=-37+R15+10
+N155 G91 G3 X=0 Y=0 I=0 J=11 Z=AC(-37+(R15/2)) F3000
+N160 G91 G3 X=0 Y=0 I=0 J=11 Z=AC(-37-5) F3000
+N165 G3 X=0 Y=0 I=0 J=11
+N170 G90 G0 Z=-37+R15+30
+
+
+N175 G0 X=R27+3 Y=R6-30 G41 D1
+N180 G0 Z=-37+R15+10
+N185 G1 Y=R6-55 Z=-37-5 F3000
+N190 G1 Y=R6-87.5
+N195 G1 X=R27+35+15
+N200 G1 Y=R6-22.5
+N205 G1 X=R27+3
+N210 G1 Y=R6-65
+N215 G0 Z=-37+R15+30
+N220 G0 G90 G53 G40 D0 Z340 S0
+
+N225 DALEJ:
+;-----
+
+; program dla kieszeni:
+;************************************
+N230 wechsel(4,3,30)
+N235 g18
+N240 c180 d3
+N245 cprecon
+
+
+N250 g0 x=r27+r41 y=r6+r39+20 d3
+N255 z=r44 G41
+N260 G0 Y=R6
+N265 g1 x=r27+r40-(r41/2) y=r6-(r42/2) f6000
+N270 g3 z=ic(-r41) cr=r41/2
+N275 g1 x=r27+(r41/2)
+N280 g3 z=r44 cr=r41/2
+
+N285 g1 x=r27+r40-(r41/2) y=r6-r42
+N290 g3 z=ic(-r41) cr=r41/2
+N295 g1 x=r27+(r41/2)
+N300 g3 z=r44 cr=r41/2
+N305 g1 x=r27+r40-(r41/2)
+
+N310 y=r6+r39+10 g41 d3
+
+N315 g90 g53 g0 g40 d0 z340 s0 cprecof
+
+;gotof koniec
+
+N320 wechsel(0,0,0)
+
+;*********************************
+N325 h12
+N330 g18 t13 d3
+N335 h92
+N340 m3
+N345 s150
+;**********************************
+N350 g0 x=r27+r40-(r41/2) y=r6+r39+10 g41 d3
+N355 z=r44 
+;N360 g1 y=r6 f6000
+N360 kieszen:
+N365 g1 x=r27+r43 z=r44-r47-r46 f6000
+N370 y=r6-r42 
+N375 ruch1:
+N380 y=ic(-6.6) 
+N385 g3 z=r44-r47 cr=200
+N390 g1 x=r27+r43+r45
+N395 y=ic(-6.6) 
+N400 g3 z=r44-r47-r46 cr=200
+N405 g1 x=r27+r43
+N410 ruch2:
+N415 y=ic(-6.6) z=r44-r47
+N420 x=r27+r43+r45
+N425 y=ic(-6.6) z=r44-r47-r46
+N430 x=r27+r43
+N435 ruch3:
+N440 y=ic(-6.6) z=r44-r47
+N445 x=r27+r43+r45
+N450 y=ic(-6.6) z=r44-r47-r46
+N455 x=r27+r43
+N460 ruch4:
+N465 y=ic(-6.6) z=r44-r47
+N470 x=r27+r43+r45
+N475 y=ic(-6.6) z=r44-r47-r46
+N480 x=r27+r43
+N485 ruch5:
+N490 y=ic(-6.6) z=r44-r47
+N495 x=r27+r43+r45
+N500 y=ic(-6.6) z=r44-r47-r46
+N505 x=r27+r43
+N510 ruch6:
+N515 y=ic(-6.6) z=r44-r47
+N520 x=r27+r43+r45
+N525 y=ic(-6.6) z=r44-r47-r46
+N530 x=r27+r43
+
+N535 zakonczenie:
+N540 z=r44-r47
+N545 x=r27+r45+r43
+N550 z=r44-r47-r46
+N555 x=r27+r43 y=r6+r39+20
+N560 y=ic(1) g40 d3
+
+N565 koniec:
+N570 h90
+N575 s0
+N580 h11
+N585 g17
+N590 g90 g53 g0 g40 d0 z340 s0 
+
+N595 IF R100==1 GOTOF PLUS_100
+N600 IF R100==2 GOTOF MINUS_100
+N605 M30
+
+N610 PLUS_100:
+N615 R100=R100+1
+G17
+G0 G90 G53 G40 D0 Z340 S0
+X=4000
+N620 GOTOF DALEJ
+N625 MINUS_100:
+N630 R100=R100-1
+N635 GOTOF DALEJ
+
+N640 DALEJ:
+N645 m30
+

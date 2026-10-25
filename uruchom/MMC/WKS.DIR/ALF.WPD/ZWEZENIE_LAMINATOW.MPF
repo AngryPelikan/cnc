@@ -1,0 +1,37 @@
+R6=.5 ; szerokosc skrzydla
+R7=2030 ; DLUGOSC SKRZYDLA
+R15=42-.3 ; GRUBOSC SKRZYDLA
+
+
+STOL1:
+;-----
+m70 h11 g54 m51 g64
+g53 g40 g0 g90 d0 z340
+
+FORMAT:
+
+r60=-90
+wechsel(9,3,50)
+CPRECON
+D1
+r61=cos(r60)*$TC_DP5[$P_TOOLNO,1] ; X
+r62=sin(r60)*$TC_DP5[$P_TOOLNO,1] ; y
+d9
+atrans x=r61 y=r62 ;***
+
+;program
+G0 X=R7+50 Y=R6 C=R60
+G0 Z=-37+R15+10
+G1 Z=-37+R15-3 F5000
+G1 X=-50 F7000
+
+G1 Z=-37-5 F3000
+G1 X=R7+50 F3000
+G0 Z=-37+R15+50
+
+atrans x=-r61 y=-r62 ;***
+CPRECOF
+
+koniec:
+G0 G90 G53 G40 D0 Z340 S0
+M30

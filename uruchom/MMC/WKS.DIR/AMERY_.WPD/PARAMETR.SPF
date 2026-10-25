@@ -1,0 +1,28 @@
+N5  R0=1    ; 1-pIerwsza strona 2-druga strona
+N10 R1=1    ; formatowanie 1-tak 0-nie
+N15 R2=0    ; 1wi; 2dow; 3ca;  13mht ; BOLZANO 56; ANDORA 57;                ; ANDORA 58 Z JEDNYM NIETYP. OKIENKIEM R4=3
+            ; 14-bulaj  CLASSIC 1=51  CLASSIC 5=10
+            ; CLASSIC 6=20  CLASSIC 7=19
+N20 R3=3    ; rozmiar {1-60;2-70;3-80;4-90}
+N25 R4=1    ; {1-pel;2-msz;3-dsz;5-pio;6-sko} bul.met-4;mdf-1
+N30 R5=0    ; okienko 1-tak 0-nie
+N35 R6=811;611.5+((r3-1)*100); szerokosc skrzydla
+N40 R7=2183 ; Wysokosc skrzydla st 2036(mm)
+N45 R8=0    ; ilosc tulejek 0-brak   ;PW-20 sT ; 1-kratka
+N50 R9=0    ; M_BODA 1-zo 2-zz i wc 3-zp                                      METALPLAST i MAGNET: 1-KLAMKA 2-WC 3-PAT 4-ZWYKLY
+N55 R10=0   ; ZAWIASY 0-BRAK 1-SKRZYD 2-KUBICA 3-SECUR 4-HAFELE
+            ; 6-estetic_80x3  7-HAFELE_2  8-BASYS  9-est_80x4
+            ; 10-DICTATOR
+
+N60 R19=0   ; 0-SRODEK 1-L 2-P (DOTYCZY ZAWIASU POL-Soft)
+
+N65 r42=2.7 ; GLEBOKOSC SZYLDU
+N70 r11=1   ; ZAMEK I DOLNY ZAWIAS                                             0-STANDARD OD GORY 1-STANDARD OD DOLU
+
+N75 r12=0   ; SUWANE 0-NIE 1-TAK 2-SALONOWE LEWE 3-SALONOWE-PRAW
+N80 R15=37.5 ; GRUBOSC MATERIALU
+N85 R16=3   ; WYBOR ZAMKA 1-M_BODA  2-METALPLAST 3-MAGNET_VDS
+N90 R18=0   ; 1-LOGO  0-BRAK
+
+
+N95 m17

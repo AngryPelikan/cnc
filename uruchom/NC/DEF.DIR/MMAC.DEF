@@ -1,0 +1,9 @@
+
+; Macros für Artis - Stand 10.03
+
+; Ansteuerung Bohraggregat
+
+DEFINE DRILLS as $A_DBD[4]
+DEFINE Bohrer as $A_DBD[4]
+
+M30

@@ -1,0 +1,633 @@
+N5 if r2==5 and r0==2 gotof koniec
+N10 if r0==2 and r2==6 gotof zakonczenie
+N15 if r0==2 and r2==7 gotof zakonczenie
+N20 if r0==2 and r2==8 gotof zakonczenie
+N25 if r0==2 and r2==9 gotof zakonczenie
+N30 if r0==2 and r4==3 gotof zakonczenie
+
+N35 if r2==0 gotof koniec
+N40 if r2==1 gotof windsor
+N45 if r2==2 gotof dover
+N50 if r2==3 gotof cambridge
+N55 if r2==4 gotof liverpool
+N60 if r2==5 gotof wimbledon
+N65 if r2==6 gotof oxford
+N70 if r2==7 gotof manchester
+N75 if r2==8 gotof kent
+N80 if r2==9 gotof york
+N85 if r2==10 gotof dover
+N90 if r2==13 gotof windsor
+
+N95 IF R2==15 GOTOF TORINO
+
+N100 IF R2==18 GOTOF SZKOLA
+
+N105 IF R2==50 GOTOF N_KENT
+N110 IF R2==51 GOTOF N_KENT
+N115 IF R2==52 GOTOF WINDSOR
+N120 IF R2==56 GOTOF BOLZANO
+N125 IF R2==57 GOTOF ANDORA
+N130 IF R2==58 GOTOF ANDORA_2451_2012
+N135 IF R2==19 GOTOF WZOR_N3_V1
+N140 IF R2==20 GOTOF WZOR_N3_V1
+
+
+N145 ret
+
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+N170 WZOR_N3_V1:
+;----------
+N175 WZOR_N3_V1
+N180 M17
+
+N140 ANDORA_2451_2012:
+;--------------------
+N145 ANDORA_2451_2012
+N150 M17
+
+
+N155 ANDORA:
+;-------------------
+N160 ANDORA
+N165 M17
+
+
+N170 SZKOLA:
+;-----------
+
+;Parametry
+N175 r51=200 ; odleglosc od krawedzi do szpr. w osi x
+N180 r52=900 ; wysokosc szprosu bez luku
+N185 r53=250 ; nowa szerokosc otworu na szpros
+N190 r50=200 ; odleglosc od krawedzi do szpr. w osi y
+N195 r54=-46; glebokosc robocza
+
+;Program
+N200 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N205 wechsel(1,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N210 g0 g41 d1 x=r51 y=r6-r50-r53 z50
+N215 z20 m21
+
+;pierwsze pole
+
+N220 g1 x=r51+100 z=r54 f6000
+N225 x=r51+r52 
+N230 y=ic(r53)
+N235 x=r51 
+N240 y=ic(-r53)
+N245 x=r51+100
+N250 x=r51+200 z20
+
+N255 g0 x=ic(1) g40
+
+;zakonczenie
+N260 g53 g0 g40 d0 z340
+N265 m17
+
+
+
+N270 BOLZANO:
+;----------
+N275 BOLZANO_FAZKA
+N280 M17
+
+N285 TORINO:
+;-------
+N290 TORINO
+N295 M17
+
+N300 N_KENT:
+;---------
+N305 N_KENT
+
+N310 M17
+
+
+N315 windsor:
+
+N320 if r2==13 gotof nowy
+N325 IF R2==52 GOTOF NOWY
+
+N330 if r3==1 gotof win60
+N335 if r3==2 gotof win70
+N340 if r3==3 gotof win80
+N345 if r3==4 gotof win90
+
+N350 nowy:
+N355 win80pel
+N360 m17
+
+N365 win60:
+N370 if r4==1 gotof win60pel
+N375 if r4==2 gotof win60msz
+N380 if r4==3 gotof win60dsz
+
+N385 win60pel:
+N390 win60pel
+N395 ret
+
+N400 win60msz:
+N405 win60msz
+N410 ret
+
+N415 win60dsz:
+N420 win60dsz
+N425 ret
+
+N430 win70:
+N435 if r4==1 gotof win70pel
+N440 if r4==2 gotof win70msz
+N445 if r4==3 gotof win70dsz
+
+N450 win70pel:
+N455 win70pel
+N460 ret
+
+N465 win70msz:
+N470 win70msz
+N475 ret
+
+N480 win70dsz:
+N485 win70dsz
+N490 ret
+
+
+N495 win80:
+N500 if r4==1 gotof win80pel
+N505 if r4==2 gotof win80msz
+N510 if r4==3 gotof win80dsz
+
+N515 win80pel:
+N520 win80pel
+N525 ret
+
+N530 win80msz:
+N535 win80msz
+N540 ret
+
+N545 win80dsz:
+N550 win80dsz
+N555 ret
+
+
+N560 win90:
+N565 if r4==1 gotof win90pel
+N570 if r4==2 gotof win90msz
+N575 if r4==3 gotof win90dsz
+
+N580 win90pel:
+N585 win90pel
+N590 ret
+
+N595 win90msz:
+N600 win90msz
+N605 ret
+
+N610 win90dsz:
+N615 win90dsz
+N620 ret
+
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+N625 dover:
+N630 if r2==10 gotof dov80
+N635 if r3==1 gotof dov60
+N640 if r3==2 gotof dov70
+N645 if r3==3 gotof dov80
+N650 if r3==4 gotof dov90
+
+N655 dov60:
+N660 if r4==1 gotof dov60pel
+N665 if r4==2 gotof dov60msz
+N670 if r4==3 gotof dov60dsz
+
+N675 dov60pel:
+N680 dov60pel
+N685 ret
+
+N690 dov60msz:
+N695 dov60msz
+N700 ret
+
+N705 dov60dsz:
+N710 dov60dsz
+N715 ret
+
+N720 dov70:
+N725 if r4==1 gotof dov70pel
+N730 if r4==2 gotof dov70msz
+N735 if r4==3 gotof dov70dsz
+
+N740 dov70pel:
+N745 dov70pel
+N750 ret
+
+N755 dov70msz:
+N760 dov70msz
+N765 ret
+
+N770 dov70dsz:
+N775 dov70dsz
+N780 ret
+
+
+N785 dov80:
+N790 if r2==10 gotof dov80pel
+N795 if r4==1 gotof dov80pel
+N800 if r4==2 gotof dov80msz
+N805 if r4==3 gotof dov80dsz
+
+N810 dov80pel:
+N815 dov80pel
+N820 ret
+
+N825 dov80msz:
+N830 dov80msz
+N835 ret
+
+N840 dov80dsz:
+N845 dov80dsz
+N850 ret
+
+
+N855 dov90:
+N860 if r4==1 gotof dov90pel
+N865 if r4==2 gotof dov90msz
+N870 if r4==3 gotof dov90dsz
+
+N875 dov90pel:
+N880 dov90pel
+N885 ret
+
+N890 dov90msz:
+N895 dov90msz
+N900 ret
+
+N905 dov90dsz:
+N910 dov90dsz
+N915 ret
+
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+N920 cambridge:
+
+N925 if r3==1 gotof cam60
+N930 if r3==2 gotof cam70
+N935 if r3==3 gotof cam80
+N940 if r3==4 gotof cam90
+
+N945 cam60:
+N950 if r4==1 gotof cam60pel
+N955 if r4==2 gotof cam60msz
+N960 if r4==3 gotof cam60dsz
+
+N965 cam60pel:
+N970 cam60pel
+N975 ret
+
+N980 cam60msz:
+N985 cam60msz
+N990 ret
+
+N995 cam60dsz:
+N1000 cam60dsz
+N1005 ret
+
+N1010 cam70:
+N1015 if r4==1 gotof cam70pel
+N1020 if r4==2 gotof cam70msz
+N1025 if r4==3 gotof cam70dsz
+
+N1030 cam70pel:
+N1035 cam70pel
+N1040 ret
+
+N1045 cam70msz:
+N1050 cam70msz
+N1055 ret
+
+N1060 cam70dsz:
+N1065 cam70dsz
+N1070 ret
+
+
+N1075 cam80:
+N1080 if r4==1 gotof cam80pel
+N1085 if r4==2 gotof cam80msz
+N1090 if r4==3 gotof cam80dsz
+
+N1095 cam80pel:
+N1100 cam80pel
+N1105 ret
+
+N1110 cam80msz:
+N1115 cam80msz
+N1120 ret
+
+N1125 cam80dsz:
+N1130 cam80dsz
+N1135 ret
+
+
+N1140 cam90:
+N1145 if r4==1 gotof cam90pel
+N1150 if r4==2 gotof cam90msz
+N1155 if r4==3 gotof cam90dsz
+
+N1160 cam90pel:
+N1165 cam90pel
+N1170 ret
+
+N1175 cam90msz:
+N1180 cam90msz
+N1185 ret
+
+N1190 cam90dsz:
+N1195 cam90dsz
+N1200 ret
+
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+N1205 liverpool:
+
+N1210 if r3==1 gotof liv60
+N1215 if r3==2 gotof liv70
+N1220 if r3==3 gotof liv80
+N1225 if r3==4 gotof liv90
+
+N1230 liv60:
+N1235 if r4==1 gotof liv60pel
+N1240 if r4==2 gotof liv60msz
+N1245 if r4==3 gotof liv60dsz
+
+N1250 liv60pel:
+N1255 liv60pel
+N1260 ret
+
+N1265 liv60msz:
+N1270 liv60msz
+N1275 ret
+
+N1280 liv60dsz:
+N1285 liv60dsz
+N1290 ret
+
+N1295 liv70:
+N1300 if r4==1 gotof liv70pel
+N1305 if r4==2 gotof liv70msz
+N1310 if r4==3 gotof liv70dsz
+
+N1315 liv70pel:
+N1320 liv70pel
+N1325 ret
+
+N1330 liv70msz:
+N1335 liv70msz
+N1340 ret
+
+N1345 liv70dsz:
+N1350 liv70dsz
+N1355 ret
+
+
+N1360 liv80:
+N1365 if r4==1 gotof liv80pel
+N1370 if r4==2 gotof liv80msz
+N1375 if r4==3 gotof liv80dsz
+
+N1380 liv80pel:
+N1385 liv80pel
+N1390 ret
+
+N1395 liv80msz:
+N1400 liv80msz
+N1405 ret
+
+N1410 liv80dsz:
+N1415 liv80dsz
+N1420 ret
+
+
+N1425 liv90:
+N1430 if r4==1 gotof liv90pel
+N1435 if r4==2 gotof liv90msz
+N1440 if r4==3 gotof liv90dsz
+
+N1445 liv90pel:
+N1450 liv90pel
+N1455 ret
+
+N1460 liv90msz:
+N1465 liv90msz
+N1470 ret
+
+N1475 liv90dsz:
+N1480 liv90dsz
+N1485 ret
+
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+N1490 wimbledon:
+N1495 if r3==1 gotof wbd60
+N1500 if r3==2 gotof wbd70
+N1505 if r3==3 gotof wbd80
+N1510 if r3==4 gotof wbd90
+
+N1515 wbd60:
+N1520 wbd60dsz
+N1525 ret
+
+N1530 wbd70:
+N1535 wbd70dsz
+N1540 ret
+
+N1545 wbd80:
+N1550 wbd80dsz
+N1555 ret
+
+N1560 wbd90:
+N1565 wbd90dsz
+N1570 ret
+
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+N1575 oxford:
+
+N1580 if r3==1 gotof oxf60
+N1585 if r3==2 gotof oxf70
+N1590 if r3==3 gotof oxf80
+N1595 if r3==4 gotof oxf90
+
+N1600 oxf60:
+N1605 oxf60dsz
+N1610 ret
+
+N1615 oxf70:
+N1620 oxf70dsz
+N1625 ret
+
+N1630 oxf80:
+N1635 oxf80dsz
+N1640 ret
+
+N1645 oxf90:
+N1650 oxf90dsz
+N1655 ret
+
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+N1660 manchester:
+
+N1665 if r3==1 gotof man60
+N1670 if r3==2 gotof man70
+N1675 if r3==3 gotof man80
+N1680 if r3==4 gotof man90
+
+N1685 man60:
+N1690 if r4==5 gotof man60pio
+N1695 if r4==6 gotof man60sko
+N1700 ret
+
+N1705 man60pio:
+N1710 man60pio
+N1715 ret
+
+N1720 man60sko:
+N1725 man60sko
+N1730 ret
+
+N1735 man70:
+N1740 if r4==5 gotof man70pio
+N1745 if r4==6 gotof man70sko
+N1750 ret
+
+N1755 man70pio:
+N1760 man70pio
+N1765 ret
+
+N1770 man70sko:
+N1775 man70sko
+N1780 ret
+
+N1785 man80:
+N1790 if r4==5 gotof man80pio
+N1795 if r4==6 gotof man80sko
+N1800 ret
+
+N1805 man80pio:
+N1810 man80pio
+N1815 ret
+
+N1820 man80sko:
+N1825 man80sko
+N1830 ret
+
+N1835 man90:
+N1840 if r4==5 gotof man90pio
+N1845 if r4==6 gotof man90sko
+N1850 ret
+
+N1855 man90pio:
+N1860 man90pio
+N1865 ret
+
+N1870 man90sko:
+N1875 man90sko
+N1880 ret
+
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+N1885 kent:
+
+N1890 if r3==1 gotof ken60
+N1895 if r3==2 gotof ken70
+N1900 if r3==3 gotof ken80
+N1905 if r3==4 gotof ken90
+
+N1910 ken60:
+N1915 if r4==5 gotof ken60pio
+N1920 if r4==6 gotof ken60sko
+N1925 ret
+
+N1930 ken60pio:
+N1935 ken60pio
+N1940 ret
+
+N1945 ken60sko:
+N1950 ken60sko
+N1955 ret
+
+N1960 ken70:
+N1965 if r4==5 gotof ken70pio
+N1970 if r4==6 gotof ken70sko
+N1975 ret
+
+N1980 ken70pio:
+N1985 ken70pio
+N1990 ret
+
+N1995 ken70sko:
+N2000 ken70sko
+N2005 ret
+
+N2010 ken80:
+N2015 if r4==5 gotof ken80pio
+N2020 if r4==6 gotof ken80sko
+N2025 ret
+
+N2030 ken80pio:
+N2035 ken80pio
+N2040 ret
+
+N2045 ken80sko:
+N2050 ken80sko
+N2055 ret
+
+N2060 ken90:
+N2065 if r4==5 gotof ken90pio
+N2070 if r4==6 gotof ken90sko
+N2075 ret
+
+N2080 ken90pio:
+N2085 ken90pio
+N2090 ret
+
+N2095 ken90sko:
+N2100 ken90sko
+N2105 ret
+
+N2110 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+N2115 york:
+
+N2120 if r3==1 gotof york60
+N2125 if r3==2 gotof york70
+N2130 if r3==3 gotof york80
+N2135 if r3==4 gotof york90
+
+N2140 york60:
+N2145 york60
+N2150 ret
+
+N2155 york70:
+N2160 york70
+N2165 ret
+
+N2170 york80:
+N2175 york80
+N2180 ret
+
+N2185 york90:
+N2190 york90
+N2195 ret
+
+N2200 zakonczenie:
+N2205 m17
+
+N2210 koniec:
+N2215 m17
+

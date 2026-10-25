@@ -1,0 +1,62 @@
+
+;Parametry
+N5 r51=180 ;175+2 odleglosc od krawedzi do szpr. w osi x
+N10 r52=1035+5; wysokosc szprosu bez luku
+N15 r53=561+5; szerokosc wzoru
+N20 r50=(r6-r53)/2; odleglosc od krawedzi do szpr. w osi y
+N25 r54=-3; glebokosc frezowania
+N30 r55=100; odstep gornej od dolnej
+N35 r56=500; wysokosc dolnego wzoru
+N40 r57=r52+r55
+N45 r58=r57+r56
+N50 r59=r51-48
+
+;Program
+N55 g53 g40 g0 g90 d0 z340
+
+;warunki
+N60 if r0==2 gotof strona2
+
+;Narzedzie
+N65 wechsel(1,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N70 x=r51+50 y=r50 z50 g41 d1
+
+N75 g1 x=r51+150 z=r54-40 m21 f6000; zjazd w materjal
+N80 x=r51+r52
+N85 y=r50+r53
+N90 x=r51
+
+;luki
+
+N95 g2 x=ic(-3) y=ic(-42) cr=400 f4000
+N100 g2 x=ic(-35) y=ic(-138) cr=2000
+N105 g3 x=ic(0) y=ic(-206) cr=500
+N110 g2 x=ic(35) y=ic(-138) cr=2000
+N115 g2 x=r51 y=r50 cr=400
+
+N120 g1 x=r51+200 f6000
+N125 x=r51+250 z20
+g0 x=ic(1) g40
+
+;Dolne pole
+N160 strona2:
+
+N165 wechsel(5,3,180)
+N170 g0 g90 g41 d1 x=r51+r57+100 y=r50 z50
+N175 z2 m21
+N180 g1 x=r51+r57+250 z=r54 f15000
+N185 x=r51+r58
+N190 y=r50+r53
+N195 x=r51+r57
+N200 y=r50
+N205 x=r51+r57+270
+N210 x=ic(100) z2
+
+koniec:
+;zakonczenie
+N215 g53 g0 g40 d0 z340
+N220 m17
+
+

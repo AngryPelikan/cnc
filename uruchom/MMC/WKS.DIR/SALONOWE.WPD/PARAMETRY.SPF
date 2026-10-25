@@ -1,0 +1,22 @@
+N101 R100=2
+N102 R0=1    ; 1-LEWE 2-PRAWE
+N103 R1=1    ; formatowanie 1-tak 0-nie
+N104 R2=2    ; 1- CZYNNE 2-BIERNE
+N105 R3=31 ;WYSOKOSC FELCA CZYNNE
+N106 R4=29 ;GRUBOSC FELCA BIERNE  
+N107 R6=698-.75;((r3-1)*100); szerokosc skrzydla
+N108 R7=2025-.5 ;wysokosc skrzydla st 2036(mm)
+N109 R8=0   ; ilosc tulejek 0-brak   ;PW-20 sT ; 1-kratka
+N110 R10=0   ; ZAWIASY 0-BRAK 1-E80x3 2-E80x4
+N111 R19=0   ; 0-SRODEK 1-L 2-P (DOTYCZY ZAWIASU POL-Soft)
+N112 R12=0   ; 0-NIE 1-TAK ; PROG/SUWANE 
+
+N113 R15=42.2; 37.3;42.3  ; GRUBOSC MATERIALU
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+;CON,0,0.0000,0,0,MST:2,1,AX:X,Y,I,J;*GP*;*RO*;*HD*
+;S,EX:50,EY:50,ATT:G1;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+N114 R53=6.7; GLEBOKOSC ZAWIASUW
+N115 R17=0.2   ; KOREKTA DL I SZER ZAMKA I ZAWIASOW
+
+N116 m17

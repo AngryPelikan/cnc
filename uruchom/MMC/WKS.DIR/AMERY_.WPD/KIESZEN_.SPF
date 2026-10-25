@@ -1,0 +1,81 @@
+
+N5 if r9==0 gotof koniec
+
+N15 r27=8  ;promien frezu
+N25 r40=150-1.5 ;+0.7 ;dlugosc szldu zamka
+N30 r41=21.0 ;szerokosc szyldu
+N35 r42=120 ;dlugosc kieszeni
+N40 r43=18.0 ;szerokosc kieszeni
+N45 r44=8.25-0.5+0.2 ;rozmieszczenie szyldu w z(od -37 do gory)
+
+
+N125 h12
+N130 t13 d1
+N135 h92
+N140 m3
+N145 s150
+
+N65 if r11==1 gotof ODGORY
+
+N150 program:
+N155 g0 g90 g40 d1 x=r7-r28-r27 y=r6+5;poz start
+N160 g0 z=-37.2+r44+r41-r27 ;wys robocza
+N165 g1 g91 x-30 y=-(5+r45) cprecon f3000 ;wjazd w mat
+N170 arot x-90
+N175 x=-(r40-(r27*2)-30)+1.5
+N180 g2 y=r41-(r27*2) cr=(r41-(r27*2))/2  ;???????
+N185 g1 x=r40-(r27*2)-1.5
+N190 g2 y=-(r41-(r27*2)) cr=(r41-(r27*2))/2
+N195 g1 x-30 cprecof
+N200 rot
+N205 kieszen:
+N210 g90 x=(r7-r28-((r40-r42)/2)-r27) 
+N215 g91 z=-((r41-r43)/2) ;ustawienie
+N220 arot x-90
+N225 ruch p=7; p*12mm -glebokosc kieszeni
+
+N230 rot
+N235 g90 g1 y=r6+5 ;wyjazd z mat
+
+N140 g53 g0 g40 d0 z340 ;s0 
+N145 if r10==1 gotof koniec
+N150 h90
+N155 s0
+N160 h11
+
+N165 koniec:
+N170 m17
+
+;*******************
+N175 ODGORY:
+
+N180 g0 x=r29-r27 y=r6+5
+
+N160 g0 z=-37.2+r44+r41-r27 ;wys robocza
+N165 g1 g91 x-30 y=-(5+r45) cprecon f3000 ;wjazd w mat
+N170 arot x-90
+N175 x=-(r40-(r27*2)-30)+1.5
+N180 g2 y=r41-(r27*2) cr=(r41-(r27*2))/2  ;???????
+N185 g1 x=r40-(r27*2)-1.5
+N190 g2 y=-(r41-(r27*2)) cr=(r41-(r27*2))/2
+N195 g1 x-30 cprecof
+N200 rot
+N205 kieszen:
+N210 g90 x=(r29-((r40-r42)/2)-r27) 
+N215 g91 z=-((r41-r43)/2) ;ustawienie
+N220 arot x-90
+N225 ruch p=7; p*12mm -glebokosc kieszeni
+
+N230 rot
+N235 g90 g1 y=r6+5 ;wyjazd z mat
+
+N140 g53 g0 g40 d0 z340 ;s0 
+N145 if r10==1 gotof koniec
+N150 h90
+N155 s0
+N160 h11
+
+N165 koniec:
+N170 m17
+
+

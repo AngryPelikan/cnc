@@ -1,0 +1,713 @@
+%_N_MA_Prog
+;$PATH=/_N_CMA_DIR
+
+;****************************************************************************
+;*** manuelle    Bedienfunktionen Bohrkopf   ArtisX-840DI          ***
+;*** Version 1.0 - Datum: 02.2005 - Geldner/Stengel/Präcklein   ***
+;*** DocOnCD > Inbetriebnahmeanl. HMI/MMC -> Kapitel BE1   ***
+;****************************************************************************
+;*** Texte sprachabhaengig hinterlegt in Datei ALU_               ***
+;****************************************************************************
+
+//S(Start)                  ;Entry
+HS8=($89500,ac7,se1) ;Access level 7, visible
+PRESS(HS8)                  
+LM("Mask1")                 ;Load mask "Mask 1"
+END_PRESS
+//END
+
+;Maskdefinition
+//M(Mask1/$89501)
+;Declaration of variables
+;  DEF(R3//0/Sauger1,Sauger1,Xpos
+
+DEF HEAD=(b///,$89543,,/wr1,fs2///190,,500/600,,0) 
+
+DEF Saug1 =(I//1/"",$89530,""/wr1,fs2///,,75/75,,50),
+	XPOS1=(I////wr1,fs2//"XPOS1"////190,,280),
+	YPOS1=(I////wr1,fs2//"YPOS1"////375,,180),
+	TYP1=(I////wr2,fs2//"TYP1"////560,,150)
+
+DEF Saug2 =(I//2/"",$89530,""/wr1,fs2///,,75/75,,50),
+	XPOS2=(I////wr1,fs2//"XPOS2"////190,,280),
+	YPOS2=(I////wr1,fs2//"YPOS2"////375,,180),
+	TYP2=(I////wr2,fs2//"TYP2"////560,,150)
+
+DEF Saug3 =(I//3/"",$89530,""/wr1,fs2///,,75/75,,50),
+	XPOS3=(I////wr1,fs2//"XPOS3"////190,,280),
+	YPOS3=(I////wr1,fs2//"YPOS3"////375,,180),
+	TYP3=(I////wr2,fs2//"TYP3"////560,,150)
+
+DEF Saug4 =(I//4/"",$89530,""/wr1,fs2///,,75/75,,50),
+	XPOS4=(I////wr1,fs2//"XPOS4"////190,,280),
+	YPOS4=(I////wr1,fs2//"YPOS4"////375,,180),
+	TYP4=(I////wr2,fs2//"TYP4"////560,,150)
+
+DEF Saug5 =(I//5/"",$89530,""/wr1,fs2///1,,75/75,,50),
+	XPOS5=(I////wr1,fs2//"XPOS5"////190,,280),
+	YPOS5=(I////wr1,fs2//"YPOS5"////375,,180),
+	TYP5=(I////wr2,fs2//"TYP5"////560,,150)
+
+
+DEF VAR_Num=(i////wr2/////200,,0)
+
+DEF INDEX=(i////wr2/////200,,0)
+DEF BITMAP_NUM=(i////wr2/////200,,0)
+HS1=($89501)
+HS2=($89502)    ;Softkey 2  horizontal: load mask 2
+HS3=($89503)
+HS4=($89504)
+HS5=($89505)
+HS6=($89506)
+HS7=($89507) 
+HS8=($89508)      ;Softkey 8  horizontal: Exit
+VS1=($89511)
+VS2=($89512)
+VS3=($89513)
+VS4=($89514)
+VS5=($89515)
+VS6=($89516)
+VS7=($89517)
+VS8=($89518)
+
+LOAD
+XPOS1=0
+YPOS1=0
+TYP1=0
+XPOS2=0
+YPOS2=0
+TYP2=0
+
+XPOS3=0
+YPOS3=0
+TYP3=0
+
+XPOS4=0
+YPOS4=0
+TYP4=0
+
+XPOS5=0
+YPOS5=0
+TYP5=0
+INDEX=99
+BITMAP_NUM=0
+
+VAR_Num=0
+END_LOAD
+
+
+
+PRESS(HS1) 
+VAR_NUM.VAL=1
+
+HS1.st=$89544
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89504
+HS5.st=$89505
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89512
+VS3.st=$89513
+VS4.st=$89514
+VS5.st=$89515
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+
+
+
+END_PRESS
+
+PRESS(HS2) 
+VAR_Num.VAL=2
+HS1.st=$89501
+HS2.st=$89544    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89504
+HS5.st=$89505
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89512
+VS3.st=$89513
+VS4.st=$89514
+VS5.st=$89515
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+
+END_PRESS
+
+PRESS(HS3) 
+VAR_Num.VAL=3
+HS1.st=$89501
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89544
+HS4.st=$89504
+HS5.st=$89505
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89512
+VS3.st=$89513
+VS4.st=$89514
+VS5.st=$89515
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+
+END_PRESS
+
+PRESS(HS4) 
+VAR_Num.VAL=4
+HS1.st=$89501
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89544
+HS5.st=$89505
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89512
+VS3.st=$89513
+VS4.st=$89514
+VS5.st=$89515
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+
+END_PRESS
+
+PRESS(HS5) 
+VAR_Num.VAL=5
+HS1.st=$89501
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89504
+HS5.st=$89544
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89512
+VS3.st=$89513
+VS4.st=$89514
+VS5.st=$89515
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+END_PRESS
+
+PRESS(HS6) 
+VAR_Num.VAL=6
+HS1.st=$89501
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89504
+HS5.st=$89505
+HS6.st=$89544
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89512
+VS3.st=$89513
+VS4.st=$89514
+VS5.st=$89515
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+END_PRESS
+
+
+PRESS(VS1) 
+VAR_Num.VAL=11
+HS1.st=$89501
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89504
+HS5.st=$89505
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89544
+VS2.st=$89512
+VS3.st=$89513
+VS4.st=$89514
+VS5.st=$89515
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+END_PRESS
+
+PRESS(VS2) 
+VAR_Num.VAL=12
+HS1.st=$89501
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89504
+HS5.st=$89505
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89544
+VS3.st=$89513
+VS4.st=$89514
+VS5.st=$89515
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+END_PRESS
+
+PRESS(VS3) 
+VAR_Num.VAL=13
+HS1.st=$89501
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89504
+HS5.st=$89505
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89512
+VS3.st=$89544
+VS4.st=$89514
+VS5.st=$89515
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+END_PRESS
+
+PRESS(VS4) 
+VAR_Num.VAL=14
+HS1.st=$89501
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89504
+HS5.st=$89505
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89512
+VS3.st=$89513
+VS4.st=$89544
+VS5.st=$89515
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+END_PRESS
+
+PRESS(VS5) 
+VAR_Num.VAL=15
+HS1.st=$89501
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89504
+HS5.st=$89505
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89512
+VS3.st=$89513
+VS4.st=$89514
+VS5.st=$89544
+VS6.st=$89516
+VS7.st=$89517
+VS8.st=$89518
+
+END_PRESS
+
+PRESS(VS6) 
+VAR_Num.VAL=16
+HS1.st=$89501
+HS2.st=$89502    ;Softkey 2  horizontal: load mask 2
+HS3.st=$89503
+HS4.st=$89504
+HS5.st=$89505
+HS6.st=$89506
+HS7.st=$89507 
+HS8.st=$89508      ;Softkey 8  horizontal: Exit
+VS1.st=$89511
+VS2.st=$89512
+VS3.st=$89513
+VS4.st=$89514
+VS5.st=$89515
+VS6.st=$89544
+VS7.st=$89517
+VS8.st=$89518
+
+END_PRESS
+
+
+CHANGE(VAR_Num)               
+
+IF VAR_Num==1
+
+LA("TRAEGER_L_1","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_L_1[0,0,0,0]
+YPOS1.VAL = TRAEGER_L_1[0,1,0,0]
+TYP1.VAL = TRAEGER_L_1[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_L_1[1,0,0,0]
+YPOS2.VAL = TRAEGER_L_1[1,1,0,0]
+TYP2.VAL = TRAEGER_L_1[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_L_1[2,0,0,0]
+YPOS3.VAL = TRAEGER_L_1[2,1,0,0]
+TYP3.VAL = TRAEGER_L_1[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_L_1[3,0,0,0]
+YPOS4.VAL = TRAEGER_L_1[3,1,0,0]
+TYP4.VAL = TRAEGER_L_1[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_L_1[4,0,0,0]
+YPOS5.VAL = TRAEGER_L_1[4,1,0,0]
+TYP5.VAL = TRAEGER_L_1[4,2,0,0]
+ENDIF
+
+
+IF VAR_Num==2
+
+LA("TRAEGER_L_2","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_L_2[0,0,0,0]
+YPOS1.VAL = TRAEGER_L_2[0,1,0,0]
+TYP1.VAL = TRAEGER_L_2[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_L_2[1,0,0,0]
+YPOS2.VAL = TRAEGER_L_2[1,1,0,0]
+TYP2.VAL = TRAEGER_L_2[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_L_2[2,0,0,0]
+YPOS3.VAL = TRAEGER_L_2[2,1,0,0]
+TYP3.VAL = TRAEGER_L_2[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_L_2[3,0,0,0]
+YPOS4.VAL = TRAEGER_L_2[3,1,0,0]
+TYP4.VAL = TRAEGER_L_2[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_L_2[4,0,0,0]
+YPOS5.VAL = TRAEGER_L_2[4,1,0,0]
+TYP5.VAL = TRAEGER_L_2[4,2,0,0]
+ENDIF
+
+
+IF VAR_Num==3
+
+LA("TRAEGER_L_3","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_L_3[0,0,0,0]
+YPOS1.VAL = TRAEGER_L_3[0,1,0,0]
+TYP1.VAL = TRAEGER_L_3[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_L_3[1,0,0,0]
+YPOS2.VAL = TRAEGER_L_3[1,1,0,0]
+TYP2.VAL = TRAEGER_L_3[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_L_3[2,0,0,0]
+YPOS3.VAL = TRAEGER_L_3[2,1,0,0]
+TYP3.VAL = TRAEGER_L_3[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_L_3[3,0,0,0]
+YPOS4.VAL = TRAEGER_L_3[3,1,0,0]
+TYP4.VAL = TRAEGER_L_3[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_L_3[4,0,0,0]
+YPOS5.VAL = TRAEGER_L_3[4,1,0,0]
+TYP5.VAL = TRAEGER_L_3[4,2,0,0]
+ENDIF
+
+IF VAR_Num==4
+
+LA("TRAEGER_L_4","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_L_4[0,0,0,0]
+YPOS1.VAL = TRAEGER_L_4[0,1,0,0]
+TYP1.VAL = TRAEGER_L_4[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_L_4[1,0,0,0]
+YPOS2.VAL = TRAEGER_L_4[1,1,0,0]
+TYP2.VAL = TRAEGER_L_4[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_L_4[2,0,0,0]
+YPOS3.VAL = TRAEGER_L_4[2,1,0,0]
+TYP3.VAL = TRAEGER_L_4[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_L_4[3,0,0,0]
+YPOS4.VAL = TRAEGER_L_4[3,1,0,0]
+TYP4.VAL = TRAEGER_L_4[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_L_4[4,0,0,0]
+YPOS5.VAL = TRAEGER_L_4[4,1,0,0]
+TYP5.VAL = TRAEGER_L_4[4,2,0,0]
+ENDIF
+
+IF VAR_Num==5
+
+LA("TRAEGER_L_5","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_L_5[0,0,0,0]
+YPOS1.VAL = TRAEGER_L_5[0,1,0,0]
+TYP1.VAL = TRAEGER_L_5[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_L_5[1,0,0,0]
+YPOS2.VAL = TRAEGER_L_5[1,1,0,0]
+TYP2.VAL = TRAEGER_L_5[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_L_5[2,0,0,0]
+YPOS3.VAL = TRAEGER_L_5[2,1,0,0]
+TYP3.VAL = TRAEGER_L_5[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_L_5[3,0,0,0]
+YPOS4.VAL = TRAEGER_L_5[3,1,0,0]
+TYP4.VAL = TRAEGER_L_5[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_L_5[4,0,0,0]
+YPOS5.VAL = TRAEGER_L_5[4,1,0,0]
+TYP5.VAL = TRAEGER_L_5[4,2,0,0]
+ENDIF
+
+IF VAR_Num==6
+
+LA("TRAEGER_L_6","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_L_6[0,0,0,0]
+YPOS1.VAL = TRAEGER_L_6[0,1,0,0]
+TYP1.VAL = TRAEGER_L_6[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_L_6[1,0,0,0]
+YPOS2.VAL = TRAEGER_L_6[1,1,0,0]
+TYP2.VAL = TRAEGER_L_6[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_L_6[2,0,0,0]
+YPOS3.VAL = TRAEGER_L_6[2,1,0,0]
+TYP3.VAL = TRAEGER_L_6[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_L_6[3,0,0,0]
+YPOS4.VAL = TRAEGER_L_6[3,1,0,0]
+TYP4.VAL = TRAEGER_L_6[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_L_6[4,0,0,0]
+YPOS5.VAL = TRAEGER_L_6[4,1,0,0]
+TYP5.VAL = TRAEGER_L_6[4,2,0,0]
+ENDIF
+
+
+
+;rechts
+
+IF VAR_Num==11
+
+LA("TRAEGER_R_1","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_R_1[0,0,0,0]
+YPOS1.VAL = TRAEGER_R_1[0,1,0,0]
+TYP1.VAL = TRAEGER_R_1[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_R_1[1,0,0,0]
+YPOS2.VAL = TRAEGER_R_1[1,1,0,0]
+TYP2.VAL = TRAEGER_R_1[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_R_1[2,0,0,0]
+YPOS3.VAL = TRAEGER_R_1[2,1,0,0]
+TYP3.VAL = TRAEGER_R_1[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_R_1[3,0,0,0]
+YPOS4.VAL = TRAEGER_R_1[3,1,0,0]
+TYP4.VAL = TRAEGER_R_1[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_R_1[4,0,0,0]
+YPOS5.VAL = TRAEGER_R_1[4,1,0,0]
+TYP5.VAL = TRAEGER_R_1[4,2,0,0]
+ENDIF
+
+
+IF VAR_Num==12
+
+LA("TRAEGER_R_2","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_R_2[0,0,0,0]
+YPOS1.VAL = TRAEGER_R_2[0,1,0,0]
+TYP1.VAL = TRAEGER_R_2[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_R_2[1,0,0,0]
+YPOS2.VAL = TRAEGER_R_2[1,1,0,0]
+TYP2.VAL = TRAEGER_R_2[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_R_2[2,0,0,0]
+YPOS3.VAL = TRAEGER_R_2[2,1,0,0]
+TYP3.VAL = TRAEGER_R_2[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_R_2[3,0,0,0]
+YPOS4.VAL = TRAEGER_R_2[3,1,0,0]
+TYP4.VAL = TRAEGER_R_2[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_R_2[4,0,0,0]
+YPOS5.VAL = TRAEGER_R_2[4,1,0,0]
+TYP5.VAL = TRAEGER_R_2[4,2,0,0]
+ENDIF
+
+
+IF VAR_Num==13
+
+LA("TRAEGER_R_3","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_R_3[0,0,0,0]
+YPOS1.VAL = TRAEGER_R_3[0,1,0,0]
+TYP1.VAL = TRAEGER_R_3[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_R_3[1,0,0,0]
+YPOS2.VAL = TRAEGER_R_3[1,1,0,0]
+TYP2.VAL = TRAEGER_R_3[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_R_3[2,0,0,0]
+YPOS3.VAL = TRAEGER_R_3[2,1,0,0]
+TYP3.VAL = TRAEGER_R_3[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_R_3[3,0,0,0]
+YPOS4.VAL = TRAEGER_R_3[3,1,0,0]
+TYP4.VAL = TRAEGER_R_3[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_R_3[4,0,0,0]
+YPOS5.VAL = TRAEGER_R_3[4,1,0,0]
+TYP5.VAL = TRAEGER_R_3[4,2,0,0]
+ENDIF
+
+IF VAR_Num==14
+
+LA("TRAEGER_R_4","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_R_4[0,0,0,0]
+YPOS1.VAL = TRAEGER_R_4[0,1,0,0]
+TYP1.VAL = TRAEGER_R_4[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_R_4[1,0,0,0]
+YPOS2.VAL = TRAEGER_R_4[1,1,0,0]
+TYP2.VAL = TRAEGER_R_4[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_R_4[2,0,0,0]
+YPOS3.VAL = TRAEGER_R_4[2,1,0,0]
+TYP3.VAL = TRAEGER_R_4[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_R_4[3,0,0,0]
+YPOS4.VAL = TRAEGER_R_4[3,1,0,0]
+TYP4.VAL = TRAEGER_R_4[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_R_4[4,0,0,0]
+YPOS5.VAL = TRAEGER_R_4[4,1,0,0]
+TYP5.VAL = TRAEGER_R_4[4,2,0,0]
+ENDIF
+
+IF VAR_Num==15
+
+LA("TRAEGER_R_5","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_R_5[0,0,0,0]
+YPOS1.VAL = TRAEGER_R_5[0,1,0,0]
+TYP1.VAL = TRAEGER_R_5[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_R_5[1,0,0,0]
+YPOS2.VAL = TRAEGER_R_5[1,1,0,0]
+TYP2.VAL = TRAEGER_R_5[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_R_5[2,0,0,0]
+YPOS3.VAL = TRAEGER_R_5[2,1,0,0]
+TYP3.VAL = TRAEGER_R_5[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_R_5[3,0,0,0]
+YPOS4.VAL = TRAEGER_R_5[3,1,0,0]
+TYP4.VAL = TRAEGER_R_5[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_R_5[4,0,0,0]
+YPOS5.VAL = TRAEGER_R_5[4,1,0,0]
+TYP5.VAL = TRAEGER_R_5[4,2,0,0]
+ENDIF
+
+IF VAR_Num==16
+
+LA("TRAEGER_R_6","Traegerpos.com") ;Array ARR5 aus Datei
+XPOS1.VAL = TRAEGER_R_6[0,0,0,0]
+YPOS1.VAL = TRAEGER_R_6[0,1,0,0]
+TYP1.VAL = TRAEGER_R_6[0,2,0,0]
+
+XPOS2.VAL = TRAEGER_R_6[1,0,0,0]
+YPOS2.VAL = TRAEGER_R_6[1,1,0,0]
+TYP2.VAL = TRAEGER_R_6[1,2,0,0]
+
+XPOS3.VAL = TRAEGER_R_6[2,0,0,0]
+YPOS3.VAL = TRAEGER_R_6[2,1,0,0]
+TYP3.VAL = TRAEGER_R_6[2,2,0,0]
+
+XPOS4.VAL = TRAEGER_R_6[3,0,0,0]
+YPOS4.VAL = TRAEGER_R_6[3,1,0,0]
+TYP4.VAL = TRAEGER_R_6[3,2,0,0]
+
+XPOS5.VAL = TRAEGER_R_6[4,0,0,0]
+YPOS5.VAL = TRAEGER_R_6[4,1,0,0]
+TYP5.VAL = TRAEGER_R_6[4,2,0,0]
+ENDIF
+
+REFRESH
+END_CHANGE
+
+
+FOCUS
+IF FOC=="TYP1"
+INDEX.val=0
+ENDIF
+
+IF FOC=="TYP2"
+INDEX.val=1
+ENDIF
+
+IF FOC=="TYP3"
+INDEX.val=2
+ENDIF
+
+IF FOC=="TYP4"
+INDEX=3
+ENDIF
+
+IF FOC=="TYP5"
+INDEX=4
+ENDIF
+
+
+IF VAR_NUM==1
+LA("TRAEGER_L_1","Traegerpos.com") ;Array ARR5 aus Datei
+BITMAP_NUM=TRAEGER_L_1[INDEX,2,0,0]
+ENDIF
+
+
+
+DLGL("Saugertyp"<<BITMAP_NUM<< "   suchen"<<FOC ) 
+
+
+
+END_FOCUS
+
+
+
+
+
+
+
+
+
+
+PRESS(HS8)                ;Back to Editor
+   EXIT
+END_PRESS
+//END
+
+
+

@@ -1,0 +1,34 @@
+N101 R100=1
+N102 R0=2    ; 1-LEWE 2-PRAWE
+N103 R1=1    ; formatowanie 1-tak 0-nie
+N104 R3=2    ; rozmiar {1-60;2-70;3-80;4-90}
+N105 R6=949.3  ;szerokosc skrzydla
+N106 R7=2014.5 ; Wysokosc skrzydla st 2036(mm)
+N107 R10=4   ; ZAWIASY 0-BRAK 2-DWA 3-TRZY 4-CZTERY
+N108 R20=0   ; WIZJER 0-BRAK 1-STD 2-PANORAMA
+N109 R12=1   ; 0-NIE 1-TAK ; PROG/SUWANE 
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+;CON,0,0.0000,0,0,MST:2,1,AX:X,Y,I,J;*GP*;*RO*;*HD*
+;S,EX:50,EY:50,ATT:G1;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+
+
+N111 R55=33  ; 43 ETNA; FELC  <------WAZNE!!!!
+N113 R151=20.2 ; 30 ETNA; SZEROKOSC USZCZELKI <-----WAZNE!!!!
+
+
+N112 R150=2.1  ; GLEBOKOSC USZCZELKI
+N114 R152=7    ; WYSOKOSC OD KRAWEDZI
+N115 R153=10   ; SZEROKOSC NARZEDZIA
+
+N116 IF R1==1
+N117   R21=13  ; GLEBOKOSC FELCA
+N118 ENDIF
+
+N119 IF R1==0
+N120   R21=0 ;GLEBOKOSC FELCA
+N121 ENDIF
+
+
+N122 m17
+

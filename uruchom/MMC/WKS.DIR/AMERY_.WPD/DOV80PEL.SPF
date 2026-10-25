@@ -1,0 +1,199 @@
+if r2==10 gotof multi
+if r2==15 gotof milano
+
+;Parametry
+N5 r51=180 ;175+2 odleglosc od krawedzi do szpr. w osi x
+N10 r52=1035+5; wysokosc szprosu bez luku
+N15 r53=561+5; szerokosc wzoru
+N20 r50=(r6-r53)/2; odleglosc od krawedzi do szpr. w osi y
+N25 r54=-3; glebokosc frezowania
+N30 r55=100; odstep gornej od dolnej
+N35 r56=500; wysokosc dolnego wzoru
+N40 r57=r52+r55
+N45 r58=r57+r56
+N50 r59=r51-48
+
+;Program
+N55 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N60 wechsel(5,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N65 x=r51+50 y=r50 z50 g41 d1
+N70 z2 m21
+N75 g1 x=r51+250 z=r54 m21 f15000; zjazd w materjal
+N80 x=r51+r52 
+N85 y=r50+r53
+N90 x=r51
+
+;luki
+N95 g641
+N100 g2 x=ic(-3) y=ic(-42) cr=400 rnd=100 f8000
+N105 g2 x=ic(-35) y=ic(-138) cr=2000 chf=20
+N110 g3 x=ic(0) y=ic(-206) cr=500 chf=20
+N115 g2 x=ic(35) y=ic(-138) cr=2000 rnd=100
+N120 g64
+N125 g2 x=r51 y=r50 cr=400
+
+N130 g1 x=r51+270 f15000
+N135 x=r51+450 z2
+z10
+
+;Dolne pole
+
+N140 g0 g90 g41 d1 x=r51+r57+100 y=r50
+N145 z2
+N150 g1 x=r51+r57+250 z=r54 f15000
+N155 x=r51+r58
+N160 y=r50+r53
+N165 x=r51+r57
+N170 y=r50
+N175 x=r51+r57+270
+N180 x=ic(100) z2
+z10
+
+;zakonczenie
+N185 g53 g0 g40 d0 z340 ;s0 
+N190 m17
+
+MULTI:
+
+;Parametry
+N10 r51=125 ; odleglosc od krawedzi do szpr. w osi x
+N15 r52=1089; wysokosc szprosu bez luku
+N20 r53=((r3-1)*100)+366; szerokosc wzoru
+N25 r50=(r6-r53)/2; odleglosc od krawedzi do szpr. w osi y
+N30 r54=-3 ;; glebokosc frezowania 
+N35 r55=100; odstep gornej od dolnej
+N40 r56=500; wysokosc dolnego wzoru
+N45 r57=r52+r55
+N50 r58=r57+r56
+N55 r59=r51-48
+N60 r60=-47 ; glebokosc wycinania szprosow
+;Program
+N65 g53 g40 g0 g90 d0 z340
+
+N70 if r4==2 gotof msz
+N75 if r4==3 gotof dsz
+
+;Narzedzie
+N80 wechsel(5,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N85 x=r51+50 y=r50 z50 g41 d1
+N90 z2 m21
+N95 g1 x=r51+250 z=r54  f15000; zjazd w materjal
+N100 x=r51+r52 
+N105 y=r50+r53
+N110 x=r51
+N115 y=r50
+N120 g1 x=r51+270 f15000
+N125 x=r51+450 z2
+N130 z10
+
+;Dolne pole
+
+N135 g0 g90 g41 d1 x=r51+r57+100 y=r50
+N140 z2
+N145 g1 x=r51+r57+250 z=r54 f15000
+N150 x=r51+r58
+N155 y=r50+r53
+N160 x=r51+r57
+N165 y=r50
+N170 x=r51+r57+270
+N175 x=ic(100) z2
+N180 z10
+N185 gotof end
+
+N190 msz: ;  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+if r0==2 gotof drugastrona
+;Narzedzie
+N195 wechsel(1,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N200 x=r51+50 y=r50 z50 g41 d1
+
+N205 g1 x=r51+250 z=r60 m21 f5000; zjazd w materjal
+N210 x=r51+r52 
+N215 y=r50+r53
+N220 x=r51
+N225 y=r50
+N230 g1 x=r51+270 f6000
+N235 x=r51+450 z50
+N240 x=ic(1) g40 d1
+
+drugastrona:
+
+N245 wechsel(5,3,180)
+
+;Dolne pole
+
+N250 g0 g90 g41 d1 x=r51+r57+100 y=r50 
+N255 z2 m21
+N260 g1 x=r51+r57+250 z=r54 f15000
+N265 x=r51+r58
+N270 y=r50+r53
+N275 x=r51+r57
+N280 y=r50
+N285 x=r51+r57+270
+N290 x=ic(100) z2
+N295 z10
+N300 gotof end
+
+N305 dsz: ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+;Narzedzie
+N310 wechsel(1,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N315 x=r51+50 y=r50 z50 g41 d1
+
+N320 g1 x=r51+150 z=r60 m21 f6000; zjazd w materjal
+N325 x=r51+r58
+N330 y=r50+r53
+N335 x=r51
+N340 y=r50
+N345 g1 x=r51+200 f6000
+N350 x=r51+250 z50
+
+N355 end:
+;zakonczenie
+N360 g53 g0 g40 d0 z340 ;s0 
+N365 m17
+
+MILANO:
+
+;Parametry
+N10 r51=125 ;175+2 odleglosc od krawedzi do szpr. w osi x
+N15 r52=1689; wysokosc szprosu
+N20 r53=((r3-1)*100)+366; szerokosc wzoru
+N25 r50=(r6-r53)/2; odleglosc od krawedzi do szpr. w osi y
+N30 r54=-3 ;; glebokosc frezowania
+
+;Program
+N65 g53 g40 g0 g90 d0 z340
+
+IF R4==1 GOTOF MILANO_P
+GOTOF END
+
+MILANO_P:
+
+;Narzedzie
+N80 wechsel(5,3,180)
+
+N85 x=r51+50 y=r50 z50 g41 d1
+N90 z2 M21
+N95 g1 x=r51+250 z=r54 f15000
+N100 x=r51+r52 
+N105 y=r50+r53
+N110 x=r51
+N115 y=r50
+N120 g1 x=r51+270 f15000
+N125 x=r51+450 z2
+N130  G0 Z=10
+
+N365 end:
+N370 g53 g0 g40 d0 z340 ;s0 
+N375 m17
+

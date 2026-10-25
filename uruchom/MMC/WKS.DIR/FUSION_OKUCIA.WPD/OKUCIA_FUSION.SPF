@@ -1,0 +1,22 @@
+N101 R100=1
+N102 R0=1      ; 1-PRAWE 2-LEWE
+N103 R1=0      ; formatowanie 1-tak 0-nie
+N104 R6=305    ; szerokosc skrzydla
+N105 R7=2036   ; Wysokosc skrzydla st 2036(mm)
+N106 R9=0      ; ZAMEK 1-ZO 2-ZZ 3-WC 4-ZP
+N107 R10=1     ; ZAWIASY 0-BRAK 1-E_100
+N108 R69=4     ; ILOSC ZAWIASOW
+N109 R15=50    ; GRUBOSC MATERIALU
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+;CON,0,0.0000,0,0,MST:2,1,AX:X,Y,I,J;*GP*;*RO*;*HD*
+;S,EX:50,EY:50,ATT:G1;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+N110 R16=1     ; WYBOR ZAMKA 1-MAGNETYCZNY  2-LOB
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+;CON,0,0.0000,0,0,MST:2,1,AX:X,Y,I,J;*GP*;*RO*;*HD*
+;S,PX:50,PY:50,L1A:70.7107,P1A:45,ATT:G1;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+N111 R70=1105  ; WYSOKOSC KLAMKI
+N112 R77=9.5   ;WYSOKOSC ZAMKA
+N113 R80=4        ; WYSOKOSC ZAWIASU W Z
+N114 m17

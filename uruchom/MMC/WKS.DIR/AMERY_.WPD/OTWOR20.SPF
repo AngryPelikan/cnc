@@ -1,0 +1,17 @@
+;gotof dupa
+N10 g91 g3 x0 y0 i0 j10 z=ac(-45) f2000
+N15 g91 g3 x0 y0 i0 j10 f4000
+N20 g91 g3 x0 y0 i0 j10 z=ac(10)
+N25 m17
+
+
+
+dupa:
+;zamek hakowy "inny" fi 48 i troche
+
+N10 g91 g3 x0 y0 i0 j17.5 z=ac(-45) f2000
+N15 g91 g3 x0 y0 i0 j17.5 f4000
+N20 g91 g3 x0 y0 i0 j17.5 z=ac(10)
+N25 m17
+
+

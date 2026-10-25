@@ -1,0 +1,158 @@
+;
+;N75 M70 H11 G54 M51 G64
+;N80 G53 G40 G0 G90 D0 Z340
+
+;H11
+;T1 D1
+;m3
+;H91 S0
+
+;G0 x=3000
+;M30
+
+
+N5 r100=1
+N10 R15=50 ; grubosc skrzydla
+N15 R6=720-26  ; szerokosc skrzydla w felcu
+N20 R7=2020-13 ; wysokosc skrzydla w felcu
+N25 R8=13 ; FELC
+N30 R10=16.6 ; GLEBOKOSC FELCA SARA 17
+N35 R9=-37+R15-R10 ;BEZ ROWKA NA USZCZELKE
+
+N40 r90=3.6    ;szerokosc rzazu dla listwy opadajacej
+N45 r92=R10 
+N50 r91=13.2     ;szerokosc frezu dla listw opadajacej
+N55 r93=32.5     ;glebokosc listwy opadajacej
+
+
+N60 if r100==1 gotof jeden
+N65 if r100==2 gotof dwa
+
+N70 jeden:
+N75 M70 H11 G54 M51 G64
+N80 G53 G40 G0 G90 D0 Z340
+N85 gotof dalej
+
+N90 dwa:
+N95 M70 H11 G56 M52 G64
+N100 G53 G40 G0 G90 D0 Z340
+N105 gotof dalej
+
+N110 dalej:
+
+N115 BASEN:
+N120 WECHSEL (9,3,50)
+
+N125 ATRANS X=5 Y=5
+N130 G90 G64 G0 G40 D1 X=R7+R8 Y=-10 Z50 C0
+N135 G1 Z=-37+(r15/2) M21 F3000
+N140 G1 Y=R6+(R8*2)+50 
+N145 G0 Z50
+N150 G0 y=-10
+N155 G1 Z=-37-2 M21 F3000
+N160 G1 Y=R6+(R8*2)+50 
+N165 G0 Z50
+
+N170 G53 G0 G90 G40 D0 Z340 S0
+N175 ROT
+N180 XXX:
+N185 WECHSEL(7,3,150)
+N190 ATRANS X=5 Y=5
+N195 M21
+N200 CPRECON
+N205 G0 X=R7+100 Y=R6+R8 G42 D1
+N210 Z=R9
+N215 G1 X=R8 F3000
+N220 Y=R8
+N225 X=R7+100
+N230 G0 Y=R6+(2*R8)
+
+N235 Z=-39
+N240 G1 X=0 F5000
+N245 Y=150
+N250 G2 X=IC(-50) Y=IC(-50) CR=50
+N255 G0 Z=-37+R15+20
+N260 G0 X=0 Y=-50 G41
+N265 G0 Z=-39
+N270 G1 Y=50 F2000
+N275 G1 Y=160 F5000
+N280 G3 X=IC(-50) Y=IC(50) CR=50
+N285 G0 Z=-37+R15+20
+N290 G0 X=-50 Y=0 G42
+N295 G0 Z=-39
+N300 G1 X=50 F2000
+
+N305 X=R7+100 F5000
+N310 G0 Z50
+N315 G0 G40 G53 G90 D0 Z340 S0
+N320 ROT
+
+Gotof koniec
+;N320 gotof listwa
+
+;---
+N325 WECHSEL(11,3,100)
+N330 ATRANS X=5+R8 Y=5+R8
+
+N335 G0 X=R7+100 Y=R6-7 G42 D3
+N340 G0 Z=R9
+N345 G1 X=7 F5000
+N350 G1 Y=7
+N355 G1 X=R7+100
+
+N360 koniec:
+
+N365 G0 G40 G53 G90 D0 Z340 S0
+
+N370 if r100==1 gotof plus
+N375 if r100==2 gotof minus
+N380 m30
+
+N385 plus:
+N390 r100=r100+1
+N395 gotof dalej
+
+N400 minus:
+N405 r100=r100-1
+N410 gotof dalej
+
+N415 dalej:
+N420 M30
+
+N425 listwa: ; opadajaca
+;-------------------
+
+N430 atrans x=5 y=5
+N435 atrans x=r8 y=r8
+N440 atrans z=R15-R10
+
+N445 wechsel(11,3,120)
+
+N450 g90 g0 g41 d1 x=r7-r93 y=r6+100 z50
+N455 z=-37+((r92/2)+(r90/2))-((r91/2)-(r90/2))
+N460 g1 y-100 f=40000/(r93/2)
+N465 z=ic(r91-r90)
+N470 g42 d1 y=r6+100
+
+N475 if r91<=(2*r90) gotof BLASZKI
+
+N480 z=ic(-r90)
+N485 g41 d1 y-100
+
+N490 if r91<=(3*r90) gotof BLASZKI
+
+N495 z=ic(-r90)
+N500 g42 d1 y=r6+100
+
+N505 if r91<=(4*r90) gotof BLASZKI
+
+N510 z=ic(-r90)
+N515 g41 d1 y-100
+
+N520 if r91<=(5*r90) gotob koniec
+
+N525 z=ic(-r90)
+N530 g42 d1 y=r6+100
+
+N535 g0 g53 g90 g40 d0 z340 s0
+N540 gotob koniec

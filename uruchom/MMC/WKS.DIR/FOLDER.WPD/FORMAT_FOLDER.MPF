@@ -1,0 +1,13 @@
+WECHSEL (3,3,18000) ;pobiera narzedzie
+B0 C0 ;pozycje bazowe
+
+G0 X=R7 Y=R6
+G0 Z=-3 G41
+G1 Y=0 f3000
+G1 X=0
+G1 Y=R6
+G1 X=R7
+G0 Z=50
+
+GOUP
+M17

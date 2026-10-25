@@ -1,0 +1,83 @@
+;Sample 6 : Child masks - Value interchange
+;***************************************************************
+//S(Start)                  ;Entry
+HS6=("Sample6",ac7,se1) ;Access level 7, visible
+PRESS(HS6)                  
+LM("Mask1")                 ;Load mask "Mask 1"
+END_PRESS
+//END
+
+;Maskdefinition
+//M(Mask1/"Sample 6: Value interchange"//2,100,500,200)
+;Declaration of variables
+DEF VAR_A=(R3//0/"Dialog1","Real","VAR_A","DIMEN."////10,50,150/200,50,35//)
+DEF VAR_B=(R3//0/"Dialog2","Real","VAR_B","DIMEN."////10,70,150/200,70//)
+DEF VAR_C=(R3//0/"Dialog3","Real","VAR_C","DIMEN."////10,90,150/200,90//)
+DEF VAR_D=(R3//0/"Dialog4","Real","VAR_D","DIMEN."////10,110,150/200,110//)
+DEF VAR_E=(R3//0/"Dialog5","Real","VAR_E","DIMEN."////10,130,150/200,130//)
+
+HS1=(" ")
+HS2=("Mask 2",AC7,SE1)    ;Softkey 2  horizontal: load mask 2
+HS3=(" ")
+HS4=(" ")
+HS5=(" ")
+HS6=(" ")
+HS7=(" ") 
+HS8=("Exit",AC7,SE1)      ;Softkey 8  horizontal: Exit
+VS1=(" ")
+VS2=(" ")
+VS3=(" ")
+VS4=(" ")
+VS5=(" ")
+VS6=(" ")
+VS7=(" ")
+VS8=(" ")
+
+
+PRESS(HS8)                ;Back to Editor
+   EXIT
+END_PRESS
+
+PRESS(HS2)                ;Load mask 2 
+ LM("Mask2",,1,VAR_A,VAR_B,VAR_C,VAR_D,VAR_E);hand over variables                             ;MS1=return to actual
+  DLGL("Back from Mask 2)    ;position when exit Mask 2
+END_PRESS
+//END
+; mask definition with dimension
+//M(Mask2/"Mask2: Add to Mask1:"//2,220,500,200)
+
+DEF MA2_1=(R3//0/"Dialog1","ADD to VAR_A","MA2_1","DIMEN."////10,50,150/200,50//)
+DEF MA2_2=(R3//0/"Dialog2","ADD to VAR_B","MA2_2","DIMEN."////10,70,150/200,70//)
+DEF MA2_3=(R3//0/"Dialog3","ADD to VAR_C","MA2_3","DIMEN."////10,90,150/200,90//)
+DEF MA2_4=(R3//0/"Dialog4","ADD to VAR_D","MA2_4","DIMEN."////10,110,150/200,110//)
+DEF MA2_5=(R3//0/"Dialog5","ADD to VAR_E","MA2_5","DIMEN."////10,130,150/200,130//)
+
+HS1=("Mask 1",ac7,se1)
+HS2=("")
+
+CHANGE(MA2_1)
+  VAR_A=VAR_A+MA2_1  ; If variable is changed, add values
+END_CHANGE           ; to values of mask 1
+
+CHANGE(MA2_2)
+  VAR_B=VAR_B+MA2_2
+END_CHANGE
+
+CHANGE(MA2_3)
+  VAR_C=VAR_C+MA2_3
+END_CHANGE
+
+CHANGE(MA2_4)
+  VAR_D=VAR_D+MA2_4
+END_CHANGE
+
+CHANGE(MA2_5)
+  VAR_E=VAR_E+MA2_5
+END_CHANGE
+
+PRESS(HS1)	
+  EXIT(VAR_A,VAR_B,VAR_C,VAR_D,VAR_E) ;Return to Mask 1 and                                             ;store back variables
+END_PRESS
+//END
+
+

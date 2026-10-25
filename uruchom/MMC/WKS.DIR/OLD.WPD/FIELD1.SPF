@@ -1,0 +1,183 @@
+N10 ; --- FinishedPart: X: 1000 Y: 1000 Z: 42 ---
+N20 ; --- TData:Polarscheck_Artis_X4 ---
+N30 ; --- POST FOR ARTIS 3-5Axis 10.08.2006 ---
+N40 DEF REAL h_LAENGE= 1000
+N50 DEF REAL h_BREITE= 1000
+N60 DEF REAL h_DICKE= 42
+N70 DEF REAL OOX=0    ; --- Output offset X ---
+N80 DEF REAL OOY=0    ; --- Output offset Y ---
+N90 DEF REAL OOZ=0    ; --- Output offset Z ---
+N100 DEF REAL MAXZ=0
+N110 DEF REAL MAXX=0
+N120 DEF REAL MINX=0
+N130 DEF REAL MAXY=0
+N140 DEF REAL MINY=0
+N150 DEF REAL PX=0
+N160 DEF REAL PY=0
+N170 DEF INT DCMARKER=0
+N180 ; --- Bitmode: 0 ---
+N190 ; --- --- Vakuum Kontrolle ein ---
+N200 M51
+N210 ; --- --- Stops down ---
+N220 M121
+N230 ; --- --- ---
+N240 MAXZ=$MA_POS_LIMIT_PLUS[Z]-1
+N250 MAXX=$MA_POS_LIMIT_PLUS[X]-1
+N260 MINX=$MA_POS_LIMIT_MINUS[X]+1
+N270 MAXY=$MA_POS_LIMIT_PLUS2[Y]-1
+N280 MINY=$MA_POS_LIMIT_MINUS[Y]+1
+N290 ; --- created:10.02.2010 - 10:11:04 ---
+N300 ; --- WZ:Polarscheck_Artis_X4 ---
+N310 ; --- Post:Polarscheck_Artis_X4 V5.6.2.98 ScriptV2.1.2.9 ---
+N320 ; --- used tools ---
+N330 ; ---  ---
+N340 ; --- Box:   29 HId:1     SAEGE D200                     Platz:9 T:9 D5 ---
+N350 ; (29,32,5,9000,100,157,0,0)    ; --- S9000 R100 L1:157 L2:0 L3:0 ---
+N360 ; ---  ---
+N370 G500 G90 D0
+N380 CUT2DF
+N390 CFIN
+N400 G53 G0 Z=MAXZ
+N410 G64 G17 SOFT
+N420 G451
+N430; $P_UIFR[2]=CTRANS(X,0,Y,110,Z,100):CFINE(X,0,Y,0,Z,0)
+N440 ; ---  ---
+N450 STOPRE
+N460 G54
+N470 ; ---  ---
+N480 $SC_MINFEED=30
+N490 $SC_CONTPREC=0.05
+N500 ;
+N510 ; --- ZMin:98 ZMax:242 --- Bearbeitungsfenster --- ---
+N520 ; --- Go Safety ---
+N530 TRANS
+N540 G90 D0
+N550 G53 G0 Z=MAXZ
+N560 G53 G0 B=0 C=0
+N570 ; --- SAEGE D200  ID:29 Platz:9 T:32 ---
+N580 Wechsel(9,3,6000)
+N590 STOPRE
+N600 $TC_DP1[9,5]=120    ; ---  Typ ---
+N610 $TC_DP6[9,5]=190    ; ---  Radius ---
+N620 $TC_DP12[9,5]=0    ; ---  Verschleiss ---
+N630 $TC_DP13[9,5]=0    ; ---  ---
+N640 $TC_DP14[9,5]=0    ; ---  ---
+N650 $TC_DP21[9,5]=0    ; ---  Basismass ---
+N660 $TC_DP22[9,5]=0    ; ---  ---
+N670 $TC_DP23[9,5]=0    ; ---  ---
+N680 $TC_DP5[9,5]=0    ; --- LÄNGE 3 ---
+N690 $TC_DP4[9,5]=0    ; --- LÄNGE 2 ---
+N700 $TC_DP3[9,5]=157    ; ---  Länge ---
+N710 STOPRE
+N720 TRAFAN
+N730 G54
+N740 ; ---  ---
+N750 ; --- WP:1 Stop:1 X:0 Y:110 Z:0 ---
+N760 ; --- Z:\HOPS5\DATA\HOPS\HOP\TEST3.HOP ---
+N770 ; --- FX:1000 FY:1000 Z:42 ---
+N780 ; --- Viewchange View 1 ---
+N790 TRANS
+N800 T9 D5
+N810 OOX=0 OOY=0 OOZ=0
+N820 G0 X=-100+OOX Y=0+OOY C=0
+N830 G0 X=-100+OOX Y=0+OOY Z=242+OOZ B=-180 C=0
+N840 TRANS
+N850 ATRANS X=-100+OOX Y=0+OOY Z=242+OOZ
+N860 AROT Z=0 X90
+N870 ; --- ViewchangeEnd ---
+N880 ; --- ***************************************** ---
+N890 ; --- *************  Sägen  ******************* ---
+N900 ; --- ***************************************** ---
+N910 G1 X0 Y0 Z=0 F15000
+N920 G1 Y-144 F5000
+N930 G1 X1200 F10000
+N940 G1 Y0 F15000
+N950 ; --- Sicherheit übers Werkstück! ---
+N960 TRANS
+N970 ; --- Additives ZMass:0 ---
+N980 G0 D5 Z=242+OOZ    ; ---  absolut: Z:142 ---
+N990 ; --- ZMin:98 ZMax:242 --- Bearbeitungsfenster --- ---
+N1000 ; --- WP:1 Stop:1 X:0 Y:110 Z:0 ---
+N1010 ; --- Z:\HOPS5\DATA\HOPS\HOP\TEST3.HOP ---
+N1020 ; --- FX:1000 FY:1000 Z:42 ---
+N1030 ; --- Viewchange View 4 ---
+N1040 TRANS
+N1050 T9 D5
+N1060 OOX=0 OOY=0 OOZ=0
+N1070 G0 X=1000+OOX Y=-100+OOY Z=242+OOZ B=-180 C=90
+N1080 TRANS
+N1090 ATRANS X=1000+OOX Y=-100+OOY Z=242+OOZ
+N1100 AROT Z=90 X90
+N1110 ; --- ViewchangeEnd ---
+N1120 ; --- ***************************************** ---
+N1130 ; --- *************  Sägen  ******************* ---
+N1140 ; --- ***************************************** ---
+N1150 G1 X0 Y0 Z=0 F15000
+N1160 G1 Y-144 F5000
+N1170 G1 X1200 F10000
+N1180 G1 Y0 F15000
+N1190 ; --- Sicherheit übers Werkstück! ---
+N1200 TRANS
+N1210 ; --- Additives ZMass:0 ---
+N1220 G0 D5 Z=242+OOZ    ; ---  absolut: Z:142 ---
+N1230 ; --- ZMin:98 ZMax:242 --- Bearbeitungsfenster --- ---
+N1240 ; --- WP:1 Stop:1 X:0 Y:110 Z:0 ---
+N1250 ; --- Z:\HOPS5\DATA\HOPS\HOP\TEST3.HOP ---
+N1260 ; --- FX:1000 FY:1000 Z:42 ---
+N1270 ; --- Viewchange View 3 ---
+N1280 TRANS
+N1290 T9 D5
+N1300 OOX=0 OOY=0 OOZ=0
+N1310 G0 X=1100+OOX Y=1000+OOY Z=242+OOZ B=-180 C=180
+N1320 TRANS
+N1330 ATRANS X=1100+OOX Y=1000+OOY Z=242+OOZ
+N1340 AROT Z=180 X90
+N1350 ; --- ViewchangeEnd ---
+N1360 ; --- ***************************************** ---
+N1370 ; --- *************  Sägen  ******************* ---
+N1380 ; --- ***************************************** ---
+N1390 G1 X0 Y0 Z=0 F15000
+N1400 G1 Y-144 F5000
+N1410 G1 X1200 F10000
+N1420 G1 Y0 F15000
+N1430 ; --- Sicherheit übers Werkstück! ---
+N1440 TRANS
+N1450 ; --- Additives ZMass:0 ---
+N1460 G0 D5 Z=242+OOZ    ; ---  absolut: Z:142 ---
+N1470 ; --- ZMin:98 ZMax:242 --- Bearbeitungsfenster --- ---
+N1480 ; --- WP:1 Stop:1 X:0 Y:110 Z:0 ---
+N1490 ; --- Z:\HOPS5\DATA\HOPS\HOP\TEST3.HOP ---
+N1500 ; --- FX:1000 FY:1000 Z:42 ---
+N1510 ; --- Viewchange View 2 ---
+N1520 TRANS
+N1530 T9 D5
+N1540 OOX=0 OOY=0 OOZ=0
+N1550 G0 X=0+OOX Y=1100+OOY Z=242+OOZ B=-180 C=270
+N1560 TRANS
+N1570 ATRANS X=0+OOX Y=1100+OOY Z=242+OOZ
+N1580 AROT Z=270 X90
+N1590 ; --- ViewchangeEnd ---
+N1600 ; --- ***************************************** ---
+N1610 ; --- *************  Sägen  ******************* ---
+N1620 ; --- ***************************************** ---
+N1630 G1 X0 Y0 Z=0 F15000
+N1640 G1 Y-144 F5000
+N1650 G1 X1200 F10000
+N1660 G1 Y0 F15000
+N1670 ; --- Sicherheit übers Werkstück! ---
+N1680 TRANS
+N1690 ; --- Additives ZMass:0 ---
+N1700 G0 D5 Z=242+OOZ    ; ---  absolut: Z:142 ---
+N1710 S0
+N1720 TRAFOOF    ; ---  5-Achs - Transformation abschalten ---
+N1730 ; --- Go Safety ---
+N1740 TRANS
+N1750 G90 D0
+N1760 G53 G0 Z=MAXZ
+N1770 PX=1900
+N1780 PY=MAXY
+N1790 G53 G0 X=PX Y=PY
+N1800 PX=1900
+N1810 PY=MAXY
+N1820 G53 G0 X=PX Y=PY
+N1830 M30

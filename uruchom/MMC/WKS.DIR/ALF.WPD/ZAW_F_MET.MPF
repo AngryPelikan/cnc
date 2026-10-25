@@ -1,0 +1,168 @@
+N5 m70 h11 g54 m51 g64
+N10 g53 g40 g0 g90 d0 z340
+
+N15 r6=918 ;szerokosc skrzydla
+N20 r101=2 ; 1-LEWE 2-PRAWE
+
+
+N25 blacha2:
+
+N30 if r101==1 gotof lewe
+N35 if r101==2 gotof prawe
+
+N40 lewe:
+
+N45 m70 h11 g64
+N50 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N55 wechsel(6,4,30)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+;pierwszy zawias
+
+N60 g0 d1 x=240-9 y=-11.7-6 ;
+N65 c270
+N70 g1 z=1.3+1 f8000 ;1.3
+
+N75 arot x351         ;LEWE
+N80 g91 g1 y30 f1000  ;1
+N85 y=-30 f3000
+N90 y=30 f3000        ;2
+N95 y=10 f1000
+N100 y=-40 f3000
+N105 y=40 f3000        ;3
+N110 y=10 f1000
+N115 y=-50 f3000
+N120 y=50 f3000        ;4
+N125 y=10 f1000
+N130 y=-65 f3000       ;wyjscie
+
+N135 rot
+N140 z50 f5000
+
+;drugi zawias
+
+N145 g90 g0 d1 x=778-9 y=-11.7-6 
+N150 g1 z=1.3+1 f8000 ;1.3
+
+N155 arot x351         ;LEWE
+N160 g91 g1 y30 f1000  ;1
+N165 y=-30 f3000
+N170 y=30 f3000        ;2
+N175 y=10 f1000
+N180 y=-40 f3000
+N185 y=40 f3000        ;3
+N190 y=10 f1000
+N195 y=-50 f3000
+N200 y=50 f3000        ;4
+N205 y=10 f1000
+N210 y=-65 f3000       ;wyjscie
+
+N215 rot
+N220 z50 f5000
+
+
+;trzeci zawias
+
+N225 g90 g0 d1 x=1719-9+1.5 y=-11.7-6 ;23.08 +1.5mm dla Zbyszka
+N230 g1 z=1.3+1 f8000 ;1.3
+
+N235 arot x351         ;LEWE
+N240 g91 g1 y30 f1000  ;1
+N245 y=-30 f3000
+N250 y=30 f3000        ;2
+N255 y=10 f1000
+N260 y=-40 f3000
+N265 y=40 f3000        ;3
+N270 y=10 f1000
+N275 y=-50 f3000
+N280 y=50 f3000        ;4
+N285 y=10 f1000
+N290 y=-65 f3000       ;wyjscie
+
+N295 rot
+N300 z50 f5000
+N305 koniec:
+N310 g90 g53 g0 g40 d0 z340 s0
+N315 m17
+
+N320 prawe:
+
+N325 m70 h11 g64
+N330 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N335 wechsel(6,4,30)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+
+;pierwszy zawias
+
+N340 g0 d2 x=240-9 y=r6+11.7+6 
+N345 c90
+N350 g1 z=1.3+1 f8000 ;1.3
+
+N355 arot x9           ;PRAWE
+N360 g91 g1 y-30 f1000  ;1
+N365 y=30 f3000
+N370 y=-30 f3000        ;2
+N375 y=-10 f1000
+N380 y=40 f3000
+N385 y=-40 f3000        ;3
+N390 y=-10 f1000
+N395 y=50 f3000
+N400 y=-50 f3000        ;4
+N405 y=-10 f1000
+N410 y=65 f3000       ;wyjscie
+
+N415 rot
+N420 z50 f5000
+
+;drugi zawias
+
+N425 g90 g0 d2 x=778-9 y=r6+11.7+6 
+N430 g1 z=1.3+1 f8000 ;1.3
+
+N435 arot x9           ;PRAWE
+N440 g91 g1 y-30 f1000  ;1
+N445 y=30 f3000
+N450 y=-30 f3000        ;2
+N455 y=-10 f1000
+N460 y=40 f3000
+N465 y=-40 f3000        ;3
+N470 y=-10 f1000
+N475 y=50 f3000
+N480 y=-50 f3000        ;4
+N485 y=-10 f1000
+N490 y=65 f3000       ;wyjscie
+
+N495 rot
+N500 z50 f5000
+
+
+;trzeci zawias
+
+N505 g90 g0 d2 x=1719-9+1.5 y=r6+11.7+6 ;23.08 +1.5mm analogicznie 
+N510 g1 z=1.3+1 f8000 ;1.3
+
+N515 arot x9           ;PRAWE
+N520 g91 g1 y-30 f1000  ;1
+N525 y=30 f3000
+N530 y=-30 f3000        ;2
+N535 y=-10 f1000
+N540 y=40 f3000
+N545 y=-40 f3000        ;3
+N550 y=-10 f1000
+N555 y=50 f3000
+N560 y=-50 f3000        ;4
+N565 y=-10 f1000
+N570 y=65 f3000       ;wyjscie
+
+N575 rot
+N580 z50 f5000
+
+N585 koniec:
+N590 g90 g53 g0 g40 d0 z340 s0
+N595 m17
+

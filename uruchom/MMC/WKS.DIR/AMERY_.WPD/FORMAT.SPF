@@ -1,0 +1,157 @@
+N5 if r1==1 gotof format1
+;N10 if r7<=2029.9 gotof skrot  ; adas kurwa nie wylaczaj tego gowna
+N15 m17
+N20 format1:
+;m71
+
+N25 gotof format2 ; skok do formatowania frezem
+
+N25 wechsel (9,4,50)
+
+
+N30 atrans x=5 y=5  ; TUTAJ FAZJI!!! 
+N35 g90 g64 g0 g40 d1 x=r7 y=-70 z50
+N40 c0
+N45 g1 z-40 m21 f4000
+;g1 y=r6-20 f8000 ;szybko
+N50 g1 y=r6+70 f3350 ;posow
+N55 g0 z20 f2000
+N60 x=ic(70) y=r6 c90 d2
+N65 g1 z-40 f4000
+;g1 x10 f8000 ;szybko
+N70 x-70 f3350 ;posow
+N75 g0 z20 f2000
+N80 y=ic(70) x0 c180 d3
+N85 g1 z-40 f4000
+;g1 y10 f8000 ;szybko
+N90 y-70 f3350 ;posow
+N95 g0 z20 f2000
+N100 x=ic(-70) y0 c270 d4
+N105 g1 z-40 f4000
+;g1 x=r7-10 f8000 ;szybko
+N110 x=R7+70 f3350 ;posow
+N115 g0 z50 f2000
+
+N120 g53 g0 g90 d0 z340 ;s0
+N125 rot
+N130 gotof dalej
+
+N135 format2: ; formatowanie frezem
+
+N145 cprecon
+N150 atrans x=5 y=5
+
+;gotof prawo ; formatowanie frezem w prawo (wylaczone w lewo)
+
+;N155 lewo:
+
+;N340 wechsel (9,4,50)
+;N350 g90 g64 g0 g40 d1 x=r7+10 y=-70 z50
+;N355 c0
+;N360 g1 z=-40 m21 f2000
+;N365 g1 y=r6+70 f4000
+;N370 g0 z50
+;N395 g53 g0 g90 d0 z340 s0
+
+N140 wechsel(12,3,180)
+
+N160 g90 g0 x=R7 y=r6+50 z=50 g41 d2
+N165 g0 z=-39
+N170 g1 y=r6-20 f3000
+N175 g0 z=50
+
+N180 g90 g64 g0 g42 d2 x=R7 y=-30 z50
+N185 g0 z=-39 m21 
+N190 g1 y=20 f1000
+N195 g1 y=50 f3000
+N200 g1 y=70 f5000
+N205 g1 y=r6-20 f6000
+N210 g1 y=r6 f1000
+
+N215 x=0 f6000
+N220 y=20
+N225 y=0 f1000
+N230 x=20
+N235 x=R7+30 f6000
+N240 g0 z50 f2000
+N245 cprecof
+N250 rot
+N255 g40 g53 g0 g90 z340 s0 d0
+N260 gotof aaa
+
+N265 prawo:
+N270 \N240 g90 g64 g0 g41 d2 x=2030+50 y=0 z50
+N275 g0 z=-45 m21 
+N280 g1 x=0 f6000
+N285 y=r6
+N290 x=2030
+N295 y=-30
+N300 g0 z50 f2000
+N305 cprecof
+N310 rot
+N315 g40 g53 g0 g90 z340 s0 d0
+
+N320 aaa:
+;  ewentualny skrot pila
+;N325 if r7<=2029.9 gotof skrot2
+
+N330 gotof dalej
+
+N335 skrot2:
+
+N340 wechsel (9,4,50)
+N345 atrans x=5 y=5
+N350 g90 g64 g0 g40 d1 x=r7 y=-70 z50
+N355 c0
+N360 g1 z=-18.5 m21 f2000
+N365 g1 y=r6+70 f4000
+N370 g0 z50
+N375 g0 y=-70
+N380 g1 z=-40 f2000
+N385 g1 y=r6+70 f4000
+N390 g0 z=50
+N395 g53 g0 g90 d0 z340 s0
+;m17
+N400 rot
+
+N405 dalej:
+N410 if r100==1 gotof pz55
+N415 if r100==2 gotof pz57
+
+N420 pz55:
+N425 g55
+N430 m17
+
+N435 pz57:
+N440 g57
+N445 m17
+
+N450 skrot:
+;N175 gotof new
+N455 wechsel (9,4,50)
+
+N460 g90 g64 g0 g40 d1 x=r7 y=R6+70 z50
+N465 c0
+N470 g1 z=-37+R15-5 m21 f5000
+N475 g1 y=-70
+
+N480 g1 z=-40 f2000
+N485 g1 y=r6+70 f3000
+N490 g0 z=50
+
+N495 g53 g0 g90 d0 z340 s0
+N500 m17
+N505 new:
+
+N510 wechsel (1,3,180)
+
+N515 g0 g90 g64 g41 d1 x=r7 y=r6+30 z50
+N520 z-46 m21 f4000
+N525 g1 y=20 f2000 ;posow
+N530 y=-20 f1000
+N535 g0 z20
+
+N540 g53 g0 g90 g40 d0 z340
+N545 m17
+
+

@@ -1,0 +1,590 @@
+
+
+
+*******************************************************************************
+*                                                                             
+*                                                                             
+* Softwarekomponente:     Zyklen Bohren/Fraesen/Drehen fuer 810D, 840Di und 840D         
+*                                                                             
+* MLFB:                   6FC5250 - 6AX00 - 4AB0                              
+*                                                                             
+* Sachnummer:             570886.3901.64                                      
+*                                                                             
+* Softwarestand:          ;VERSION: 06.04.24 Mar 26, 2004                                           
+*                                                                                                                                                     
+*******************************************************************************
+
+
+
+						Druecken Sie die Page-Taste !
+
+==============================================================================
+
+Diese Datei enthaelt Informationen fuer die Inbetriebnahme und Anwendung der 
+Standardzyklen fuer  SINUMERIK 840D/810D.
+
+--------------------------- TITEL --------------------------------------------
+
+
+        Standardzyklen fuer SINUMERK 840D/810D
+
+
+
+--------------------------- INHALT -------------------------------------------
+
+ 1. Voraussetzungen
+ 2. Dokumentation
+ 3. Disketteninhalt
+ 4. Maschinendateneinstellungen und Inbetriebnahme
+ 5. Laden der Zyklen in die Steuerung
+ 6. Besondere Hinweise zur Anwendung dieser Zyklenversion
+ 7. neue Funktionen
+
+-------------------------------------------------------------------------------
+
+1. VORAUSSETZUNGEN:
+===================
+
+Um die vorliegende Standardzyklenversion einsetzen zu koennen, ist ein NC-Soft-
+warestand ab 5.3 bei 840D bzw. 3.1 bei 810D erforderlich.
+CYCLE800 erfordert einen NC-Softwarestand 6.3.
+
+Die Maschinendaten der Steuerung sind standardmaessig so konfiguriert, dass
+sie das Laden und den Ablauf dieser Zyklen ermoeglichen, bzw. unter 4. und 6. 
+finden Sie Hinweise auf wichtige Maschinendateneinstellungen.
+
+
+-------------------------------------------------------------------------------
+
+2. DOKUMENTATION: 
+=================
+
+Zur vorliegenden Standardzyklenversion steht folgende Dokumentation zur
+Verfuegung:
+
+     Titel                        !  Ausgabestand  !  Bestellnummer
+     -----------------------------------------------------------------------
+     Programmieranleitung Zyklen  !  01.04         !  6FC5298 - 6AB40 - 0AP3
+     -----------------------------------------------------------------------
+
+
+3. DISKETTENINHALT:
+===================
+
+Der Zyklenstand umfasst fuenf Disketten.
+
+Diese enthalten die Zyklen, Daten- und Makrodefinitionen fuer Zyklen, die Dateien 
+der Zyklenbedienerfuehrung fuer die Steuerungstypen 840D/840Di/810D mit 
+HMI Embedded und HMI Advanced.
+In den Unterverzeichnissen der Disketten sind jeweils alle fuer die entspre-
+chende HMI-Konfiguration benoetigten Dateien enthalten.
+
+Im Verzeichnis HMI_EMB\TOOLS befinden sich die Dateien fuer die Hilfebilder zu
+den Zyklen mit HMI Embedded ab SW6.2 .
+
+3.1. Grundstruktur:
+
+     Disk1:
+	\CYCLES		  Zyklenarchive (zum Laden in die Steuerung)
+	\CYCLE\CYP_FILE   Zyklenpaketlisten (ab SW 6.3 HMI)
+	\CYCLES\DEU	  sprachabhaengige Zyklenprogramme deutsch
+	\CYCLES\ENG	  sprachabhaengige Zyklenprogramme englisch
+	\CYCLES\SPF_FILE  einzelne Zyklenprogramme
+	\DEFINE		  Archivfile Daten- und Makrodefinitionen
+	\DEFINE\DEF_FILE  einzelne Definitionsfiles	
+	\DEMO		  Beispielprogramme fuer neue Zyklenfunktionen
+	\HELP_SW4	  Dateien zur Unterstuetzung aelterer NCU-SW-Staende
+	SIEMENSD.TXT
+	SIEMENSE.TXT
+
+     Disk2:
+	\HMI_ADV	  Dateien der Zyklenunterstuetzung fuer HMI Advanced
+
+     Disk3:
+	\HMI_ADV	  Archivfile zum Hochruesten der Zyklen im HMI Advanced ab SW 6.3
+
+     Disk4:
+	\HMI_EMB	  Dateien der Zyklenunterstuetzung fuer HMI Embedded
+
+     Disk5:
+	\HMI_EMB\TOOLS	  Tools zum Einbinden geaenderter Bitmaps fuer HMI Embedded		  
+
+
+
+3.2. Unterverzeichnis CYCLES:
+
+Diese Programme sind ladbar ueber V.24 bzw. von Diskette.
+
+        \CYCLES\CYP_FILE\CYC_SC.CYP	Paketliste Standardzyklen
+                     ...\CYC_SCS.CYP    Paketliste Zyklenunterstuetzung
+
+	\CYCLES\DEU\CYC_832T.SPF	Anwenderzyklus CYC_832T mit deutschen Kommentaren	
+	    ...\DEU\ST_CUST.SPF		Anwenderzyklus ST_CUST mit deutschen Kommentaren
+	    ...\DEU\TOOLCARR.SPF	Anwenderzyklus TOOLCARR mit deutschen Kommentaren
+
+	\CYCLES\ENG\CYC_832T.SPF	Anwenderzyklus CYC_832T mit englischen Kommentaren
+	    ...\ENG\ST_CUST.SPF		Anwenderzyklus ST_CUST mit englischen Kommentaren
+	    ...\ENG\TOOLCARR.SPF	Anwenderzyklus TOOLCARR mit englischen Kommentaren
+
+	\CYCLES\SPF_FILE\CYCLE81.SPF    einzelne Zyklenprogramme
+	    ...\SPF_FILE\CYCLE82.SPF
+	    ...\SPF_FILE\CYCLE83.SPF
+	    ...\SPF_FILE\CYCLE84.SPF
+	    ...\SPF_FILE\CYCLE840.SPF
+	    ...\SPF_FILE\CYCLE85.SPF
+	    ...\SPF_FILE\CYCLE86.SPF
+	    ...\SPF_FILE\CYCLE87.SPF
+	    ...\SPF_FILE\CYCLE88.SPF
+	    ...\SPF_FILE\CYCLE89.SPF
+	    ...\SPF_FILE\HOLES1.SPF
+	    ...\SPF_FILE\HOLES2.SPF
+	    ...\SPF_FILE\CYCLE801.SPF
+	    ...\SPF_FILE\LONGHOLE.SPF
+	    ...\SPF_FILE\SLOT1.SPF
+	    ...\SPF_FILE\SLOT2.SPF
+            ...\SPF_FILE\CYCLE60.SPF
+            ...\SPF_FILE\CYCLE71.SPF
+            ...\SPF_FILE\CYCLE72.SPF
+            ...\SPF_FILE\CYCLE76.SPF
+            ...\SPF_FILE\CYCLE77.SPF
+	    ...\SPF_FILE\POCKET1.SPF
+	    ...\SPF_FILE\POCKET2.SPF
+            ...\SPF_FILE\POCKET3.SPF
+            ...\SPF_FILE\POCKET4.SPF
+	    ...\SPF_FILE\CYCLE90.SPF
+	    ...\SPF_FILE\CYCLE93.SPF
+	    ...\SPF_FILE\CYCLE94.SPF
+	    ...\SPF_FILE\CYCLE95.SPF
+	    ...\SPF_FILE\CYCLE96.SPF
+	    ...\SPF_FILE\CYCLE97.SPF
+	    ...\SPF_FILE\CYCLE98.SPF
+	    ...\SPF_FILE\CYCLE800.SPF
+            ...\SPF_FILE\PROG_EVT.SPF	(PROG_EVENT-Zyklus)	
+            ...\SPF_FILE\CYCPE_SC.SPF
+	    ...\SPF_FILE\CYCLE832.SPF	
+            ...\SPF_FILE\STEIGUNG.SPF	Zyklenhilfsunterprogramm
+
+        \CYCLES\CYCCUST_GR.ARC		Archivfile aller Anwenderzyklen mit deutschen Kommentaren
+            ...\CYCCUST_UK.ARC		Archivfile aller Anwenderzyklen mit englischen Kommentaren
+	    ...\CYCLES.ARC		Archivfile aller Zyklen
+	    ...\CYCLIST.ARC		Archivfile aller Zyklenpaketlisten (ab HMI SW 6.3)
+	    ...\CYCMILL.ARC		Archivfile aller Zyklen fuer Technologie Fraesen
+	    ...\CYCTURN.ARC		Archivfile aller Zyklen fuer Technologie Drehen (ohne Bohrzyklen)
+	    ...\SIEMENSD.ARC		Archivfile der siemensd.txt					
+	    ...\SIEMENSE.ARC		Archivfile der siemense.txt	
+	    ...\VERSION.ARC		Archivfile Version Zyklenstand	
+
+3.3. Unterverzeichnis DEFINE:
+
+Diese Programme sind ladbar ueber V.24 bzw. von Diskette.
+
+	\DEFINE\DEFINES.ARC			Definitionsdateien fuer Zyklen
+	\DEFINE\DEF_FILE\GUD7.DEF		Datenbaustein fuer Zyklen
+	    ...\DEF_FILE\SMAC.DEF		Makrodefinitionsdatei
+            ...\DEF_FILE\GUD7_SC.DEF	        Definitionshilfsprogramme
+            ...\DEF_FILE\SMAC_SC.DEF
+
+3.4. Unterverzeichnis DEMO:
+
+	\DEMO\BSP_C800.ARC			Beispielprogramm zur Anwendung des CYCLE800
+	\DEMO\BSP_C832.ARC			Beispielprogramm zur Anwendung des CYCLE832 und CYC_832T
+
+3.5. Unterverzeichnis HELP_SW4:
+
+Dieses Verzeichnis enthaelt Zyklendateien zur Anwendung der Zyklen mit frueheren NCU-Staenden.
+Die Programme sind ladbar ueber V.24 bzw. von Diskette.
+Folgende Dateien fuer NCU-Versionen bis SW 6.2:
+        \HELP_SW4\GUD7.DEF
+	      ...\SMAC.DEF
+
+3.6. Unterverzeichnis HMI_ADV:
+
+Das Unterverzeichnis HMI_ADV erstreckt sich ueber 2 Disketten. 
+Die darin abgelegten Archive sind ladbar ueber V.24 bzw. von Diskette.
+
+        \HMI_ADV\SCSUPP.ARC		Archivfile aller Zyklenunterstuetzungsdateien
+             ...\BMP_1024.EXE      	Bitmaps als Archivfiles (fuer 1024 * 768) gepackt
+             ...\BMP_800.EXE      	Bitmaps als Archivfiles (fuer 800 * 600) gepackt
+             ...\BMP_640.EXE      	Bitmaps als Archivfiles (fuer 640 * 480) gepackt
+
+        \HMI_ADV\SC_ARC63.ARC		Archivfile aller Zyklenarchive
+	   
+Die Files BMP_*.EXE muessen auf einem externen Rechner entpackt werden.
+
+Sie enthalten ladbare Archivfiles der Hilfebilder:
+	CONT1BMP.ARC	Hilfebilder fuer die Konturzuege, Teil 1
+	CONT2BMP.ARC	Hilfebilder fuer die Konturzuege, Teil 2
+	CYC1BMP.ARC	Hilfebilder der Zyklenunterstuetzung im Editor, Teil 1
+	CYC2BMP.ARC	Hilfebilder der Zyklenunterstuetzung im Editor, Teil 2
+	CYC3BMP.ARC	Hilfebilder der Zyklenunterstuetzung im Editor, Teil 3
+	CYC4BMP.ARC	Hilfebilder der Zyklenunterstuetzung im Editor, Teil 4
+	CYC5BMP.ARC	Hilfebilder der Zyklenunterstuetzung im Editor, Teil 5
+	CYC6BMP.ARC	Hilfebilder der Zyklenunterstuetzung im Editor, Teil 6
+	CYC7BMP.ARC	Hilfebilder der Zyklenunterstuetzung im Editor, Teil 7 (nur bei 1024 * 768)
+	CYC8BMP.ARC	Hilfebilder der Zyklenunterstuetzung im Editor, Teil 8 (nur bei 1024 * 768)
+	CYC9BMP.ARC	Hilfebilder der Zyklenunterstuetzung im Editor, Teil 9 (nur bei 1024 * 768)
+	CYC10BMP.ARC	Hilfebilder der Zyklenunterstuetzung im Editor, Teil 10 (nur bei 1024 * 768)
+	DP1BMP.ARC	Hilfebilder Dialogprogrammierung fuer Zyklen, Teil 1		
+	DP2BMP.ARC	Hilfebilder Dialogprogrammierung fuer Zyklen, Teil 2		
+
+3.7. Unterverzeichnis HMI_EMB:
+
+Das Unterverzeichnis HMI_EMB erstreckt sich ueber 2 Disketten. 
+
+Diese Dateien sind ladbar ueber V.24.
+	
+	\HIM_EMB\COMMON.COM		Definitionsdatei fuer Einstiegssoftkeys
+					der Zyklenunterstuetzung im Editor
+             ...\SC.COM		        Zyklenunterstuetzungsdatei 
+				        (nur zum Rueckuebersetzen von Zyklen bis SW 4)
+
+Diese Dateien werden benoetigt, wenn die Zyklenunterstuetzung in einem HMI Embedded 
+bis SW 6.2 hochgeruestet werden soll.
+
+	\HIM_EMB\AEDITOR.COM		Zyklenunterstuetzungsdateien ab SW 5.2		
+	     ...\BOHREN.COM
+	     ...\BOHREN1.COM
+	     ...\DREHEN.COM
+	     ...\DREHEN2.COM
+	     ...\FRAESEN.COM
+	     ...\GEWINDE.COM
+	     ...\KONTUR.COM				
+	     ...\MA_JOG.COM
+	     ...\SCHWENK1.COM		erst ab SW 6.2
+	     ...\SCHWENK2.COM		erst ab SW 6.2
+	     ...\STARTUP.COM		erst ab SW 6.2
+	     ...\TOLERANZ.COM		erst ab SW 6.3
+	
+
+Diese Dateien werden benoetigt, wenn Hilfebilder im HMI Embedded nachgeladen werden
+muessen oder wenn zusaetzliche Hilfebilder in den HMI Embedded eingebaut werden 
+sollen.
+			
+        \HMI_EMB\TOOLS\ARJ_IDX.EXE	Tool zum Erzeugen des cst.idx
+		   ...\BMP_1024.EXE     Bitmaps im Format *.bmp (fuer 1024 * 768)
+		   ...\BMP_800.EXE	Bitmaps im Format *.bmp (fuer 800 * 600)
+		   ...\BMP_640.EXE	Bitmaps im Format *.bmp (fuer 640 * 480)
+                   ...\BMP2BIN.EXE      Konvertierungstool
+		   ...\BMPCON.EXE	Konvertierungstool fuer Bitmapfarben
+                   ...\MCST_640.BAT	Batchfiles zum Erstellen cst.arj
+                   ...\MCST_800.BAT	
+                   ...\MCST1024.BAT
+                   ...\SYS_CONV.COL     Farbtabelle fuer Konvertierung
+
+
+Eine Beschreibung der Handhabung finden Sie in der Zyklendokumentation (Ausgabestand s.o.).
+
+
+3.8. Teilpakete und Speicherbedarf der Standardzyklen:
+
+Da die Standardzyklen die Technologien Drehen, Fraesen und Bohren unterstuet-
+zen, werden meist nicht alle Zyklen an einer Maschine angewendet.
+Es ist sinnvoll, nur die Zyklen in den Teileprogrammspeicher der Steuerung zu 
+laden, die entsprechend der Maschinenkonfiguration benoetigt werden.
+
+3.8.1. Teilpaket Standardzyklen fuer Fraesmaschinen:
+
+Das Teilpaket Bohr- und Fraeszyklen umfasst folgende Programme, die in den
+Teileprogrammspeicher zu laden sind:
+
+	CYCLE81.SPF
+	CYCLE82.SPF
+	CYCLE83.SPF
+	CYCLE84.SPF
+	CYCLE840.SPF
+	CYCLE85.SPF
+	CYCLE86.SPF
+	CYCLE87.SPF
+	CYCLE88.SPF
+	CYCLE89.SPF
+	STEIGUNG.SPF
+	HOLES1.SPF
+	HOLES2.SPF
+	CYCLE801.SPF
+	CYCLE60.SPF
+        CYCLE71.SPF
+        CYCLE72.SPF
+        CYCLE76.SPF
+        CYCLE77.SPF
+	LONGHOLE.SPF
+	SLOT1.SPF
+	SLOT2.SPF
+	POCKET1.SPF
+	POCKET2.SPF
+        POCKET3.SPF
+        POCKET4.SPF
+	CYCLE90.SPF
+	CYCLE800.SPF
+	TOOLCARR.SPF
+	PROG_EVT.SPF		(PROG_EVENT-Zyklus)
+	CYCPE_SC.SPF
+	CYCLE832.SPF
+	CYC_832T.SPF
+
+
+Die Taschenfraeszyklen POCKET1 und POCKET2 sind zur Sicherung der Kompatibilitaet
+des Zyklenstandes zu vorhandenen Teileprogrammen gedacht.
+Fuer neue Anwendung sollten die funktionell erweiterten Taschenfraeszyklen
+POCKET3 und POCKET4 eingesetzt werden.
+
+3.8.2. Teilpaket Standardzyklen fuer Drehmaschinen:
+
+Das Teilpaket Drehzyklen umfasst folgende Programme, die in den Teileprogramm-
+speicher zu laden sind:
+
+	CYCLE93.SPF
+	CYCLE94.SPF
+	CYCLE95.SPF
+	CYCLE96.SPF
+	CYCLE97.SPF
+	CYCLE98.SPF
+	STEIGUNG.SPF
+
+
+3.8.3. Speicherbedarf im Teileprogrammspeicher:
+
+Der Speicherbedarf wird MMC-abhaengig angegeben, da bei Konfigurationen mit
+HMI Advanced die Bedienerfuehrungsdatei SC.COM nicht in den Teileprogrammspeicher
+geladen werden muss.
+
+ !      ! Paket / Teilpaket                     ! Speicherbedarf in K Byte !
+ ! ---- ! ------------------------------------- ! ------------------------ !
+ !  1   ! HMI Advanced-Konfiguration:           !                          !
+ !      !  alle Standardzyklen                  !           210            !
+ ! ---- ! ------------------------------------- ! ------------------------ !
+ !  2   ! HMI Advanced-Konfiguration:           !                          !
+ !      !  Standardzyklen fuer Fraesmaschinen   !                          ! 
+ !      !                                       !           125            !
+ ! ---- ! ------------------------------------- ! ------------------------ !
+ !  3   ! HMI Advanced-Konfiguration:           !                          !
+ !      !  Standardzyklen fuer Drehmaschinen    !                          ! 
+ !      !                                       !           100            !
+ ! ---- ! ------------------------------------- ! ------------------------ !
+
+
+
+4. MASCHINENDATENEINSTELLUNGEN UND INBETRIEBNAHME: 
+==================================================
+
+4.1.  Speicherkonfigurierende Maschinendaten fuer Anwenderzyklen:
+Werden zusaetzlich zu den Siemenszyklen auch Anwenderzyklen in die Steuerung
+geladen, ist es empfehlenswert, die beiden speicherkonfigurierenden Maschinen-
+daten zu erhoehen.
+
+        18170   $MN_MM_NUM_MAX_FUNC_NAMES
+        18180   $MN_MM_NUM_MAX_FUNC_PARAM
+
+Zur Ausfuehrung der Siemens Zyklen sind folgende Werte erforderlich:
+
+        18170   $MN_MM_NUM_MAX_FUNC_NAMES = 40
+        18180   $MN_MM_NUM_MAX_FUNC_PARAM = 450.
+
+4.2.  Inbetriebnahme fuer Gewindenachschneiden fuer HMI Advanced:
+Gewindenachschneiden erfordert eine Bedienung im JOG-Grundbild. Dazu muss der
+Softkey HS8 "Gewinde nachschn." in der Datei MA_JOG.COM aktiviert werden.
+Die Datei MA_JOG.COM ist dazu zu oeffnen und in den folgenden Zeilen das 
+Semikolon zu entfernen:
+   ;HS8=($80720,,se1)
+   ;PRESS(HS8)
+   ;LM("GENS","drehen2.com")
+   ;END_PRESS
+Die Datei liegt im Verzeichnis "Standardzyklen".
+Danach ist der Softkey aktiv.
+	
+4.3.  Inbetriebnahme fuer Gewindenachschneiden fuer HMI Embedded:
+Gewindenachschneiden erfordert eine Bedienung im JOG-Grundbild. Dazu muss der
+Softkey HS8 "Gewinde nachschn." in der Datei COMMON.COM aktiviert werden.
+Die Datei COMMON.COM ist dazu zu oeffnen und das ";" vor SC108 
+zu loeschen. Die Datei liegt im Verzeichnis "Anwenderzyklen".
+Danach muss der MMC erneut gestartet werden.
+
+
+5. LADEN DER ZYKLEN IN DIE STEUERUNG:
+=====================================
+
+5.1. Besondere Hinweise zum Laden der Zyklen mit HMI Embedded-Konfiguration:
+
+Alle Dateien dieser Zyklendiskette werden ueber die V.24-Anwender-Schnitt-
+stelle in die Steuerung geladen. Die Dateien werden automatisch in das richtige
+Verzeichnis im Filesystem geladen.
+
+Nach dem Laden der Zyklen ist ein power-on erforderlich, bevor die Zyklen
+abgearbeitet werden koennen.
+
+5.2. Hochruesten dieser Zyklen mit HMI Advanced bis SW 6.2:
+
+Alle Dateien *.SPF im Verzeichnis HMI_ADV liegen als Lochstreifen-Archiv vor, 
+die Dateien *.COM, *.AWB und *.LST sind im PC-Format abgelegt.
+Das Einlesen in die Steuerung erfolgt im Bereich Dienste mit der Funktion 
+"Daten ein" entweder direkt von der Diskette oder ueber eine V24-Schnittstelle.
+Dabei werden die Zyklen automatisch in das Verzeichnis "Standard-Zyklen"
+transferiert, die Datei aus dem Unterverzeichnis DEFINE in das Verzeichnis
+"Definitionen". (Die Funktion "kopieren" von Diskette darf nicht benutzt werden !).
+
+5.3. Hochruesten dieser Zyklen in HMI_Advanced ab SW 6.3:
+
+Im HMI_Advanced ab SW 6.3 sind die Zyklen als Archive unter "Archive", "Zyklenarchive" abgelegt. 
+Zum Hochruesten muss das Archiv SC_ARC63.ARC aus dem Verzeichnis HMI_ADV eingelesen 
+werden. Dieses packt die Zyklenarchive aus und ueberschreibt die vorhandenen Archive
+der vorherigen Zyklenstandes.
+Folgende Archive gehoeren zum Zyklenstand 6.4:
+ARC.DIR\CYC.DIR\CYCCUST_GR.ARC		Archivfile aller Anwenderzyklen mit deutschen Kommentaren
+            ...\CYCCUST_UK.ARC		Archivfile aller Anwenderzyklen mit englischen Kommentaren
+	    ...\CYCLES.ARC		Archivfile aller Zyklen
+	    ...\CYCLIST.ARC		Archivfile aller Zyklenpaketlisten (ab HMI SW 6.3)
+	    ...\CYCMILL.ARC		Archivfile aller Zyklen fuer Technologie Fraesen
+	    ...\CYCTURN.ARC		Archivfile aller Zyklen fuer Technologie Drehen (ohne Bohrzyklen)
+	    ...\DEFINES.ARC		Archivfile der Definitionsdateien
+	    ...\SCSUPP.ARC		Archivfile aller Zyklenunterstuetzungsdateien
+	    ...\SIEMENSD.ARC		Archivfile der siemensd.txt					
+	    ...\SIEMENSE.ARC		Archivfile der siemense.txt	
+	    ...\VERSION.ARC		Archivfile Version Zyklenstand	
+Das Archiv TOOLCARR.ARC vom Zyklenstand SW 6.3 wird ab diesem Zyklenstand
+nicht mehr benoetigt. Dieses Archiv sollte also bei der Hochruestung geloescht werden.
+Der Zyklus TOOLCARR befindet sich sprachabhaengig im Archiv CYCCUST_GR.ARC bzw. CYCCUST_UK.ARC. 
+Die Archive aus dem Zyklenarchiv des HMI muessen nun technologieabhaengig (Drehen, Fraesen,..) bzw.
+sprachabhaengig ueber "Daten ein" eingelesen werden. 
+
+
+5.4. Besondere Hinweise zur Installation der Zyklen:
+
+Die Uebertragung der Zyklen in die Steuerung muss Datei fuer Datei erfolgen. Die
+PCIN-Funktion-Markieren mehrerer Dateien und Uebertragung in einem Block - darf
+nicht benutzt werden!
+
+
+6. BESONDERE HINWEISE ZUR ANWENDUNG DIESER ZYKLENVERSION:
+=========================================================
+
+1. Maschinendateneinstellungen fuer den Abspanzyklus CYCLE95:
+Der Abspanzyklus CYCLE95 erfordert ab dieser Version folgende Maschinendaten-
+einstellungen:
+        MD 11410 $MN_SUPPRESS_ALARM_MASK = 02H
+        MD 20240 $MC_CUTCOM_MAXNUM_CHECK_BLOCKS = 4
+
+2. Die Zyklen 6.4 koennen fuer 840D mit NCU-Staenden ab 6.3 bzw.
+fuer 810D mit CCU-Staenden ab 6.3 eingesetzt werden. Dabei gelten folgen-
+de Besonderheiten:
+- CYCLE800 ist nicht ausfuehrbar, er erfordert einen NCK ab 6.3
+- Folgende Maschinendateneinstellungen sind erforderlich
+  MD 28020 MC_NUM_LUD_NAMES_TOTAL = 400         fuer Zyklenvoruebersetzung
+  MD 20250 $MC_CUTCOM_MAXNUM_DUMMY_BLOCKS=5     fuer CYCLE72
+  MD 9424 MA_COORDINATE_SYSTEM = 1              fuer Anzeige WKS bei CYCLE95
+
+
+3. Aktivieren der Masken zum Schwenkzyklus CYCLE800 im HMI:
+Zur Bedienung des Schwenkzyklus gehoert eine Eingabemaske in der Zyklenunterstuetzung
+und ein Maske im Bedienbereich IBN zur Inbetriebnahme fuer die Kinematik und der Rundachsen.
+Die Maske im Bedienbereich IBN muss wie folgt aktiviert werden. 
+fuer HMI Embedded:
+  Der Softkey HS14 "Schwenkzyklus" in der Datei COMMON.COM muss aktiviert werden.
+  Die Datei COMMON.COM ist dazu zu oeffnen und das ";" vor SC616 zu loeschen. 
+  Die Datei liegt im Verzeichnis "Anwenderzyklen". Danach ist ein NC-Reset erforderlich.
+fuer HMI Advanced:
+  In der Datei startup.com ist vor folgenden Zeilen das ";" zu loeschen
+	;HS14=($82084,ac7)
+	;PRESS(HS14)
+	;LM("SCHWENK1a","SCHWENK1.com")
+	;END_PRESS
+  Die Datei liegt ebenfalls im Verzeichnis "Standardzyklen".
+  Nach diesen beiden Aenderungen muss der HMI Advanced neu gestartet werden.
+
+
+
+7. Neue Funktionen in SW 6.4:
+=============================
+
+7.1. Neuer Zyklus: CYCLE60 Gravurzyklus
+
+Mit Hilfe des neuen Gravurzyklus CYCLE60 kann ein beliebiger einzeiliger Text graviert 
+werden. Die Grundform der Zeichen ist fest, die Linienbreite werkzeugabhaengig. Die 
+Schriftgroesse, Positionierung und Ausrichtung des Textes auf dem Teil kann ueber 
+verschiedene Eingabeparameter gewaehlt werden. Der Text selbst kann maximal 91 Zeichen 
+umfassen und wird als Stringparameter an den Zyklus uebergeben.
+Eine Unterstuetzungsmaske fuer den Zyklus gibt es erst ab SW 6.5
+
+7.2. Handhabung ST_CUST.SPF
+
+Der Anwenderzyklus ST_CUST.SPF wird ab SW 6.4 von vielen Standardzyklen aufgerufen.
+Er muss in der Steuerung geladen sein.
+Der Zyklus wird sprachabhaengig mit deutschen oder englischen Kommentaren mit den Archiven 
+CYCCUST_GR.ARC bzw. CYCCUST_UK.ARC geliefert. Er muss ggf. vom Maschinenhersteller 
+angepasst werden.
+
+7.3. Zyklenunterprogramm MELDUNG entfernt
+
+Ab SW 6.4 wird das Zyklenunterprogramm MELDUNG nicht mehr benoetigt. Die Meldungen
+werden in den Zyklen direkt mit MSG-Befehl ausgegeben.
+Bei SW-Hochruestung kann der Zyklus MELDUNG.SPF aus dem Verzeichnis CST.DIR entfernt 
+werden.
+
+7.4 Aenderungen / Erweiterungen in CYCLE800
+
+7.4.1. IBN-Maske Schwenken 
+- neu Rundachsen Modus "halb auto"
+  Mit dem Modus "halb auto" werden die Meldungen 62180/62181 (Anzeige der 
+  einzustellenden Winkelwerte) ausgeblendet.
+  Anwendung: Manuelle Rundachsen, die durch eine entsprechende Mechanik auf den 
+  berechneten Winkel positioniert werden.
+  Der Maschinenhersteller muss dazu den Anwenderzyklus TOOLCARR entsprechend modifizieren
+  (Marken _M21.. fuer manuelle Rundachsen).
+- neu Rundachsen Eingabefeld "Offset Kinematik"
+  In dem  Eingabefeld "Offset Kinematik" kann der Offsetwert der Rundachse 1 
+  ($TC_CARR24[n]) bzw. Rundachse 2 ($TC_CARR25[n]) eingegeben werden, wenn in Grundstellung 
+  der Kinematik die Position der Rundachsen  ungleich 0 ist.
+- Das Eingabefeld "automatische Korrektur"  bei Rundachsen mit Hirthverzahnung ist entfallen.
+
+7.4.2.Hinweis zu Kinematiken (Schwenkkopf/gemischte Kinematik) mit Hirthverzahnung:
+  In Abhaengigkeit der aktiven Ebene (G17,G18,G19) wird zur Berechnung (in NCU) des Ausgleichsframes 
+  bei Hirthverzahnung im CYCLE800 der Befehl TOROT (bzw. TOROTX, TOROTY) programmiert (G-Gruppe 53). 
+  Weicht durch die Hirthverzahnung die programmierte Drehung von den moeglichen Positionen der 
+  Rundachsen ab, entsteht bei Kinematiken Schwenkkopf und gemischte Kinematik ein TOOLFRAME 
+  (siehe HMI aktive NV/Details Werkzeugbezug).
+  Die Berechnung ist abhaengig vom Settingdatum 
+    SD 42980 $SC_TOFRAME_MODE und vom Maschinendatum 
+    MD 21110 $MC_X_AXIS_IN_OLD_X_Z_PLANE=1 (Standard)
+  Kinematiken (Schwenkkopf/gemischte Kinematik) mit Hirthverzahnung Settingdatum 
+    SD 42980 $SC_TOFRAME_MODE=1000 einstellen ! 
+  Soll nach Reset bzw. Programmende der Ausgleichsframes (TOOLFRAME) erhalten bleiben,
+    MD 20150 $MC_GCODE_RESET_VALUES[52]=2 einstellen, bei G17 TOROT 
+    (bei G18=3  TOROTY,bei G19 =4 TOROTX).
+
+7.5. Neuer Anwenderzyklus CYC_832T fuer CYCLE832
+
+Wird durch den Maschinenhersteller ein zusaetzliches Verhalten des CYCLE832 gewuenscht, das ueber die
+Anpassungen der Technologie hinausgeht, so koennen im Zyklus CYC_832T die entsprechenden Aenderungen 
+vorgenommen werden. Dazu sollte der CYC_832T in das Verzeichnis CMA.dir (HMI Hersteller) kopiert und 
+in die NCU geladen werden.
+Der CYC_832T stellt ein Rahmenprogramm dar. Die Aenderungen muessen vom Maschinenhersteller dokumentiert 
+werden. Eine Aenderung des CYCLE832 ist nicht erforderlich, wenn Anpassungen des CYC_832T vorgenommen
+wurden. 
+
+Parameter
+CYC_832T(_ASVS,_FACTOR,_OVL_on)
+
+_ASVS An dem Marken _M0 bis _M4 koennen maschinenspezifische Anpassungen vorgenommen werden.
+      _M4 = Init CYCLE832 Aufruf erfolgt vor dem eigentliche Programmablauf des CYCL832 
+      _M0 = Abwahl CYCLE832
+      _M1 = Bearbeitung Schlichten
+      _M2 = Bearbeitung Vorschlichten
+      _M3 = Bearbeitung Schruppen
+
+_FACTOR - Faktor Rundachstoleranz
+_OVL_on - 1=Ueberlastfaktor MD $MA_MAX_ACCEL_OVL_FACTOR anpassen  0=nicht anpassen
+
+7.6. Aenderungen im CYCLE832
+
+Die Befehle FFWON / FFWOF bzw. SOFT / BRISK werden in getrennten Saetzen programmiert.
+Damit kann auch bei umdefinierten G-Befehlen in ein Unterprogramm (Herstellerzyklus) verzweigt werden.
+
+Der Zyklus CYCLE832 unterstuetzt beim Einschalten der 5Achs Transformation (TRAORI) das Abarbeiten
+auf geschwenkten Bearbeitungsebenen, wenn diese zuvor mit dem Schwenkzyklus CYCLE800 angefahren wurden.
+Bei Uebergang in die simultane 5Achsbearbeitung wird der orientierbare Werkzeugtraeger deaktiviert und der 
+Systemframe "Werkzeugtraeger" (PARTFRAME) geloescht.
+
+
+
+==============================================================================
+
+Ende der readme-Datei.
+

@@ -1,0 +1,63 @@
+C1(CYCLE81//홀가공, 쎈터링)
+C2(CYCLE82//홀가공, 면씽크/t)
+C3(CYCLE83//심공드릴/t)
+C4(CYCLE84//군형척 없이 암나사가공/t)
+C5(CYCLE840//균형척으로 암나사가공/t)
+C6(CYCLE85//홀가공 1/t)
+C7(CYCLE86//홀가공 2/t)
+C8(CYCLE87//홀가공 3/t)
+C9(CYCLE88//홀가공 4/t)
+C10(CYCLE89//홀가공 5/t)
+C11(HOLES1//홀 순서)
+C12(HOLES2//홀 원)
+C13(LONGHOLE//긴 홀/t)
+C14(SLOT1//홈/t)
+C15(SLOT2//원홈/t)
+C16(POCKET1//사각 홈/t)
+C17(POCKET2//둥근홈/t)
+C18(CYCLE90//나사 절삭/t)
+C19(CYCLE93//천공 주기/t)
+C20(CYCLE94//모따기, 부터 E..F)
+C21(CYCLE95//스톡제거/t)
+C22(CYCLE96//나사모따기 부터 A..D)
+C23(CYCLE97//나사 가공/t)
+C24(CYCLE98//나사 체인/t)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

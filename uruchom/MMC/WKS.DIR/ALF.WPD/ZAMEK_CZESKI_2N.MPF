@@ -1,0 +1,161 @@
+;                NIEAKTUALNE
+
+
+N5 if r100==1 gotof pz54
+N10 if r100==2 gotof pz56
+N15 m30
+
+N20 pz54:
+N25 m70 h11 g54 m51 g64
+N30 g53 g40 g0 g90 d0 z340
+N35 gotof prog
+
+N40 pz56:
+N45 m70 h11 g56 m52 g64
+N50 g53 g40 g0 g90 d0 z340
+N55 gotof prog
+
+N60 prog:
+
+N65 prametry:
+; szyld i kieszen:
+N70 r6=816 ; szerokosc skrzydla
+N75 r7=2015 ; dlugosc skrzydla
+N80 r27=550 ;rozmieszczenie zamka od gory drzwi do pocz. szyldu
+N85 r40=161 ;dlugosc szyldu
+N90 r41=23 ;szerokosc szyldu
+N95 r42=3 ;glebokosc szyldu
+N100 r43=27 ;odstep miedzy szyldem a kieszenia w x
+N105 r44=-11 ;wysokosc szyldu w z ;  ameryka -7  PN-(-12.3)
+N110 r39=13 ;felc
+N115 r45=110 ;dlugosc kieszeni
+N120 r46=18 ;szerokosc kieszeni
+N125 r47=2 ;odstep miedzy szyldem a kieszenia w z
+N130 otwory:
+N135 r51=50 ;odleglosc od szyldu do centrum otworu w osi y
+N140 r52=100+3;odleglsc miedzypoczatkem szyldu a pierwszym otwore
+N145 r57=22 ;srednica otworu
+N150 r53=116+3 ;odleglosc miedzypoczatkiem szyldu a drugim otworem
+N155 r58=20 ;srednica otworu
+N160 r54=168 ;odleglosc miedzypoczatkiem szyldu a trzecim otworm
+N165 r59=20 ;srednica otworu
+N170 r56=30 ;bezpieczna wysokosc
+N175 r60=2 ;ilosc otworow
+
+; program dla otworow:
+
+;Narzedzie
+N180 g17
+N185 wechsel(1,3,180)
+
+;N190 atrans x=r7 ; dla prawych uaktywnic
+;N195 amirror x0  ; dla prawych
+
+N200 pierwszy:
+N205 g0 g90 x=r27+r52 y=r6-r51-(r57/2) z=r56 g41 d1
+N210 g3 g91 x0 y0 i0 j=r57/2 z=ac(-45) f3000
+N215 g3 x0 y0 i0 j=r57/2
+N220 g3 x0 y0 i0 j=r57/2 z=ac(r56)
+
+N225 drugi:
+N230 if r60==1 gotof end
+N235 g0 g90 x=r27+r53 y=r6-r51-(r58/2)
+N240 g3 g91 x0 y0 i0 j=r58/2 z=ac(-45) f3000
+N245 g3 x0 y0 i0 j=r58/2
+N250 g3 x0 y0 i0 j=r58/2 z=ac(r56)
+
+N255 trzeci:
+N260 if r60==2 gotof end
+N265 g0 g90 x=r27+r54 y=r6-r51-(r59/2)
+N270 g3 g91 x0 y0 i0 j=r59/2 z=ac(-45)
+N275 g3 x0 y0 i0 j=r59/2
+N280 g3 x0 y0 i0 j=r59/2 z=r56
+
+N285 end:
+N290 g90 g53 g0 g40 d0 z340 s0 
+N295 g1 x=ic(1) g40 d1
+
+; program dla kieszeni:
+N300 h12
+N305 g18 t13 d3
+N310 h92
+N315 m3
+N320 s150
+
+N325 g0 x=r27+r41 y=r6+r39+10 g41 d3
+N330 z=r44
+N335 g1 x=r27+r40-(r41/2) y=r6+r39-8 f3000
+N340 g3 z=ic(-r41) cr=r41/2
+N345 g1 x=r27+(r41/2)
+N350 g3 z=r44 cr=r41/2
+
+N355 g1 y=r6-r42
+N360 g1 x=r27+r40-(r41/2) 
+N365 g3 z=ic(-r41) cr=r41/2
+N370 g1 x=r27+(r41/2)
+N375 g3 z=r44 cr=r41/2
+N380 g1 x=r27+r40-(r41/2)
+
+N385 kieszen:
+N390 g1 x=r27+r43 z=r44-r47-r46
+N395 ruch1:
+N400 y=ic(-6.6) 
+N405 g3 z=r44-r47 cr=200
+N410 g1 x=r27+r43+r45
+N415 y=ic(-6.6) 
+N420 g3 z=r44-r47-r46 cr=200
+N425 g1 x=r27+r43
+N430 ruch2:
+N435 y=ic(-6.6) z=r44-r47
+N440 x=r27+r43+r45
+N445 y=ic(-6.6) z=r44-r47-r46
+N450 x=r27+r43
+N455 ruch3:
+N460 y=ic(-6.6) z=r44-r47
+N465 x=r27+r43+r45
+N470 y=ic(-6.6) z=r44-r47-r46
+N475 x=r27+r43
+N480 ruch4:
+N485 y=ic(-6.6) z=r44-r47
+N490 x=r27+r43+r45
+N495 y=ic(-6.6) z=r44-r47-r46
+N500 x=r27+r43
+N505 ruch5:
+N510 y=ic(-6.6) z=r44-r47
+N515 x=r27+r43+r45
+N520 y=ic(-6.6) z=r44-r47-r46
+N525 x=r27+r43
+;N480 gotof end  ; plytsza kieszen   !!!!!!!!!!!!!!!!!!!!!!!!
+N530 ruch6:
+N535 y=ic(-6.6) z=r44-r47
+N540 x=r27+r43+r45
+N545 y=ic(-6.6) z=r44-r47-r46
+N550 x=r27+r43
+N555 end:
+N560 zakonczenie:
+N565 z=r44-r47
+N570 x=r27+r45 
+N575 z=r44-r47-r46
+N580 x=r27+r43 y=r6+r39+20
+N585 y=ic(1) g40 d3
+
+N590 koniec:
+N595 h90
+N600 s0
+N605 h11
+N610 g17
+N615 g90 g53 g0 g40 d0 z340 s0 
+
+N620 if r100==1 gotof dodaj
+N625 if r100==2 gotof odejmij
+N630 m30
+
+N635 dodaj:
+N640 r100=r100+1
+N645 m30
+
+N650 odejmij:
+N655 r100=r100-1
+N660 m30
+
+

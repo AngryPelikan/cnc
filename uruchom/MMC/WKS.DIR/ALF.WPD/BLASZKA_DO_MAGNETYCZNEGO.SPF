@@ -1,0 +1,112 @@
+N5 r6=537.2    ; szerokosc do nowych baz  1050 
+N10 r7=2015    ; wysokosc   
+N15 r15=29.7   ; grubosc
+N20 r27=863    ; P-1046; L-878; wys.blaszki od(BAZY) gory do                                      pocz.szyldu
+N25 r40=112.4  ;dlugosc szyldu
+N30 r41=24.3   ;szerokosc szyldu
+N35 r42=1.5    ;glebokosc szyldu
+N40 r43=20     ;odstep miedzy szyldem a kieszenia w x
+N45 r44=-37+(r15/2)+(R41/2)  ;wys szyldu w osi z
+N50 r39=13     ;felc
+N55 r45=R40-(2*R43)       ;dlugosc kieszeni
+N60 r46=20                ;szerokosc kieszeni
+N65 r47=(R41-R46)/2       ;odstep miedzy szyldem a kieszenia w z
+     
+; program dla otworow:
+                      
+N70 m70 h11 g54 m51 g64
+N75 g53 g40 g0 g90 d0 z340
+
+; program dla kieszeni:
+;************************************
+N80 wechsel(4,3,30)
+N85 g18
+N90 c180 d3
+N95 cprecon
+
+
+N100 g0 x=r27+r41 y=r6+r39+10 g41 d3
+N105 z=r44
+N110 g1 x=r27+r40-(r41/2) y=r6+r39-8 f2000
+N115 g3 z=ic(-r41) cr=r41/2
+N120 g1 x=r27+(r41/2)
+N125 g3 z=r44 cr=r41/2
+
+N130 g1 y=r6-r42
+N135 g1 x=r27+r40-(r41/2) 
+N140 g3 z=ic(-r41) cr=r41/2
+N145 g1 x=r27+(r41/2)
+N150 g3 z=r44 cr=r41/2
+N155 g1 x=r27+r40-(r41/2)
+
+N160 y=r6+r39+10 g41 d3
+
+N165 g90 g53 g0 g40 d0 z340 s0 cprecof
+
+;gotof koniec
+N170 kieszen0:
+N175 wechsel(0,0,0)
+
+;*********************************
+N180 h12
+N185 g18 t13 d3
+N190 h92
+N195 m3
+N200 s150
+;**********************************
+N205 g0 x=r27+r40-(r41/2) y=r6+r39+10 g41 d3
+N210 z=r44 
+;N360 g1 y=r6 f6000
+N215 kieszen:
+N220 g1 x=r27+r43 z=r44-r47-r46 f6000
+N225 y=r6-r42 
+N230 ruch1:
+N235 y=ic(-2) 
+N240 g3 z=r44-r47 cr=200
+N245 g1 x=r27+r43+r45
+N250 y=ic(-2) 
+N255 g3 z=r44-r47-r46 cr=200
+N260 g1 x=r27+r43
+N265 ruch2:
+N270 y=ic(-2) z=r44-r47
+N275 x=r27+r43+r45
+N280 y=ic(-2) z=r44-r47-r46
+N285 x=r27+r43
+N290 ruch3:
+N295 y=ic(-2) z=r44-r47
+N300 x=r27+r43+r45
+N305 y=ic(-2) z=r44-r47-r46
+N310 x=r27+r43
+N315 ruch4:
+N320 y=ic(-2) z=r44-r47
+N325 x=r27+r43+r45
+N330 y=ic(-2) z=r44-r47-r46
+N335 x=r27+r43
+N340 ruch5:
+N345 y=ic(-2) z=r44-r47
+N350 x=r27+r43+r45
+N355 y=ic(-2) z=r44-r47-r46
+N360 x=r27+r43
+N365 ruch6:
+N370 y=ic(-2) z=r44-r47
+N375 x=r27+r43+r45
+N380 y=ic(-2) z=r44-r47-r46
+N385 x=r27+r43
+
+N390 zakonczenie:
+N395 z=r44-r47
+N400 x=r27+r45+r43 
+N405 z=r44-r47-r46
+N410 x=r27+r43 y=r6+r39+20
+N415 y=ic(1) g40 d3
+
+N420 koniec:
+N425 h90
+N430 s0
+N435 h11
+N440 g17
+N445 g90 g53 g0 g40 d0 z340 s0 
+N450 m30
+
+
+

@@ -1,0 +1,48 @@
+if r5==0 gotof koniec
+
+N5 if r2==3 gotof koniec
+N10 if r2==5 gotof koniec
+N15 if r2==6 gotof koniec
+N20 if r2==7 gotof koniec
+N25 if r2==8 gotof koniec
+N30 if r2==9 gotof koniec
+N35 if r4==1 and r5==1 gotof okienko
+if r4==4 gotof okienko
+N40 ret
+
+N45 okienko:
+
+if r5>=2 gotof koniec2
+
+if r2==0 gotof oki80
+if r2==14 gotof oki80
+
+N50 if r3==1 gotof oki60
+N55 if r3==2 gotof oki70
+N60 if r3==3 gotof oki80
+N65 if r3==4 gotof oki80
+
+N70 oki60:
+N75 oki60
+N80 ret
+
+N85 oki70:
+N90 oki70
+N95 ret
+
+N100 oki80:
+N105 if r2==2 gotof oki80d
+N110 oki80
+N115 ret
+N120 oki80d:
+N125 oki80d
+N130 ret
+N135 oki90:
+N140 oki90
+N145 ret
+
+N150 koniec:
+N155 ret
+
+koniec2:
+m30

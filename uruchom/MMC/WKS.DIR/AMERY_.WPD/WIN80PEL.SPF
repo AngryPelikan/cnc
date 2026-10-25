@@ -1,0 +1,438 @@
+N5 if r2==13 gotof manhatan  ;nowy
+if r2==50 gotof  N_KENT
+
+;Parametry
+N10 r51=235+2; odleglosc od krawedzi do szpr. w osi x
+N15 r52=996+5; wysokosc szprosu bez luku
+N20 r53=561+5; szerokosc wzoru
+N25 r50=(r6-r53)/2; odleglosc od krawedzi do szpr. w osi y
+N30 r54=-3; glebokosc frezowania
+N35 r55=80; odstep gornej od dolnej
+N40 r56=500; wysokosc dolnego wzoru
+N45 r57=r52+r55
+N50 r58=r57+r56
+N55 r59=r51-48
+
+;Program
+N60 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N65 wechsel(5,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N70 x=r51+50 y=r50 z50 g41 d1
+N75 z2 m21
+N80 g1 x=r51+300 z=r54 f15000; zjazd w materjal
+N85 x=r51+r52 f15000
+
+;luk nr.1
+N90 g2 y=r50+r53 cr=405 f15000
+N95 g1 x=r51 f15000
+
+;luk nr.2
+N100 g3 y=r50 cr=405 f15000
+N105 g1 x=r51+350 f15000
+N110 x=r51+750 z10
+
+;Dolne pole
+
+N115 g0 g90 g41 d1 x=r51+r57+100 y=r50
+N120 z2
+N125 g1 x=r51+r57+250 z=r54 f15000
+N130 x=r51+r58 f15000
+N135 y=r50+r53
+N140 x=r51+r57
+N145 g3 y=r50 cr=405 f15000
+N150 g1 x=r51+r57+300 f15000
+N155 x=ic(200) z2
+
+
+;zakonczenie
+N160 g53 g0 g40 d0 z340 ;s0 
+N165 m17
+
+
+
+
+N170 nowy:
+
+N175 R51=123 ; ODL OD KRAW DO SZPR W X
+N180 R52=350 ; WYSOKOSC SZPROSU
+N185 R53=366+((R3-1)*100) ; SZEROKOSC WZORU
+N190 R50=(R6-R53)/2 ; CENTROWANIE
+N195 R54=100 
+
+N200 m70 h11 g64
+N205 g53 g40 g0 g90 d0 z340
+
+N210 if r4==1 gotof pelny
+N215 if r0==2 gotof koniec
+N220 if r4==2 gotof szpros
+N225 m17
+
+N230 pelny:
+N235 wechsel(5,3,180)
+
+
+N240 atrans y=r50 x=r51 ; pierwszy
+N245 g0 g90 g41 d1 x=0 y=0 z=50
+N250 z=2
+N255 m21
+N260 g1 x=r52/2 z=-3 f15000
+N265 x=r52
+N270 y=r53
+N275 x=0
+N280 y=0
+N285 x=(r52/2)+20
+N290 x=r52 z=2
+N295 g0 z=10
+
+; drugi
+N300 atrans x=r52+r54
+N305 g0 g90 g41 d1 x=0 y=0
+N310 z=2
+N315 g1 x=r52/2 z=-3
+N320 x=r52
+N325 y=r53
+N330 x=0
+N335 y=0
+N340 x=(r52/2)+20
+N345 x=r52 z=2
+N350 g0 z=10
+
+;trzeci
+N355 atrans x=r52+r54
+N360 g0 g90 g41 d1 x=0 y=0
+N365 z=2
+N370 g1 x=r52/2 z=-3
+N375 x=r52
+N380 y=r53
+N385 x=0
+N390 y=0
+N395 x=(r52/2)+20
+N400 x=r52 z=2
+N405 g0 z=10
+
+;czwarty
+N410 atrans x=r52+r54
+N415 g0 g90 g41 d1 x=0 y=0
+N420 z=2
+N425 g1 x=r52/2 z=-3
+N430 x=r52
+N435 y=r53
+N440 x=0
+N445 y=0
+N450 x=(r52/2)+20
+N455 x=r52 z=2
+N460 g0 z=10
+
+N465 end:
+N470 g0 g90 g40 g53 d0 z340 s0
+N475 rot
+
+N480 gotof koniec
+
+N485 szpros:
+N490 wechsel(1,3,180)
+
+N495 atrans y=r50 x=r51 ; pierwszy
+N500 g0 g90 g41 d1 x=0 y=0 z=50
+N505 z=20
+N510 m21
+N515 g1 x=r52/2 z=-45 f6000
+N520 x=r52
+N525 y=r53
+N530 x=0
+N535 y=0
+N540 x=(r52/2)+20
+N545 x=r52 z=20
+N550 g0 z=30
+
+; drugi
+N555 atrans x=r52+r54
+N560 g0 g90 g41 d1 x=0 y=0
+N565 z=20
+N570 g1 x=r52/2 z=-45
+N575 x=r52
+N580 y=r53
+N585 x=0
+N590 y=0
+N595 x=(r52/2)+20
+N600 x=r52 z=20
+N605 g0 z=30
+
+;trzeci
+N610 atrans x=r52+r54
+N615 g0 g90 g41 d1 x=0 y=0
+N620 z=20
+N625 g1 x=r52/2 z=-45
+N630 x=r52
+N635 y=r53
+N640 x=0
+N645 y=0
+N650 x=(r52/2)+20
+N655 x=r52 z=20
+N660 g0 z=30
+
+;czwarty
+N665 atrans x=r52+r54
+N670 g0 g90 g41 d1 x=0 y=0
+N675 z=20
+N680 g1 x=r52/2 z=-45
+N685 x=r52
+N690 y=r53
+N695 x=0
+N700 y=0
+N705 x=(r52/2)+20
+N710 x=r52 z=20
+N715 g0 z=30
+
+N720 end:
+N725 g0 g90 g40 g53 d0 z340 s0
+N730 rot
+
+N735 koniec:
+N740 m17 
+
+
+;********************************************************
+
+
+N745 manhatan:
+
+N750 R51=123 ; ODL OD KRAW DO SZPR W X
+N755 R52=350 ; WYSOKOSC SZPROSU
+N760 R53=366+((R3-1)*100) ; SZEROKOSC WZORU
+N765 R50=(R6-R53)/2 ; CENTROWANIE
+N770 R54=100 
+;r55-licznik szprosow
+;r56-wysokosc nad materialem
+;r57-wysokosc robocza
+
+N775 m70 h11 g64
+N780 g53 g40 g0 g90 d0 z340
+
+N785 r55=1
+N790 if r0==2 gotof druga_s
+N795 if r4==1 gotof pelny
+N800 if r4==2 gotof szpros
+N805 if r4==3 gotof szpros
+N810 if r4==4 gotof szpros
+N815 if r4==5 gotof szpros
+N820 m30
+;*********************
+N825 pelny:
+N830 wechsel(5,3,180)
+N835 d1
+N840 r56=2
+N845 r57=-3
+N850 f15000
+N855 gotof prog
+
+N860 szpros:
+N865 wechsel(1,3,180)
+N870 d1
+N875 r56=30
+N880 r57=-45
+N885 f6000
+N890 gotof prog
+;*****************
+N895 prog:
+N900 if r55==1 gotof jeden
+N905 if r55>=2 gotof dwa
+N910 m30
+N915 jeden:
+N920 atrans y=r50 x=r51
+N925 g0 g90 g41 x=0 y=0 z=50
+N930 g0 z=r56
+N935 m21
+N940 gotof prog_g
+
+N945 dwa:
+N950 atrans x=r52+r54
+N955 m21
+N960 g0 g90 g41 x=0 y=0
+N965 z=r56
+N970 gotof prog_g
+
+N975 prog_g:
+N980 cprecon
+N985 g1 x=r52/2 z=r57
+N990 g1 x=r52
+N995 g1 y=r53
+N1000 g1 x=0
+N1005 g1 y=0
+N1010 g1 x=(r52/2)+20
+N1015 g1 x=r52 z=r56
+N1020 g0 z=50 g40
+N1025 cprecof
+
+N1030 r55=r55+1
+N1035 if r55==5 gotof koniec
+;****************
+
+N1040 if r0==2 gotob pelny
+N1045 if r4==2 gotob pelny
+N1050 if r4==3 gotof norma
+N1055 norma2:
+N1060 if r4==4 gotof norma3
+N1065 norma4:
+N1070 gotob prog
+
+N1075 koniec:
+N1080 g0 g90 g53 g40 d0 z340
+N1085 rot
+N1090 m17 s0
+
+N1095 norma:
+N1100 if r55==3 gotob pelny
+N1105 gotob norma2
+
+N1110 norma3:
+N1115 if r55==4 gotob pelny
+N1120 gotob norma4
+
+;*****************************
+N1125 druga_s:
+N1130 if r4==1 gotob pelny
+N1135 if r4==2 gotof pelny2
+N1140 if r4==3 gotof pelny3
+N1145 if r4==4 gotof pelny4
+N1150 if r4==5 gotob koniec
+;*********************
+N1155 pelny2:
+N1160 atrans y=r50 x=r51
+N1165 r55=r55+1
+N1170 gotob pelny
+;***************
+N1175 pelny3:
+N1180 atrans y=r50 x=r51
+N1185 atrans x=r52+r54
+N1190 r55=r55+2
+N1195 gotob pelny
+;*************
+N1200 pelny4:
+N1205 atrans y=r50 x=r51
+N1210 atrans x=2*(r52+r54)
+N1215 r55=r55+3
+N1220 gotob pelny
+
+
+;---------------------------------------
+
+N25 N_KENT:
+;******
+;KENT PROSTY (INDYWIDUALNE ZAMOWIENIE)
+;NR ZLECENIA 8708
+
+N30 R51=300;270 ; ODL OD KRAW DO SZPR W X
+N35 R52=220;300 ; WYSOKOSC SZPROSU
+N40 R53=220;300 ; SZEROKOSC WZORU
+N45 R50=(R6-R53)/2 ; CENTROWANIE
+N50 R54=360;250 
+;R55-LICZNIK SZPROSOW
+;R56-WYSOKOSC NAD MATERIALEM
+;R57-WYSOKOSC ROBOCZA
+
+N55 M70 H11 G64
+N60 G53 G40 G0 G90 D0 Z340
+
+N65 R55=1
+N70 IF R0==2 GOTOF DRUGA_S
+N75 IF R4==1 GOTOF PELNY
+N80 IF R4==2 GOTOF SZPROS
+N85 IF R4==3 GOTOF SZPROS
+N90 IF R4==4 GOTOF SZPROS
+
+N95 M30
+;*********************
+N100 PELNY:
+N105 WECHSEL(5,3,180)
+N110 D1
+N115 R56=2
+N120 R57=-3
+N125 F15000
+N130 GOTOF PROG
+
+N135 SZPROS:
+N140 WECHSEL(1,3,180)
+N145 D1
+N150 R56=30
+N155 R57=-48
+N160 F6000
+N165 GOTOF PROG
+;*****************
+N170 PROG:
+N175 IF R55==1 GOTOF JEDEN
+N180 IF R55>=2 GOTOF DWA
+N185 M30
+N190 JEDEN:
+N195 ATRANS Y=R50 X=R51
+N200 G0 G90 G41 X=0 Y=0 Z=50
+N205 G0 Z=R56
+N210 M21
+N215 GOTOF PROG_G
+
+N220 DWA:
+N225 ATRANS X=R52+R54
+N230 M21
+N235 G0 G90 G41 X=0 Y=0
+N240 Z=R56
+N245 GOTOF PROG_G
+
+N250 PROG_G:
+N255 CPRECON
+N260 G1 X=R52/2 Z=R57
+N265 G1 X=R52
+N270 G1 Y=R53
+N275 G1 X=0
+N280 G1 Y=0
+N285 G1 X=(R52/2)+20
+N290 G1 X=R52 Z=R56
+N295 G0 Z=50 G40
+N300 CPRECOF
+
+;GOTOF KONIEC
+
+N305 R55=R55+1
+N310 IF R55==4 GOTOF KONIEC
+;****************
+
+N315 IF R0==2 GOTOB PELNY
+N320 IF R4==2 GOTOB PELNY
+N325 IF R4==3 GOTOF NORMA
+N330 NORMA2:
+N335 IF R4==4 GOTOB PROG
+N340 NORMA4:
+N345 GOTOB PROG
+
+N350 KONIEC:
+N355 G0 G90 G53 G40 D0 Z340
+N360 ROT
+N365 M17 S0
+
+N370 NORMA:
+N375 IF R55==3 GOTOB PELNY
+N380 GOTOB NORMA2
+
+;*****************************
+N385 DRUGA_S:
+N390 IF R4==1 GOTOB PELNY
+N395 IF R4==2 GOTOF PELNY2
+N400 IF R4==3 GOTOF PELNY3
+N405 IF R4==4 GOTOB KONIEC
+
+;*********************
+N410 PELNY2:
+N415 ATRANS Y=R50 X=R51
+N420 R55=R55+1
+N425 GOTOB PELNY
+;***************
+N430 PELNY3:
+N435 ATRANS Y=R50 X=R51
+N440 ATRANS X=R52+R54
+N445 R55=R55+2
+N450 GOTOB PELNY
+
+;---------------------------
+

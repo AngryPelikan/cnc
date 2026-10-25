@@ -1,0 +1,40 @@
+soft
+parametry_panele
+
+
+IF R100==1
+g54
+m51
+ ENDIF
+
+IF R100==2
+g56
+m52
+ ENDIF
+
+IF R49==1
+PANELE_0ST_0
+ ENDIF
+
+IF R49==2
+PANELE_90ST
+ ENDIF
+
+if r100==1 gotof koniec1
+if r100==2 gotof koniec2
+
+
+
+koniec1:
+r100=r100+1
+goup
+x3500
+s0
+m30
+
+koniec2:
+r100=r100-1
+goup
+x-3000
+s0
+m30

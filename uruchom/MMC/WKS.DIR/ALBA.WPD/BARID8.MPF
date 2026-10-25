@@ -1,0 +1,113 @@
+;!odejmij na dlugosci skrzydla jak maja byc krotsze paski z drugiej strony
+
+N101 R100=1     ; 1-pierwszy stol 2-drugi stol
+N102 R101=2    ; 1-Szersza strona 2-Zmiartsza strona
+N103 R102=2    ; 1-paski od baz 2-paski od sciany
+
+N104 R6=816  ; SZEROKOSC SKRZYDLA
+N105 R7=1995;-100;-100 ; WYSOKOSC SKRZYDLA ; DLA DRUGIEJ STRONY WPISZ                                       ; WYSOKOSC JAKA JEST I -100
+N106 R15=44.3  ; GRUBOSC SKRZYDLA
+N107 R55=2    ; GLEBOKOSC FREZU
+N108 r8=46 ;56;  56A Odsuniecie paskow w "X" do srodka
+N109 r9=72.5; 56A; Odsuniecie paska pierwszego w "Y" do srodka
+N110 r10=51.6  ; Rozstaw paskow. Odstep pomiedzy paskami
+N111 r51=10    ; ilosc paskow
+N112 r53=0    ;licznik paskow
+
+
+N113 IF R100==1
+N114 G54
+N115 M51
+N116 ENDIF
+
+N117 IF R100==2
+N118 G56
+N119 M52
+N120 ENDIF
+
+
+N128 WECHSEL(8,3,16000)
+
+N121 IF R101==1
+N122 atrans x=12.3 y=12.3
+N123 ENDIF
+
+N124 IF R102==2
+N125 amirror y0
+N126 atrans y=-r6
+endif
+
+
+
+N130 PASEK:
+N131 g0 x=R8 y=r9 g40 d3
+N132 g0 z=r15+30
+N133 g1 z=r15-r55   f9000
+N134 g1 x=r7+54
+N135 g0 z=r15+50
+
+N136 R53=R53+1
+N137 IF R53==R51 GOTOF KONIEC
+
+N138 IF R53==1
+N139 r9=r9+r10
+N140 ENDIF
+
+N141 IF R53==2
+N142 r9=r9+r10
+N143 ENDIF
+
+N144 IF R53==3
+N145 r9=r9+r10
+N146 ENDIF
+
+N147 IF R53==4
+N148 r9=r9+r10
+N149 ENDIF
+
+N150 IF R53==5
+N151 r9=r9+r10
+N152 ENDIF
+
+N153 IF R53==6
+N154 r9=r9+r10
+N155 ENDIF
+
+N156 IF R53==7
+N157 r9=r9+r10
+N158 ENDIF
+
+N159 IF R53==8
+N160 r9=r9+r10
+N161 ENDIF
+
+N162 IF R53==9
+N163 r9=r9+r10
+N164 ENDIF
+
+N165 IF R53==10
+N166 r9=r9+r10
+N167 ENDIF
+
+N168 IF R53==11
+N169 r9=r9+r10
+N170 ENDIF
+
+N171 IF R53==12
+N172 r9=r9+r10
+N173 ENDIF
+
+N174 IF R53==13
+N175 r9=r9+r10
+N176 ENDIF
+
+
+N177 GOTOB PASEK
+
+N178 KONIEC:
+;---------
+N179 goup
+N180 G0 S0
+N181 X=4000
+N182 M30
+

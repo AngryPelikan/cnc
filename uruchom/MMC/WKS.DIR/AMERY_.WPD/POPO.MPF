@@ -1,0 +1,25 @@
+N5 soft
+;parametry
+
+;N10 r100=1
+N10 m79
+N15 if r100==1 gotof pz54
+N20 if r100==2 gotof pz56
+
+N25 pz54:
+N30 g54
+N35 gotof cykl
+N40 m30
+
+N45 pz56:
+N50 g56
+N55 gotof cykl
+N60 m30
+N65 cykl:
+N70 cykl
+N75 odessany
+
+N80 dodaj ;r100+1 lub -1
+N85 m78
+N90 m30
+

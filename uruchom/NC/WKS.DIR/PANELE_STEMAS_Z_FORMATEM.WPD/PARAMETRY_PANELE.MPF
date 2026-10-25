@@ -1,0 +1,24 @@
+R100=2 ; STOL
+
+R0=0 ;1-TAK 0-NIE  FORMATOWANIE PANELI BOCZNYCH
+R15=16.5 ;GRUBOSC MATERIALU
+
+R49=1  ; 1-Panele 0st 2-Panele 90st
+R50=1  ; 1-Panel Gorny / 2-Panel Prawy / 3-Panel Lewy
+R52=80 ; Szerokosc Panel Prawy
+R53=80 ; Szerokosc Panel Lewy 
+R54=2521 ; Dlugosc Paneli Bocznych
+R55=938 ; Wysokosc Gornego Panela
+R56=1150.3 ; Szerokosc Gornego Panela
+R73=r55 ; Wybieranie Piora panele boczne 90st
+
+
+
+R70=37 ; Odleglosc Skrajnych Lacznikow> Gora
+R71=37 ; Odleglosc Skrajnych Lacznikow> Dol
+R72=13.8 ; SREDNICA FREZU T4 D1
+R99=0 ; 0-Format Na Raz / 1-Format Panela Bocznego Na Dwa Razy
+R98=R15/2 ; Glebokosc Pierwszego Przejazdu 
+
+
+M17

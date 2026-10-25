@@ -1,0 +1,145 @@
+N5 m70 h11 g54 m51 g64
+N10 g53 g40 g0 g90 d0 z340
+
+;gotof poprawka
+
+r6=812   ;waga wymiar zewnetrzny z felcem
+r7=2015+13 ; uwaga wymiar zewnetrzny z felcem
+r80=13 ;felc
+
+atrans x=5 y=1
+
+;gotof glowica
+;gotof rowek
+wechsel(9,3,50)
+g0 x=r7 y=-50 d1 c0
+z=20
+g1 z=-17 f3000 ; pierwsza glebokosc ciecia
+y=r6+50
+g0 z=20
+y=-50
+g1 z=-40 ; druga glebokosc ciecia
+y=r6+50
+g0 z=20
+gotof rowek ;dddddddddddddddddd
+glowica:
+
+wechsel(3,3,150)
+cprecon
+g0 x=r7+100 y=r6+6 g42 d1
+m21
+z=-37.3;+1
+g1 x=-6 f3000
+y=30
+y=-6 f1000
+x=30
+x=r7+100 f3000
+; 2
+g0 y=r6
+g1 x=0 f2500
+g1 y=100
+g2 y=50 x=-50 cr=50
+g0 x=-100
+g0 z=50
+g0 x=0 y=-70 g41
+g0 z=-37.3;+1
+g1 y=50 f1500
+g1 y=100 f2500
+g3 x=-50 y=150 cr=50
+g0 x=-100
+g0 x=-100 y=0 g42
+g1 x=r7+100 f2500
+
+g0 z=50
+g90 g0 g40 g53 d0 z340 s0
+gotof koniec
+
+rowek:    ; tutaj kurwa JUNIOR do huja
+N145 wechsel(11,3,100)
+
+N150 g90 g64 g0 g42 x=r7+100 y=r6-r80-8 z60 d1 cprecon; lewe -8
+N155 g0 z=-8 m21 ;glebokosc frezowania
+N160 g1 x=r7 f5000
+N165 x=r80+8
+N170 y=r80+8  ; prawe y=r80+8
+N175 x=r7+r80+100
+N180 cprecof
+N185 z60
+
+N190 g0 x=ic(1) g40
+;gotob glowica
+;gotof koniec
+N195 g90 g64 g0 g42 x=r7+100 y=r6-r80 z60 d1 cprecon
+N200 g0 z=-10 m21 ;glebokosc frezowania
+N205 g1 x=r7 f15000
+N210 x=r80
+N215 y=r80
+N220 x=r7+r80+100
+N225 cprecof
+N230 z60 g40
+gotob glowica
+
+koniec:
+N235 g53 g40 g0 g90 d0 z340 s0
+m30
+
+Poprawka:
+;*********
+;gotof gora_g
+;gotof pila
+;gotof gora_p
+
+wechsel(3,3,150)
+cprecon
+
+g0 x=2100 y=714.5+13 g42 d1
+g0 z=-37.3
+g1 x=-100 f4000
+g0 z=50
+g90 g0 g40 g53 d0 z340 s0
+cprecof
+m30
+
+gora_g:
+
+wechsel(3,3,150)
+cprecon
+
+g0 x=-13+3 y=1000 g42 d1
+g0 z=-37.3
+g1 y=-100 f4000
+g0 z=50
+g90 g0 g40 g53 d0 z340 s0
+cprecof
+m30
+
+
+pila:
+
+N145 wechsel(11,3,120)
+cprecon
+
+g0 x=2100 y=814-7 g42 d1
+g0 z=-9+1
+g1 x=-100 f5000
+
+g90 g0 g40 g53 d0 z340 s0
+cprecof
+;x4000
+;m41
+;h60
+m30
+
+gora_p:
+;------
+N145 wechsel(11,3,120)
+cprecon
+
+g0 x=7+2 y=1000 g42 d1
+g0 z=-9+1
+g1 y=-100 f4000
+g90 g0 g40 g53 d0 z340 s0
+cprecof
+m30
+
+

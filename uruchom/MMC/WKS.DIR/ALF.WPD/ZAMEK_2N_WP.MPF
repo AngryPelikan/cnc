@@ -1,0 +1,260 @@
+;                                
+;         ZAMEK LISTOWY          
+;                                
+N5 R0=1        ;  1-LEWE 2-PRAWE
+N10 r7=2015    ;  wysokosc skrz.
+N15 r6=436   ;  szerokosc skrz.
+N20 r44=-13    ;  wysokosc w z
+N25 R8=22      ;  SZEROKOSC SZYLDU
+                        
+R100=1      ;  stol  
+
+
+
+
+
+
+
+
+
+
+
+N30 IF R100==1 GOTOF STOL1
+N35 IF R100==2 GOTOF STOL2
+N40 M30
+
+N45 STOL1:
+N50 M70 H11 G54 M51 G64
+N60 GOTOF DALEJ
+
+N65 STOL2:
+N70 M70 H11 G56 M52 G64
+N80 GOTOF DALEJ
+
+N85 DALEJ:
+
+N90 IF R0==1 GOTOF LEWE
+N95 IF R0==2 GOTOF PRAWE
+N100 M30
+
+N105 LEWE:
+N110 atrans x=R7 ;/dla lewych uaktywnic!!/
+N115 amirror x0 ;/dla lewych uaktywnic!!/
+;atrans x=   ; 
+N120 GOTOF PROG
+
+N125 PRAWE:
+N130 atrans x=R7-2015
+N135 GOTOF PROG
+
+N140 PROG:
+
+;gotof szyld
+
+;N145 gotof gniazda
+
+N150 gotof otwory
+
+N155 szyld:
+
+WECHSEL(3,3,100)
+CPRECON
+
+G0 X=-100 Y=R6-2.5 G41 D3
+G0 Z=R44
+G1 X=20 F1000
+G1 X=R7+100 F3000
+
+G0 Z=IC(-5)
+G1 X=20 G42
+G1 X=-100 F1000
+G0 Z=R44-12
+
+G1 X=20 G41
+G1 X=R7+100 F3000
+
+
+G0 Z=-37+R15+100 G40
+
+
+N160 wechsel(4,3,30)
+N165 g18
+N170 c180 d3
+
+N205 nuta:
+
+G0 X=-50 Y=R6+30 G40 D3
+N210 g0 x=210 z=r44-(R8/2)
+N215 g1 y=r6-5 f4000
+N220 x=1860
+N225 y=r6-9
+N230 x=210
+N235 y=r6-13
+N240 x=1860
+N245 y=r6+20
+
+N250 GNIAZDA:
+
+N255 g53 g40 g0 g90 d0 z340
+;gotof koniec
+
+N260 wechsel(0,0,0)
+
+N265 h12
+N270 g18 t13
+N275 h92
+N280 m3
+N285 s150
+
+N175 awaria2:            ;   *** UWAGA AWARIA ***
+
+N290 g0 x=-30 y=r6-2.5 g41 d3          ;XXX
+N295 z=r44
+
+;           pierwszy zamek (maly)
+
+N300 g0 x=230+20 z=r44-2          ;pozycja startowa
+N305 ruch_zm1 p4             ;6,3*6
+N310 g0 y=r6-2.5
+
+;           drugi zamek (duzy)
+
+N315 g0 x=920+20 z=r44-0.5
+N320 ruch_zd1 p6             ;6,6*11
+G1 Y=R6-25 F5000
+N325 G0 X=1060
+N330 G1 Z=IC(-R8) G42  F1000
+N335 G1 X=1070
+N345 g0 y=r6-2.5
+
+;         trzeci zamek (du¿y)
+
+N350 g0 x=1320+20 z=r44-0.5 G41
+N355 ruch_zd2 p6 ;
+N360 g0 y=r6-2.5
+
+
+;          czwarty zamek (maly)
+
+N365 g0 x=1730+20 z=r44-2
+N370 ruch_zm2 p4
+N375 g0 y=r6+30                      ;poza materjalem
+N380 x=ic(12)
+N385 z=ic(1) g40
+
+N390 h90
+N395 s0
+N400 gotof koniec
+
+N405 otwory:
+;             otwory
+;Program
+
+N410 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N415 wechsel(1,3,180)
+
+N420 g53 g40 g0 g90 d0 z340
+
+;    pierwszy patent
+N425 g0 x=932+10 y=r6-45 z=50 g42 d1 
+N430 g1 x=ic(16) z=-10 f3000
+N435 g2 y=ic(-22) cr=11
+N440 g1 x=ic(-16)
+N445 g2 y=ic(22) cr=11
+
+N450 g1 x=ic(16) z=-46 f3000
+N455 g2 y=ic(-22) cr=11
+N460 g1 x=ic(-16)
+N465 g2 y=ic(22) cr=11
+
+N470 g1 x=ic(16)
+
+N475 g0 z=50
+
+;     klamka
+N480 g0 x=1030-1+1 y=r6-46 z=50
+N485 g2 g91 x0 y0 i0 j-10 z=ac(-10) f3000
+N490 g2 x0 y0 i0 j-10
+
+N495 g2 g91 x0 y0 i0 j-10 z=ac(-46) f3000
+N500 g2 x0 y0 i0 j-10
+
+N505 g2 x0 y0 i0 j-10 z=ac(50)
+
+;N375 g90 g53 g0 g40 d0 z340 s0
+;N380 gotob szyld  ;  bez drugiego patentu
+
+;     drugi patent
+N510 g90 g0 x=1330+11+2 y=r6-45 z=50
+N515 g1 x=ic(16) z=-10 f3000
+N520 g2 y=ic(-22) cr=11
+N525 g1 x=ic(-16)
+N530 g2 y=ic(22) cr=11
+
+N535 g1 x=ic(16) z=-46 f3000
+N540 g2 y=ic(-22) cr=11
+N545 g1 x=ic(-16)
+N550 g2 y=ic(22) cr=11
+
+N555 g1 x=ic(16)
+N560 g0 z=50
+N565 g90 g53 g0 g40 d0 z340 s0
+
+;N385 gotof awaria1 ;         *** UWAGA AWARIA ***
+N570 gotob szyld
+
+N575 koniec:
+
+N580 IF R100==1 GOTOF PLUS
+N585 IF R100==2 GOTOF MINUS
+N590 M30
+
+N595 PLUS:
+N600 R100=R100+1
+N605 GOTOF KONIEC2
+
+N610 MINUS:
+N615 R100=R100-1
+N620 GOTOF KONIEC2
+
+N625 koniec2:
+N630 ROT
+N635 h90
+N640 s0
+N645 h11
+N650 g17
+N655 g90 g53 g0 g40 d0 z340 s0 
+N660 m30
+
+
+N665 awaria1: ;             *** UWAGA AWARIA ***
+
+
+;N410 wechsel(0,0,0)
+N670 h12
+N675 g18 t13
+N680 h92
+N685 m3
+N690 s150
+
+N695 g0 x=-30 y=r6-2.5 g41 d3
+N700 z=r44
+N705 g1 x=2030 f5000
+N710 z=ic(-22.5);-23
+N715 x=-30
+N720 y=r6+20
+;nuta************************************
+N725 nuta:
+
+N730 g0 g40 d3 x=210 z=r44-11.25
+N735 g1 y=r6-5 f4000
+N740 x=1860
+N745 y=r6-9
+N750 x=210
+N755 y=r6-13
+N760 x=1860
+N765 y=r6+20
+
+N770 gotob awaria2

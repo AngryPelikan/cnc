@@ -1,0 +1,36 @@
+N101 R100=1
+R85=2     ; 1=AMERYKA 2-OP
+
+N102 R0=1  ; 1-LEWE 2-PRAWE
+N103 R1=1    ; formatowanie 1-tak 0-nie
+
+N104 R80=153-.5  ;RAMIAK LEWY(OD BAZ)
+N105 R81=153-.5  ;RAMIAK PRAWY(OD RAFALA)
+
+R82=16 ;FELC W Z
+R83=13 ;FELC W Y
+
+N106 R6=R80+R81+3.2; ; szerokosc skrzydla
+N107 R7=2424-.5 ; Wysokosc skrzydla st 2036(mm)
+N108 R8=0 ; ilosc tulejek 0-brak   ;PW-20 sT ; 1-kratka
+N109 R9=0 ; ZAMEK 1-ZO 2-WC 3-ZP 4-ZZ
+N110 R10=0  ; ZAWIASY 0-BRAK 1-E80x3 2-E80x4
+N111 R19=0  ; 0-SRODEK 1-L 2-P (DOTYCZY ZAWIASU POL-Soft)
+N112 R12=0 ; 0-NIE 1-TAK ; PROG/SUWANE 
+N113 R15=38; 37.8 ;37.8; 47 dla okuc gr 42  ; GRUBOSC MATERIALU
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+;CON,0,0.0000,0,0,MST:2,1,AX:X,Y,I,J;*GP*;*RO*;*HD*
+;S,EX:50,EY:50,ATT:G1;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+N114 R16=0 ; WYBOR ZAMKA 1-MAGNETYCZNY  2-LOB
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+;CON,0,0.0000,0,0,MST:2,1,AX:X,Y,I,J;*GP*;*RO*;*HD*
+;S,PX:50,PY:50,L1A:70.7107,P1A:45,ATT:G1;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+N115 R70=1105; WYSOKOSC KLAMKI
+N116 R42=3.4 ;3.1;2.8;2.6  GLEBOKOSC ZAMKA
+N117 R53=6.3 ;6.3 ;6.7; GLEBOKOSC ZAWIASUW
+
+N118 R17=0.3   ; KOREKTA DL I SZER ZAMKA I ZAWIASOW
+
+N119 m17

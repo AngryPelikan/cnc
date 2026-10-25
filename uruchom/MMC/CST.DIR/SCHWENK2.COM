@@ -1,0 +1,1978 @@
+;VERSION: 06.04.24 Mar 26, 2004
+;CHANGE : 06.04.24 Mar 26, 2004
+;Eingabemaske Schwenkdatensatz
+//M(SCHWENK2/$82000////21,60)
+DEF SWDSNAME =(S/*//$82104,$82001/wr2///276,26,50/350,26,188//"PGZ.pdf",311,"_TC")
+DEF FRMOD =(S/*//$82105,$82002/wr2,,al0///276,49,104/428,49,110//"PGZ.pdf",312,"_FR")
+DEF SCHW_JN =(S/*//$82107,$82227/wr2,,al0///276,66,104/428,66,110//"PGZ.pdf",314,"_DIR")
+DEF TRANSSTAT=(S/*//$82106,$82003/wr2,,al0///276,83,104/428,83,110//"PGZ.pdf",313,"_ST"),
+BEZPKT =(V///,$82004,/wr0,,al0///276,103,104/381,103,0/)
+DEF _X0 =(V//0/$82038,$82005,,/,,al0///382,103,45/428,103,110//"PGZ.pdf",322,"X0")
+DEF _Y0 =(V//0/$82039,$82006,,/,,al0///382,120,45/428,120,110//"PGZ.pdf",322,"Y0")
+DEF _Z0 =(V//0/$82040,$82007,,/,,al0///382,137,45/428,137,110//"PGZ.pdf",322,"Z0"),
+DEF SCHWMOD=(S/*//$82108,$82010/wr2,,al0///276,157,104/390,157,148//"PGZ.pdf",316,"_MODE"),
+DREH =(S///$82109,$82011,/wr0,,al0///276,175,96/356,175,0/),
+DREH1=(S///,$82011,/wr0,,al0///276,191,96/356,191,0/),
+DREH2=(S///,$82011,/wr0,,al0///276,208,96/356,191,0/)
+DEF BEZ_A=(S/*//$82109/wr2///357,174,0/366,174,62//"PGZ.pdf",317,"A")
+DEF BEZ_B=(S/*//$82110/wr2///357,191,0/366,191,62//"PGZ.pdf",317,"B")
+DEF BEZ_C=(S/*//$82110/wr1///357,208,0/366,208,62//)
+DEF _A=(V/-360,360/0/$82111,,,////427,175,0/428,175,110//"PGZ.pdf",317,"A")
+DEF _B=(V/-360,360/0/$82112,,,////427,192,0/428,192,110//"PGZ.pdf",317,"A")
+DEF _C=(V/-360,360/0/$82113,,,////427,209,0/428,209,110//"PGZ.pdf",317,"A"),
+NPKT=(V///,$82013,/wr0,,al0///276,229,104/381,229,0/)
+DEF _X1=(V//0/$82041,$82014,,/,,al0///382,229,32/428,229,110//"PGZ.pdf",318,"X1")
+DEF _Y1=(V//0/$82042,$82015,,/,,al0///382,246,32/428,246,110//"PGZ.pdf",318,"Y1"), _Z1=(V//0/$82043,$82016,,/,,al0///382,263,32/428,263,110//"PGZ.pdf",318,"Z1"),DIR =(S/*//$82107,$82017/wr2,,al0///276,281,104/428,281,110//"PGZ.pdf",314,"DIR"), NACHWZ=(S/*//$82114,$82018,,/wr2,,al0///276,300,112/428,300,110//"PGZ.pdf",321,"TC_N_WZ")
+DEF HILF = (I////wr0///10,10,0/10,10,0/),
+ANZ_DATS_PRO_CH = (I////wr0///10,10,0/10,10,0/),
+_ST = (I////wr0///10,10,0/10,10,0/),
+_MODE = (I////wr0///10,10,0/10,10,0/),
+INDEX_NACHWZ = (I////wr0///10,10,0/10,10,0/),
+INDEX_ANSTWZ = (I////wr0///10,10,0/10,10,0/),
+INDEX_TRANSSTAT = (I////wr0///10,10,0/10,10,0/),
+VARH = (I//0//wr0///10,10,0/10,11,0)
+DEF NAME_HILF
+DEF ANZ_DATENS
+DEF ANZ_CHANNELS
+DEF NRSDS
+DEF NRCH
+DEF INDEX_FRMOD
+DEF INDEX_SCHWMOD
+DEF INDEX_DREHW_A
+DEF INDEX_DREHW_B
+DEF INDEX_DREHW_C
+DEF INDEX_DIR
+DEF ERROR
+DEF NRCH_1
+DEF FEHL
+DEF R_CARR37
+DEF A_ENTRY
+HS1 = ("")
+HS2 = ("")
+HS3 = ("")
+HS4 = ("")
+HS5 = ("")
+HS6 = ("")
+HS7 = ("")
+HS8 = ("")
+VS1 = ("",,se2)
+VS2 = ("",,se2)
+VS3 = ("",,se2)
+VS4 = ("",,se2)
+VS5 = ("",,se2)
+VS6 = ("",,se2)
+VS7 = ($80410,,se1)
+VS8 = ($80411,,se1)
+PRESS(VS2)
+If FOC == "TRANSSTAT"
+CALL("TRANSSTAT")
+EndIf
+If FOC == "SWDSNAME"
+CALL("SWDSNAME")
+EndIf
+If FOC == "FRMOD"
+CALL("FRMOD")
+EndIf
+If FOC =="SCHW_JN"
+CALL("TOG_SCHW")
+EndIf
+If FOC == "BEZ_A"
+CALL("BEZ_A")
+EndIf
+If FOC == "BEZ_B"
+CALL("BEZ_B")
+EndIf
+If FOC == "SCHWMOD"
+CALL("SCHWMOD")
+If REG[10] ==0
+SCHWMOD.wr=1
+FOC="_A"
+EndIf
+EndIf
+If FOC == "DIR"
+CALL("DIR")
+EndIf
+If FOC == "NACHWZ"
+CALL("NACHWZ")
+EndIf
+If FOC == "ANSTWZ"
+CALL("ANSTWZ")
+EndIf
+END_PRESS
+PRESS(VS7)
+If ENTRY > 2
+EXIT
+Else
+EXITLS("Fraesen2","aeditor.com")
+EndIf
+END_PRESS
+PRESS(VS8)
+NRCH_1=NRCH
+If SWDSNAME==$82095
+SWDSNAME=0
+INDEX_FRMOD.VLD=0
+_ST.VLD=0
+_MODE.VLD=0
+_X0.VLD=0
+_Y0.VLD=0
+_Z0.VLD=0
+_A.VLD=0
+_B.VLD=0
+_C.VLD=0
+_X1.VLD=0
+_Y1.VLD=0
+_Z1.VLD=0
+INDEX_DIR.VLD=0
+Else
+_ST= (100*INDEX_ANSTWZ) + (10*INDEX_NACHWZ) + INDEX_TRANSSTAT
+_MODE =(INDEX_DREHW_A +1) + (INDEX_DREHW_B +1)*4 +(INDEX_DREHW_C+1)*16 + INDEX_SCHWMOD*64
+If REG[13]==1
+If SCHW_JN==$82022
+If DIR==$82092
+INDEX_DIR=1
+Else
+INDEX_DIR=-1
+EndIf
+Else
+INDEX_DIR=0
+EndIf
+Else
+If SCHW_JN==$82022
+INDEX_DIR=-1
+Else
+INDEX_DIR=0
+EndIf
+EndIf
+EndIf
+FEHL=_MODE
+GC("NC1")
+If ENTRY > 2
+EXIT
+Else
+EXITLS("Fraesen2","aeditor.com")
+EndIf
+END_PRESS
+OUTPUT(NC1)
+"CYCLE800("INDEX_FRMOD","""SWDSNAME""","_ST","_MODE","_X0","_Y0","_Z0","_A","_B","_C","_X1","_Y1","_Z1","INDEX_DIR")"
+END_OUTPUT
+PRESS(RECALL)
+EXIT
+END_PRESS
+PRESS (SU)
+VARH = 1
+END_PRESS
+PRESS (SD)
+VARH = 2
+END_PRESS
+FOCUS
+If FOC == "TRANSSTAT"
+If HLP <> "cn800_15.bmp"
+HLP="cn800_15.bmp"
+EndIf
+TRANSSTAT.hlp = HLP
+SCHW_JN.hlp = HLP
+VS2.st=$80602
+VS2.se=1
+EndIf
+If FOC == "SWDSNAME"
+If HLP <> "cn800_15.bmp"
+HLP="cn800_15.bmp"
+EndIf
+SWDSNAME.hlp = HLP
+VS2.st=$80602
+VS2.se=1
+EndIf
+If FOC == "FRMOD"
+If HLP <> "cn800_15.bmp"
+HLP="cn800_15.bmp"
+EndIf
+FRMOD.hlp = HLP
+SCHW_JN.hlp = HLP
+VS2.st=$80602
+VS2.se=1
+EndIf
+If FOC =="SCHW_JN"
+VS2.st=$80602
+VS2.se=1
+EndIf
+If FOC == "DIR"
+If HLP <> "cn800_15.bmp"
+HLP="cn800_15.bmp"
+EndIf
+DIR.hlp = HLP
+VS2.st=$80602
+VS2.se=1
+EndIf
+If FOC == "_X0"
+If HLP <> "cn800_1.bmp"
+HLP="cn800_1.bmp"
+EndIf
+_X0.hlp = HLP
+VS2.st=""
+VS2.se=2
+EndIf
+If FOC == "_Y0"
+If HLP <> "cn800_2.bmp"
+HLP="cn800_2.bmp"
+EndIf
+_Y0.hlp = HLP
+VS2.st=""
+VS2.se=2
+EndIf
+If FOC == "_Z0"
+If HLP <> "cn800_3.bmp"
+HLP="cn800_3.bmp"
+EndIf
+_Z0.hlp = HLP
+VS2.st=""
+VS2.se=2
+EndIf
+If FOC == "_X1"
+If HLP <> "cn800_12.bmp"
+HLP="cn800_12.bmp"
+EndIf
+_X1.hlp = HLP
+VS2.st=""
+VS2.se=2
+EndIf
+If FOC == "_Y1"
+If HLP <> "cn800_13.bmp"
+HLP="cn800_13.bmp"
+EndIf
+_Y1.hlp = HLP
+VS2.st=""
+VS2.se=2
+VARH=0
+EndIf
+If FOC == "_Z1"
+_Z1.hlp="cn800_14.bmp"
+If HLP <> "cn800_14.bmp"
+HLP="cn800_14.bmp"
+EndIf
+_Z1.hlp = HLP
+VS2.st=""
+VS2.se=2
+EndIf
+If FOC == "_A"
+VS2.st=""
+VS2.se=2
+EndIf
+If FOC == "_B"
+VS2.st=""
+VS2.se=2
+EndIf
+If FOC == "_C"
+VS2.st=""
+VS2.se=2
+EndIf
+If FOC == "BEZ_A"
+VS2.st=$80602
+VS2.se=1
+EndIf
+If FOC == "BEZ_B"
+VS2.st=$80602
+VS2.se=1
+EndIf
+If FOC == "BEZ_C"
+VS2.st=""
+VS2.se=2
+EndIf
+If FOC == "SCHWMOD"
+HLP = SCHWMOD.hlp
+VS2.st=$80602
+VS2.se=1
+EndIf
+If FOC == "DIR"
+VS2.st=$80602
+VS2.se=1
+EndIf
+If FOC == "NACHWZ"
+NACHWZ.hlp="cn800_15.bmp"
+If HLP <> "cn800_15.bmp"
+HLP="cn800_15.bmp"
+EndIf
+VS2.st=$80602
+VS2.se=1
+EndIf
+If FOC == "ANSTWZ"
+VS2.st=$80602
+VS2.se=1
+EndIf
+CALL("HLP_ABC")
+END_FOCUS
+CHANGE(TRANSSTAT)
+CALL("TRANSSTAT")
+END_CHANGE
+CHANGE(NACHWZ)
+If ((A_ENTRY > 2) AND (REG[30] ==0))
+CALL("ANZ_OPT_DECO")
+CALL("ANZ_RUECK")
+EndIf
+CALL("NACHWZ")
+END_CHANGE
+CHANGE(SCHW_JN)
+CALL("TOG_SCHW")
+END_CHANGE
+CHANGE(DIR)
+If ((A_ENTRY > 2) AND (REG[30] ==0))
+CALL("ANZ_OPT_DECO")
+CALL("ANZ_RUECK")
+EndIf
+CALL("DIR")
+END_CHANGE
+CHANGE(BEZ_A)
+CALL("BEZ_A")
+END_CHANGE
+CHANGE(BEZ_B)
+CALL("BEZ_B")
+END_CHANGE
+CHANGE(FRMOD)
+CALL("FRMOD")
+END_CHANGE
+CHANGE(SCHWMOD)
+CALL("SCHWMOD")
+If REG[10] ==0
+SCHWMOD.wr=1
+FOC="_A"
+EndIf
+END_CHANGE
+CHANGE(SWDSNAME)
+CALL("SWDSNAME")
+END_CHANGE
+CHANGE (VARH)
+If SYSTEM == 0
+If foc == "_Y1"
+If (VARH == 2)
+foc = "_Z1"
+Else
+If (VARH == 1)
+foc = "_X1"
+EndIf
+EndIf
+VARH = 0
+EndIf
+If foc == "_Z1"
+If (VARH == 2)
+If REG [13] <> 0
+foc = "DIR"
+Else
+If REG[15] <> 0
+foc = "NACHWZ"
+EndIf
+EndIf
+Else
+If (VARH == 1)
+foc = "_Y1"
+EndIf
+EndIf
+VARH = 0
+EndIf
+If foc == "DIR"
+If (VARH == 2)
+If REG[13] <> 0
+FOC="NACHWZ"
+EndIf
+Else
+If (VARH == 1)
+foc = "_Z"
+EndIf
+EndIf
+VARH = 0
+EndIf
+If foc == "NACHWZ"
+If (VARH == 1)
+If REG [13] <> 0
+foc = "DIR"
+Else
+foc = "_Z1"
+EndIf
+EndIf
+VARH = 0
+EndIf
+EndIf
+VARH=0
+END_CHANGE
+LOAD
+DEBUG("FEHL: "<<FEHL.VLD)
+DEBUG("ANZ_DATS_PRO_CH: "<<ANZ_DATS_PRO_CH.VLD)
+DEBUG("HILF: "<<HILF.VLD)
+DEBUG("_MODE_0: "<<_MODE)
+DEBUG("_MODE_0.VLD: "<<_MODE.VLD)
+DEBUG("_ST: "<<_ST.VLD)
+ERROR=0
+REG[30]=0
+REG[31]=0
+ANZ_DATENS = RNP("$MN_MM_NUM_TOOL_CARRIER")
+ANZ_CHANNELS = RNP("/Nck/Configuration/numChannels")
+If ANZ_CHANNELS == 0
+ANZ_CHANNELS = 1
+EndIf
+LB("UPS_3")
+NRSDS = 1
+If System==1
+NRCH=RNP("/nck/nck/channel")
+Else
+LINE (276,101,533,101,4,1)
+LINE (276,155,533,155,4,1)
+LINE (276,227,533,227,4,1)
+LINE (276,281,533,281,4,1)
+NRCH=RNP("DB19.DBB22")
+EndIf
+A_ENTRY = ENTRY
+If ENTRY ==1
+CALL("INITIALISIERUNG_3")
+If SYSTEM==1
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+Else
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+EndIf
+EndIf
+If ENTRY ==2
+REG[0]=0
+REG[0]=0
+If SWDSNAME=="0"
+REG[0]=1
+SWDSNAME=$82095
+REG[31]=1
+REG[0]=1
+NRSDS=1
+If SYSTEM==1
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+R_CARR37 = RNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]")
+Else
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+R_CARR37 = RNP("/Tool/Toolcarrier/tcCarr37[u1," << NRSDS << "]")
+EndIf
+CALL("INITIALISIERUNG_3")
+Else
+CALL("SUCHNAME")
+If FEHL ==1
+NRSDS =1
+If SYSTEM==1
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+R_CARR37 = RNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]")
+Else
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+R_CARR37 = RNP("/Tool/Toolcarrier/tcCarr37[u1," << NRSDS << "]")
+EndIf
+CALL("INITIALISIERUNG_3")
+EndIf
+EndIf
+If REG[0] ==0
+SCHW_JN=$82022
+INDEX_TRANSSTAT = 0
+TRANSSTAT = $82020
+REG[2]=R_CARR37
+CALL("CARR37_DEC")
+If SYSTEM==1
+REG[2] =RNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]")
+Else
+REG[2] = RNP("/Tool/Toolcarrier/tcCarr37[u1," << NRSDS << "]")
+EndIf
+CALL("CARR37_DEC_R")
+R_CARR37=REG[2]
+If REG[17] <> REG[27]
+If REG[17] > REG[27]
+If INDEX_FRMOD ==2
+INDEX_FRMOD=1
+EndIf
+REG[17]=REG[27]
+Else
+REG[17]=REG[27]
+EndIf
+EndIf
+If REG[10] <> REG[20]
+If REG[10] > REG[20]
+INDEX_SCHWMOD = (_MODE BAND 'B11000000')/64
+If REG[10] ==1
+If INDEX_SCHWMOD <> 0
+_MODE=57
+EndIf
+EndIf
+If REG[10] ==2
+If REG[20] ==0
+If INDEX_SCHWMOD <> 0
+_MODE=57
+EndIf
+EndIf
+If REG[20] ==1
+If INDEX_SCHWMOD ==1
+_MODE=57
+EndIf
+EndIf
+EndIf
+REG[10]=REG[20]
+Else
+REG[10]=REG[20]
+EndIf
+Else
+REG[10]=REG[20]
+EndIf
+If REG[10] ==0
+SCHWMOD.wr=1
+EndIf
+If REG[15] <> REG[25]
+If REG[15] > REG[25]
+INDEX_NACHWZ=0
+REG[15]=REG[25]
+Else
+REG[15]=REG[25]
+EndIf
+Else
+INDEX_NACHWZ = (_ST / 10) MOD 10
+EndIf
+If INDEX_NACHWZ == 0
+NACHWZ = $82023
+Else
+NACHWZ = $82022
+EndIf
+If REG[15]==0
+NACHWZ.wr=0
+NACHWZ.st=""
+EndIf
+CALL("AUSW_MODE")
+CALL("AUSW_INDEX_FRMOD")
+If REG[13] <> REG[23]
+If REG[13] > REG[23]
+INDEX_DIR=-1
+EndIf
+REG[13]=REG[23]
+Endif
+If INDEX_DIR == 1
+DIR = $82092
+EndIf
+If INDEX_DIR == -1
+DIR = $82093
+EndIf
+If REG[13] ==0
+DIR.wr=0
+DIR.st=""
+EndIf
+Else
+_X0=0
+_Y0=0
+_Z0=0
+_A=0
+_B=0
+_C=0
+_X1=0
+_Y1=0
+_Z1=0
+EndIf
+EndIf
+If(A_ENTRY > 2)
+If A_ENTRY > 3
+If If SWDSNAME==""
+If _MODE ==0
+SWDSNAME="0"
+EndIf
+EndIf
+EndIf
+If SYSTEM==1
+If NRCH <> NRCH_1
+NRCH=NRCH_1
+EndIf
+EndIf
+If SWDSNAME=="0"
+SWDSNAME=$82095
+REG[31]=1
+CALL("LOE_VAR")
+NRSDS=0
+Else
+CALL("SUCHNAME")
+DEBUG("FEHL: "<<FEHL)
+If FEHL ==1
+REG[30]=1
+If A_ENTRY >3
+REG[2]=1011002
+Else
+REG[2]=R_CARR37
+EndIf
+CALL("CARR37_DEC")
+CALL("CARR37_DEC_R")
+Else
+If A_ENTRY > 3
+REG[2] =RNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]")
+Else
+REG[2]=R_CARR37
+EndIf
+CALL("CARR37_DEC")
+If SYSTEM==1
+REG[2] =RNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]")
+Else
+REG[2] = RNP("/Tool/Toolcarrier/tcCarr37[u1," << NRSDS << "]")
+EndIf
+CALL("CARR37_DEC_R")
+EndIf
+DEBUG("_ST: "<<_ST)
+DEBUG("_MODE: "<<_MODE)
+CALL("AUSW_ST")
+CALL("AUSW_MODE")
+CALL("AUSW_INDEX_FRMOD")
+CALL("AUSW_INDEX_DIR")
+EndIf
+EndIf
+If ERROR==0
+DLGL("")
+EndIf
+If SCHW_JN ==$82022
+SCHW_JN.lt=$82225
+Else
+SCHW_JN.lt=$82226
+EndIf
+DLGL("")
+END_LOAD
+//END
+//B(UPS_3)
+SUB(INITIALISIERUNG_3)
+CALL("ANZ_OPT_DECO")
+If REG[10] == 0
+SCHWMOD.wr=1
+Else
+SCHWMOD.wr=2
+EndIf
+SCHWMOD.hlp = "cn800_9.bmp"
+SCHWMOD = $82035
+INDEX_SCHWMOD = 0
+If REG[13] == 0
+DIR.wr=0
+DIR.st=""
+INDEX_DIR=-1
+SCHW_JN=$82022
+Else
+DIR.wr=2
+DIR.st=$82017
+INDEX_DIR=-1
+SCHW_JN=$82022
+DIR = $82093
+EndIf
+If REG[15] == 0
+NACHWZ.wr=0
+NACHWZ.st=""
+Else
+NACHWZ.wr=2
+NACHWZ.st=$82018
+EndIf
+INDEX_NACHWZ=0
+NACHWZ = $82023
+If REG[16] == 0
+EndIf
+INDEX_ANSTWZ=0
+INDEX_TRANSSTAT = 0
+TRANSSTAT = $82020
+INDEX_FRMOD = 1
+FRMOD = $82031
+CALL("ACHSWI")
+END_SUB
+SUB(INITIALISIERUNG_RUE)
+CALL("ANZ_OPT_DECO")
+If REG[10] == 0
+SCHWMOD.wr=1
+Else
+SCHWMOD.wr=2
+EndIf
+SCHWMOD.hlp = "cn800_9.bmp"
+SCHWMOD = $82035
+If REG[13] == 0
+DIR.wr=0
+DIR.st=""
+Else
+DIR.wr=2
+DIR.st=$82017
+EndIf
+If REG[15] == 0
+NACHWZ.wr=0
+NACHWZ.st=""
+Else
+NACHWZ.wr=2
+NACHWZ.st=$82018
+EndIf
+If REG[16] == 0
+EndIf
+END_SUB
+SUB(ACHSWI)
+If INDEX_SCHWMOD == 0
+BEZ_A = $82100
+BEZ_A.wr = 2
+INDEX_DREHW_A = 0
+BEZ_B = $82099
+BEZ_B.wr = 2
+INDEX_DREHW_B = 1
+BEZ_C = $82101
+_C.wr = 2
+INDEX_DREHW_C = 2
+Else
+If INDEX_SCHWMOD == 1
+BEZ_A = $82029
+BEZ_A.wr = 1
+INDEX_DREHW_A = 0
+BEZ_B = $82030
+BEZ_B.wr = 1
+INDEX_DREHW_B = 1
+BEZ_C = ""
+_C.wr = 0
+DREH2.st=""
+INDEX_DREHW_B = 2
+Else
+If INDEX_SCHWMOD == 2
+BEZ_A = $82027<<$82029
+BEZ_A.wr = 2
+INDEX_DREHW_A = 0
+BEZ_B = $82026<<$82029
+BEZ_B.wr = 2
+INDEX_DREHW_B = 1
+BEZ_C = $82028<<$82030
+BEZ_C.wr = 1
+_C.wr = 2
+DREH2.st=$82011
+INDEX_DREHW_C = 2
+EndIf
+EndIf
+EndIf
+CALL("HLP_BILD")
+END_SUB
+SUB(HLP_ABC)
+If INDEX_SCHWMOD == 0 OR INDEX_SCHWMOD == 2
+If INDEX_DREHW_A == 0
+If FOC =="BEZ_A"
+BEZ_A.hlp="cn800_4.bmp"
+If hlp <> "cn800_4.bmp"
+Hlp="cn800_4.bmp"
+EndIf
+EndIf
+If FOC =="_A"
+_A.hlp="cn800_4.bmp"
+If hlp <> "cn800_4.bmp"
+Hlp="cn800_4.bmp"
+EndIf
+EndIf
+EndIf
+If INDEX_DREHW_A == 1
+If FOC =="BEZ_A"
+BEZ_A.hlp="cn800_5.bmp"
+If hlp <> "cn800_5.bmp"
+Hlp="cn800_5.bmp"
+EndIf
+EndIf
+If FOC =="_A"
+_A.hlp="cn800_5.bmp"
+If hlp <> "cn800_5.bmp"
+Hlp="cn800_5.bmp"
+EndIf
+EndIf
+EndIf
+If INDEX_DREHW_A == 2
+If FOC =="BEZ_A"
+BEZ_A.hlp="cn800_6.bmp"
+If hlp <> "cn800_6.bmp"
+Hlp="cn800_6.bmp"
+EndIf
+EndIf
+If FOC =="_A"
+_A.hlp="cn800_6.bmp"
+If hlp <> "cn800_6.bmp"
+Hlp="cn800_6.bmp"
+EndIf
+EndIf
+EndIf
+If INDEX_DREHW_B == 0
+If FOC =="BEZ_B"
+BEZ_B.hlp="cn800_4.bmp"
+If hlp <> "cn800_4.bmp"
+Hlp="cn800_4.bmp"
+EndIf
+EndIf
+If FOC =="_B"
+_B.hlp="cn800_4.bmp"
+If hlp <> "cn800_4.bmp"
+Hlp="cn800_4.bmp"
+EndIf
+EndIf
+EndIf
+If INDEX_DREHW_B == 1
+If FOC =="BEZ_B"
+BEZ_B.hlp="cn800_5.bmp"
+If hlp <> "cn800_5.bmp"
+Hlp="cn800_5.bmp"
+EndIf
+EndIf
+If FOC =="_B"
+_B.hlp="cn800_5.bmp"
+If hlp <> "cn800_5.bmp"
+Hlp="cn800_5.bmp"
+EndIf
+EndIf
+EndIf
+If INDEX_DREHW_B == 2
+If FOC =="BEZ_B"
+BEZ_B.hlp="cn800_6.bmp"
+If hlp <> "cn800_6.bmp"
+Hlp="cn800_6.bmp"
+EndIf
+EndIf
+If FOC =="_B"
+_B.hlp="cn800_6.bmp"
+If hlp <> "cn800_6.bmp"
+Hlp="cn800_6.bmp"
+EndIf
+EndIf
+EndIf
+If INDEX_DREHW_C == 0
+If FOC =="BEZ_C"
+BEZ_C.hlp="cn800_4.bmp"
+If hlp <> "cn800_4.bmp"
+Hlp="cn800_4.bmp"
+EndIf
+EndIf
+If FOC =="_C"
+_C.hlp="cn800_4.bmp"
+If hlp <> "cn800_4.bmp"
+Hlp="cn800_4.bmp"
+EndIf
+EndIf
+EndIf
+If INDEX_DREHW_C == 1
+If FOC =="BEZ_C"
+BEZ_C.hlp="cn800_5.bmp"
+If hlp <> "cn800_5.bmp"
+Hlp="cn800_5.bmp"
+EndIf
+EndIf
+If FOC =="_C"
+_C.hlp="cn800_5.bmp"
+If hlp <> "cn800_5.bmp"
+Hlp="cn800_5.bmp"
+EndIf
+EndIf
+EndIf
+If INDEX_DREHW_C == 2
+If FOC =="BEZ_C"
+BEZ_C.hlp="cn800_6.bmp"
+If hlp <> "cn800_6.bmp"
+Hlp="cn800_6.bmp"
+EndIf
+EndIf
+If FOC =="_C"
+_C.hlp="cn800_6.bmp"
+If hlp <> "cn800_6.bmp"
+Hlp="cn800_6.bmp"
+EndIf
+EndIf
+EndIf
+EndIf
+If INDEX_SCHWMOD == 1
+If FOC =="BEZ_A"
+BEZ_A.hlp="cn800_7.bmp"
+If hlp <> "cn800_7.bmp"
+Hlp="cn800_7.bmp"
+EndIf
+EndIf
+If FOC =="_A"
+_A.hlp="cn800_7.bmp"
+If hlp <> "cn800_7.bmp"
+Hlp="cn800_7.bmp"
+EndIf
+EndIf
+If FOC =="BEZ_B"
+BEZ_B.hlp="cn800_8.bmp"
+If hlp <> "cn800_8.bmp"
+Hlp="cn800_8.bmp"
+EndIf
+EndIf
+If FOC =="_B"
+_B.hlp="cn800_8.bmp"
+If hlp <> "cn800_8.bmp"
+Hlp="cn800_8.bmp"
+EndIf
+EndIf
+EndIf
+END_SUB
+SUB(HLP_BILD)
+RETURN
+If INDEX_SCHWMOD == 0 OR INDEX_SCHWMOD == 2
+If INDEX_DREHW_A == 0
+BEZ_A.hlp="cn800_4.bmp"
+_A.hlp="cn800_4.bmp"
+EndIf
+If INDEX_DREHW_A == 1
+BEZ_A.hlp="cn800_5.bmp"
+_A.hlp="cn800_5.bmp"
+EndIf
+If INDEX_DREHW_A == 2
+BEZ_A.hlp="cn800_6.bmp"
+_A.hlp="cn800_6.bmp"
+EndIf
+If INDEX_DREHW_B == 0
+BEZ_B.hlp="cn800_4.bmp"
+_B.hlp="cn800_4.bmp"
+EndIf
+If INDEX_DREHW_B == 1
+BEZ_B.hlp="cn800_5.bmp"
+_B.hlp="cn800_5.bmp"
+EndIf
+If INDEX_DREHW_B == 2
+BEZ_B.hlp="cn800_6.bmp"
+_B.hlp="cn800_6.bmp"
+EndIf
+If INDEX_DREHW_C == 0
+BEZ_C.hlp="cn800_4.bmp"
+_C.hlp="cn800_4.bmp"
+EndIf
+If INDEX_DREHW_C == 1
+BEZ_C.hlp="cn800_5.bmp"
+_C.hlp="cn800_5.bmp"
+EndIf
+If INDEX_DREHW_C == 2
+BEZ_C.hlp="cn800_6.bmp"
+_C.hlp="cn800_6.bmp"
+EndIf
+EndIf
+If INDEX_SCHWMOD == 1
+BEZ_A.hlp="cn800_7.bmp"
+_A.hlp="cn800_7.bmp"
+BEZ_B.hlp="cn800_8.bmp"
+_B.hlp="cn800_8.bmp"
+EndIf
+END_SUB
+SUB(HLP_BILD)
+RETURN
+If INDEX_SCHWMOD == 0 OR INDEX_SCHWMOD == 2
+If INDEX_DREHW_A == 0
+BEZ_A.hlp="cn800_4.bmp"
+_A.hlp="cn800_4.bmp"
+EndIf
+If INDEX_DREHW_A == 1
+BEZ_A.hlp="cn800_5.bmp"
+_A.hlp="cn800_5.bmp"
+EndIf
+If INDEX_DREHW_A == 2
+BEZ_A.hlp="cn800_6.bmp"
+_A.hlp="cn800_6.bmp"
+EndIf
+If INDEX_DREHW_B == 0
+BEZ_B.hlp="cn800_4.bmp"
+_B.hlp="cn800_4.bmp"
+EndIf
+If INDEX_DREHW_B == 1
+BEZ_B.hlp="cn800_5.bmp"
+_B.hlp="cn800_5.bmp"
+EndIf
+If INDEX_DREHW_B == 2
+BEZ_B.hlp="cn800_6.bmp"
+_B.hlp="cn800_6.bmp"
+EndIf
+If INDEX_DREHW_C == 0
+BEZ_C.hlp="cn800_4.bmp"
+_C.hlp="cn800_4.bmp"
+EndIf
+If INDEX_DREHW_C == 1
+BEZ_C.hlp="cn800_5.bmp"
+_C.hlp="cn800_5.bmp"
+EndIf
+If INDEX_DREHW_C == 2
+BEZ_C.hlp="cn800_6.bmp"
+_C.hlp="cn800_6.bmp"
+EndIf
+EndIf
+If INDEX_SCHWMOD == 1
+BEZ_A.hlp="cn800_7.bmp"
+_A.hlp="cn800_7.bmp"
+BEZ_B.hlp="cn800_8.bmp"
+_B.hlp="cn800_8.bmp"
+EndIf
+END_SUB
+SUB(ANZ_OPT_DECO)
+If SYSTEM==1
+REG[2] =RNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]")
+Else
+REG[2] = RNP("/Tool/Toolcarrier/tcCarr37[u1," << NRSDS << "]")
+EndIf
+R_CARR37=REG[2]
+CALL("CARR37_DEC")
+END_SUB
+SUB(CARR37_DEC)
+DEBUG("NRCH: "<<NRCH)
+DEBUG("NRSDS: "<<NRSDS)
+DEBUG("REG2: "<<REG[2])
+REG[10]=REG[2] MOD 10
+HILF=(REG[2] / 10) MOD 10
+REG[11] = HILF
+HILF=(REG[2] / 100) MOD 10
+REG[12] = HILF
+HILF=(REG[2] / 1000) MOD 10
+If HILF == 0
+REG[13] = 0
+REG[14] = 0
+EndIf
+If HILF == 1
+REG[13] = 1
+REG[14] = 0
+EndIf
+If HILF == 2
+REG[13] = 1
+REG[14] = 1
+EndIf
+HILF=(REG[2] / 10000) MOD 10
+REG[15] = HILF
+HILF=(REG[2] / 100000) MOD 10
+REG[16] = HILF
+HILF=(REG[2] / 1000000) MOD 10
+REG[17] = HILF
+HILF=(REG[2] / 10000000) MOD 10
+If HILF == 0
+REG[18] = 0
+REG[19] = 0
+EndIf
+If HILF == 1
+REG[18] = 1
+REG[19] = 0
+EndIf
+If HILF == 2
+REG[18] = 0
+REG[19] = 1
+EndIf
+If HILF == 3
+REG[18] = 1
+REG[19] = 1
+EndIf
+END_SUB
+SUB(CARR37_DEC_R)
+REG[20]=REG[2] MOD 10
+HILF=(REG[2] / 10) MOD 10
+REG[21] = HILF
+HILF=(REG[2] / 100) MOD 10
+REG[22] = HILF
+HILF=(REG[2] / 1000) MOD 10
+If HILF == 0
+REG[23] = 0
+REG[24] = 0
+EndIf
+If HILF == 1
+REG[23] = 1
+REG[24] = 0
+EndIf
+If HILF == 2
+REG[23] = 1
+REG[24] = 1
+EndIf
+HILF=(REG[2] / 10000) MOD 10
+REG[25] = HILF
+HILF=(REG[2] / 100000) MOD 10
+REG[26] = HILF
+HILF=(REG[2] / 1000000) MOD 10
+REG[27] = HILF
+HILF=(REG[2] / 10000000) MOD 10
+If HILF == 0
+REG[28] = 0
+REG[29] = 0
+EndIf
+If HILF == 1
+REG[28] = 1
+REG[29] = 0
+EndIf
+If HILF == 2
+REG[28] = 0
+REG[29] = 1
+EndIf
+If HILF == 3
+REG[28] = 1
+REG[29] = 1
+EndIf
+END_SUB
+SUB(CARR37_DEC_R)
+REG[20]=REG[2] MOD 10
+HILF=(REG[2] / 10) MOD 10
+REG[21] = HILF
+HILF=(REG[2] / 100) MOD 10
+REG[22] = HILF
+HILF=(REG[2] / 1000) MOD 10
+IF HILF == 0
+REG[23] = 0
+REG[24] = 0
+ENDIF
+IF HILF == 1
+REG[23] = 1
+REG[24] = 0
+ENDIF
+IF HILF == 2
+REG[23] = 1
+REG[24] = 1
+ENDIF
+HILF=(REG[2] / 10000) MOD 10
+REG[25] = HILF
+HILF=(REG[2] / 100000) MOD 10
+REG[26] = HILF
+HILF=(REG[2] / 1000000) MOD 10
+REG[27] = HILF
+HILF=(REG[2] / 10000000) MOD 10
+IF HILF == 0
+REG[28] = 0
+REG[29] = 0
+ENDIF
+IF HILF == 1
+REG[28] = 1
+REG[29] = 0
+ENDIF
+IF HILF == 2
+REG[28] = 0
+REG[29] = 1
+ENDIF
+IF HILF == 3
+REG[28] = 1
+REG[29] = 1
+ENDIF
+END_SUB
+SUB(TRANSSTAT)
+If INDEX_TRANSSTAT == 0
+INDEX_TRANSSTAT = 1
+TRANSSTAT = $82021
+Else
+INDEX_TRANSSTAT = 0
+TRANSSTAT = $82020
+EndIf
+END_SUB
+SUB(ANSTWZ)
+RETURN
+END_SUB
+SUB(LOE_BZNP)
+BEZPKT.st=""
+_X0.wr=0
+_X0.st=""
+_Y0.wr=0
+_Y0.st=""
+_Z0.wr=0
+_Z0.st=""
+NPKT.st=""
+_X1.wr=0
+_X1.st=""
+_Y1.wr=0
+_Y1.st=""
+_Z1.wr=0
+_Z1.st=""
+TRANSSTAT.wr=1
+TRANSSTAT=$82021
+SCHWMOD.wr=1
+SCHWMOD=$82035
+END_SUB
+SUB(NACHWZ)
+If INDEX_NACHWZ == 0
+INDEX_NACHWZ = 1
+NACHWZ = $82022
+Else
+INDEX_NACHWZ = 0
+NACHWZ = $82023
+EndIf
+END_SUB
+SUB(DIR)
+If INDEX_DIR == -1
+INDEX_DIR = 1
+DIR = $82092
+Else
+INDEX_DIR =-1
+DIR = $82093
+EndIf
+END_SUB
+SUB(TOG_SCHW)
+If SCHW_JN==$82022
+SCHW_JN=$82023
+SCHW_JN.lt=$82226
+Else
+SCHW_JN=$82022
+SCHW_JN.lt=$82225
+EndIf
+END_SUB
+SUB(BEZ_A)
+If INDEX_SCHWMOD == 0 OR INDEX_SCHWMOD == 2
+If INDEX_DREHW_A == 0
+INDEX_DREHW_A = 1
+BEZ_A = $82099
+INDEX_DREHW_B = 2
+BEZ_B = $82101
+INDEX_DREHW_C = 0
+BEZ_C = $82100
+Else
+If INDEX_DREHW_A == 1
+INDEX_DREHW_A = 2
+BEZ_A = $82101
+INDEX_DREHW_B = 0
+BEZ_B = $82100
+INDEX_DREHW_C = 1
+BEZ_C = $82099
+Else
+If INDEX_DREHW_A == 2
+INDEX_DREHW_A = 0
+BEZ_A = $82100
+INDEX_DREHW_B = 1
+BEZ_B = $82099
+INDEX_DREHW_C = 2
+BEZ_C = $82101
+EndIf
+EndIf
+EndIf
+EndIf
+If INDEX_SCHWMOD == 2
+If BEZ_A==$82099
+BEZ_A = $82026<<$82029
+EndIf
+If BEZ_A==$82100
+BEZ_A = $82027<<$82029
+EndIf
+If BEZ_A==$82101
+BEZ_A = $82028<<$82029
+EndIf
+If BEZ_B==$82099
+BEZ_B = $82026<<$82029
+EndIf
+If BEZ_B==$82100
+BEZ_B = $82027<<$82029
+EndIf
+If BEZ_B==$82101
+BEZ_B = $82028<<$82029
+EndIf
+If BEZ_C==$82099
+BEZ_C = $82026<<$82030
+EndIf
+If BEZ_C==$82100
+BEZ_C = $82027<<$82030
+EndIf
+If BEZ_C==$82101
+BEZ_C = $82028<<$82030
+EndIf
+EndIf
+CALL("HLP_ABC")
+END_SUB
+SUB(BEZ_B)
+If INDEX_SCHWMOD == 0 OR INDEX_SCHWMOD == 2
+If INDEX_DREHW_A == 0
+If INDEX_DREHW_B == 1
+INDEX_DREHW_B = 2
+BEZ_B = $82101
+INDEX_DREHW_C = 1
+BEZ_C = $82099
+Else
+If INDEX_DREHW_B == 2
+INDEX_DREHW_B = 1
+BEZ_B = $82099
+INDEX_DREHW_C = 2
+BEZ_C = $82101
+EndIf
+EndIf
+EndIf
+If INDEX_DREHW_A == 1
+If INDEX_DREHW_B == 0
+INDEX_DREHW_B = 2
+BEZ_B = $82101
+INDEX_DREHW_C = 0
+BEZ_C = $82100
+Else
+If INDEX_DREHW_B == 2
+INDEX_DREHW_B = 0
+BEZ_B = $82100
+INDEX_DREHW_C = 2
+BEZ_C = $82101
+EndIf
+EndIf
+EndIf
+If INDEX_DREHW_A == 2
+If INDEX_DREHW_B == 0
+INDEX_DREHW_B = 1
+BEZ_B = $82099
+INDEX_DREHW_C = 0
+BEZ_C = $82100
+Else
+If INDEX_DREHW_B == 1
+INDEX_DREHW_B = 0
+BEZ_B = $82100
+INDEX_DREHW_C = 1
+BEZ_C = $82099
+EndIf
+EndIf
+EndIf
+EndIf
+If INDEX_SCHWMOD == 2
+If BEZ_B==$82099
+BEZ_B = $82026<<$82029
+EndIf
+If BEZ_B==$82100
+BEZ_B = $82027<<$82029
+EndIf
+If BEZ_B==$82101
+BEZ_B = $82028<<$82029
+EndIf
+If BEZ_C==$82099
+BEZ_C = $82026<<$82030
+EndIf
+If BEZ_C==$82100
+BEZ_C = $82027<<$82030
+EndIf
+If BEZ_C==$82101
+BEZ_C = $82028<<$82030
+EndIf
+EndIf
+CALL("HLP_ABC")
+END_SUB
+SUB(FRMOD)
+If ((A_ENTRY > 2) AND (REG[30] ==0))
+DEBUG("REG30: "<<REG[30])
+CALL("ANZ_OPT_DECO")
+CALL("ANZ_RUECK")
+EndIf
+If INDEX_FRMOD == 0
+FRMOD = $82031
+FRMOD.lt=$82223
+INDEX_FRMOD = 1
+Else
+If INDEX_FRMOD == 1
+If REG[17]==0
+FRMOD = $82023
+FRMOD.lt=$82222
+INDEX_FRMOD = 0
+Else
+FRMOD = $82032
+FRMOD.lt=$82224
+INDEX_FRMOD = 2
+EndIf
+Else
+If INDEX_FRMOD == 2
+FRMOD = $82023
+FRMOD.lt=$82222
+INDEX_FRMOD = 0
+EndIf
+EndIf
+EndIf
+END_SUB
+SUB(SCHWMOD)
+If ((A_ENTRY ==3) AND (REG[30] ==0))
+CALL("ANZ_OPT_DECO")
+CALL("ANZ_RUECK")
+EndIf
+REG[32]=0
+If REG[10] == 1
+If INDEX_SCHWMOD == 0
+SCHWMOD = $82034
+INDEX_SCHWMOD = 2
+REG[32]=1
+SCHWMOD.hlp = "cn800_11.bmp"
+Else
+If INDEX_SCHWMOD == 2
+SCHWMOD = $82035
+INDEX_SCHWMOD = 0
+REG[32]=1
+SCHWMOD.hlp ="cn800_9.bmp"
+EndIf
+EndIf
+Else
+If REG[10] == 2
+If INDEX_SCHWMOD == 0
+SCHWMOD = $82036
+INDEX_SCHWMOD = 1
+REG[32]=1
+SCHWMOD.hlp = "cn800_10.bmp"
+Else
+If INDEX_SCHWMOD == 1
+SCHWMOD = $82034
+INDEX_SCHWMOD = 2
+REG[32]=1
+SCHWMOD.hlp = "cn800_11.bmp"
+Else
+If INDEX_SCHWMOD == 2
+SCHWMOD = $82035
+INDEX_SCHWMOD = 0
+REG[32]=1
+SCHWMOD.hlp = "cn800_9.bmp"
+EndIf
+EndIf
+EndIf
+EndIf
+EndIf
+If REG[32] ==0
+SCHWMOD = $82035
+INDEX_SCHWMOD = 0
+SCHWMOD.hlp = "cn800_9.bmp"
+EndIf
+If HLP <> SCHWMOD.hlp
+HLP = SCHWMOD.hlp
+EndIf
+CALL("ACHSWI")
+END_SUB
+SUB(SWDSNAME)
+NRSDS=NRSDS+1
+If SYSTEM==1
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+NRSDS=0
+SWDSNAME = $82095
+CALL("LOE_VAR")
+Else
+FRMOD.wr=2
+FRMOD.st=$82002
+TRANSSTAT.wr=2
+TRANSSTAT.st=$82003
+FRMOD_L.wr=1
+SCHWMOD.st=$82010
+SCHW_JN.wr=2
+SCHW_JN.st=$82227
+DREH.st=$82011
+BEZ_A.wr=2
+DREH1.st=$82011
+BEZ_B.wr=2
+DREH2.st=$82011
+BEZ_C.wr=1
+_A.wr=2
+_B.wr=2
+_C.wr=2
+BEZPKT.st=$82004
+_X0.wr=2
+_X0.st=$82005
+_Y0.wr=2
+_Y0.st=$82006
+_Z0.wr=2
+_Z0.st=$82007
+BEZPKT_L.wr=2
+NPKT.st=$82013
+_X1.wr=2
+_X1.st=$82014
+_Y1.wr=2
+_Y1.st=$82015
+_Z1.wr=2
+_Z1.st=$82016
+NPKT_L.wr=1
+DREH_L.wr=1
+A_ENTRY=1
+CALL("INITIALISIERUNG_3")
+EndIf
+_X0=0
+_Y0=0
+_Z0=0
+_A=0
+_B=0
+_C=0
+_X1=0
+_Y1=0
+_Z1=0
+END_SUB
+SUB(LOE_VAR)
+FRMOD.wr=0
+FRMOD.st=""
+TRANSSTAT.wr=0
+TRANSSTAT.st=""
+SCHW_JN.wr=0
+SCHW_JN.st=""
+DIR.wr=0
+DIR.st=""
+FRMOD_L.wr=0
+BEZPKT.st=""
+_X0.wr=0
+_X0.st=""
+_Y0.wr=0
+_Y0.st=""
+_Z0.wr=0
+_Z0.st=""
+BEZPKT_L.wr=0
+SCHWMOD.wr=0
+SCHWMOD.st=""
+DREH.st=""
+DREH1.st=""
+DREH2.st=""
+BEZ_A.wr=0
+BEZ_B.wr=0
+BEZ_C.wr=0
+_A.wr=0
+_B.wr=0
+_C.wr=0
+DREH_L.wr=0
+NPKT.st=""
+_X1.wr=0
+_X1.st=""
+_Y1.wr=0
+_Y1.st=""
+_Z1.wr=0
+_Z1.st=""
+NACHWZ.wr=0
+NACHWZ.st=""
+NPKT_L.wr=0
+END_SUB
+SUB(SUCHNAME)
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS=NRSDS+1
+If SYSTEM==1
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+FEHL=ERR
+Else
+NAME_HILF = RNP("/Tool/Toolcarrier/tcCarr34[u1," << NRSDS << "]")
+FEHL=ERR
+EndIf
+If FEHL==1
+ERROR=1
+RETURN
+EndIf
+If NAME_HILF == SWDSNAME
+RETURN
+EndIf
+NRSDS = 0
+END_SUB
+SUB(AUSW_ST)
+REG[2]=_ST
+INDEX_TRANSSTAT = REG[2] MOD 10
+If INDEX_TRANSSTAT == 0
+TRANSSTAT = $82020
+Else
+TRANSSTAT = $82021
+EndIf
+INDEX_NACHWZ = (REG[2] / 10) MOD 10
+If INDEX_NACHWZ == 0
+NACHWZ = $82023
+Else
+NACHWZ = $82022
+EndIf
+If REG[25]==0
+If REG[15]==0
+NACHWZ.wr=0
+NACHWZ.st=""
+EndIf
+EndIf
+INDEX_ANSTWZ = (REG[2] / 100) MOD 10
+If INDEX_ANSTWZ == 0
+Else
+EndIf
+END_SUB
+SUB(AUSW_MODE)
+REG[2]=_MODE
+INDEX_DREHW_A = (REG[2] BAND 'B00000011')-1
+INDEX_DREHW_B = ((REG[2] BAND 'B00001100')/4)-1
+INDEX_DREHW_C = ((REG[2] BAND 'B00110000')/16)-1
+INDEX_SCHWMOD = (REG[2] BAND 'B11000000')/64
+DEBUG("REG10:" <<REG[10])
+If INDEX_SCHWMOD == 1
+SCHWMOD = $82036
+SCHWMOD.hlp = "cn800_10.bmp"
+EndIf
+If INDEX_SCHWMOD == 2
+SCHWMOD = $82034
+SCHWMOD.hlp = "cn800_11.bmp"
+EndIf
+If INDEX_SCHWMOD == 0
+SCHWMOD = $82035
+SCHWMOD.hlp = "cn800_9.bmp"
+EndIf
+If HLP <> SCHWMOD.hlp
+HLP = SCHWMOD.hlp
+EndIf
+If INDEX_SCHWMOD == 0
+BEZ_A.wr = 2
+BEZ_B.wr = 2
+_C.wr = 2
+If INDEX_DREHW_A == 0
+BEZ_A = $82100
+EndIf
+If INDEX_DREHW_A == 1
+BEZ_A = $82099
+EndIf
+If INDEX_DREHW_A == 2
+BEZ_A = $82101
+EndIf
+If INDEX_DREHW_B == 0
+BEZ_B = $82100
+EndIf
+If INDEX_DREHW_B == 1
+BEZ_B = $82099
+EndIf
+If INDEX_DREHW_B == 2
+BEZ_B = $82101
+EndIf
+If INDEX_DREHW_C == 0
+BEZ_C = $82100
+EndIf
+If INDEX_DREHW_C == 1
+BEZ_C = $82099
+EndIf
+If INDEX_DREHW_C == 2
+BEZ_C = $82101
+EndIf
+EndIf
+If INDEX_SCHWMOD == 1
+BEZ_A = $82029
+BEZ_A.wr = 1
+INDEX_DREHW_A = 0
+BEZ_B = $82030
+BEZ_B.wr = 1
+INDEX_DREHW_B = 1
+BEZ_C = ""
+_C.wr = 0
+DREH2.st=""
+INDEX_DREHW_B = 2
+EndIf
+If INDEX_SCHWMOD == 2
+BEZ_A.wr = 2
+BEZ_B.wr = 2
+_C.wr = 2
+If INDEX_DREHW_A == 0
+BEZ_A = $82027<<$82029
+EndIf
+If INDEX_DREHW_A == 1
+BEZ_A = $82026<<$82029
+EndIf
+If INDEX_DREHW_A == 2
+BEZ_A = $82028<<$82029
+EndIf
+If INDEX_DREHW_B == 0
+BEZ_B = $82027<<$82029
+EndIf
+If INDEX_DREHW_B == 1
+BEZ_B = $82026<<$82029
+EndIf
+If INDEX_DREHW_B == 2
+BEZ_B = $82028<<$82029
+EndIf
+If INDEX_DREHW_C == 0
+BEZ_C = $82027<<$82030
+EndIf
+If INDEX_DREHW_C == 1
+BEZ_C = $82026<<$82030
+EndIf
+If INDEX_DREHW_C == 2
+BEZ_C = $82028<<$82030
+EndIf
+EndIf
+If REG[10] ==0
+If REG[20] ==0
+SCHWMOD.wr=1
+EndIf
+EndIf
+END_SUB
+SUB(AUSW_INDEX_FRMOD)
+DEBUG("INDEX_FRMOD: "<<INDEX_FRMOD)
+If INDEX_FRMOD == 0
+FRMOD = $82023
+EndIf
+If INDEX_FRMOD == 1
+FRMOD = $82031
+EndIf
+If INDEX_FRMOD == 2
+FRMOD = $82032
+EndIf
+END_SUB
+SUB(AUSW_INDEX_DIR)
+If INDEX_DIR == 1
+DIR = $82092
+SCHW_JN=$82022
+EndIf
+If INDEX_DIR == -1
+DIR = $82093
+SCHW_JN=$82022
+EndIf
+If INDEX_DIR == 0
+SCHW_JN=$82023
+EndIf
+If REG[23]==0
+If REG[13]==0
+DIR.wr=0
+DIR.st=""
+EndIf
+EndIf
+END_SUB
+SUB(ANZ_RUECK)
+If REG[13] == 0
+DIR.wr=0
+DIR.st=""
+Else
+DIR.wr=2
+DIR.st=$82017
+EndIf
+If REG[15] == 0
+NACHWZ.wr=0
+NACHWZ.st=""
+Else
+NACHWZ.wr=2
+NACHWZ.st=$82018
+EndIf
+END_SUB
+//END

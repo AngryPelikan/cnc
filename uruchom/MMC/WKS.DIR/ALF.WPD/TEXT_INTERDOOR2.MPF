@@ -1,0 +1,117 @@
+N5 r51=30
+N10 r52=250
+N15 r55=1.5
+N20 r56=20
+
+;Program
+N25 m70 h11 g54 m51 g64
+N30 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N35 wechsel(2,3,180)
+
+;N40 atrans x=r51 y=r53
+
+;*** i ***
+N45 g0 x=r51 y=r52 z=r56 d1 cprecon
+N50 g1 z=r55 f15000
+N55 g1 y=ic(100)
+N60 g0 z=r56
+N65 y=ic(48.9)
+N70 g1 z=r55-1
+N75 g0 z=r56
+;*** n ***
+N80 g0 x=ic(50) y=ic(-48.9)
+N85 g1 z=r55
+N90 y=r52
+N95 g0 z=r56
+N100 y=ic(73.66)
+N105 g1 z=r55
+N110 g2 x=ic(70) cr=36.61
+N115 g1 y=r52
+N120 g0 z=r56
+
+;*** t ***
+N125 g0x=ic(50+45.25) y=r52
+N130 g1 z=r55
+N135 x=ic(-7.78)
+N140 g2 x=ic(-37.47) y=ic(27.01) cr=34.27
+N145 g1 y=ic(122.99)
+N150 g2 x=ic(-20.26) y=ic(-32.27) cr=34.96
+N155 g1 x=ic(65.16)
+N160 g0 z=r56
+
+;*** e ***
+N165 g0 x=ic(47.73+70-15) y=ic(-109.5)
+N170 g1 z=r55
+N175 g2 x=ic(-13.22) y=ic(-7.6) cr=17.73
+N180 g1 x=ic(-26.78)
+N185 g2 x=ic(-30) y=ic(30) cr=30
+N190 g1 y=ic(40)
+N195 g2 x=ic(30) y=ic(30) cr=30
+N200 g1 x=ic(10)
+N205 g2 x=ic(30) y=ic(-30) cr=30
+N210 g1 y=ic(-27.91)
+N215 x=ic(-70)
+N220 g0 z=r56
+
+;*** r ***
+N225 g0 x=ic(45.73+70-5) y=ic(57.91)
+N230 g1 z=r55
+N235 y=ic(-100)
+N240 y=ic(46.32)
+N245 g2 x=ic(75) y=ic(54.3) cr=60.21
+N250 g0 z=r56
+
+;*** d ***
+N255 g0 x=ic(22.39+70+10) y=ic(-70.63)
+N260 g1 z=r55
+N265 g2 x=ic(-30) y=ic(-30) cr=30
+N270 g1 x=ic(-15)
+N275 g2 x=ic(-30) y=ic(30) cr=30
+N280 g1 y=ic(40)
+N285 g2 x=ic(30) y=ic(30) cr=30
+N290 g1 x=ic(15)
+N295 g2 x=ic(30) y=ic(-30) cr=30
+N300 g1 y=ic(80)
+N305 y=r52
+N310 g0 z=r56
+
+;*** o ***
+N315 g0 x=ic(46.7+30-10)
+N320 g1 z=r55
+N325 x=ic(15)
+N330 g3 x=ic(30) y=ic(30) cr=30
+N335 g1 y=ic(40)
+N340 g3 x=ic(-30) y=ic(30) cr=30
+N345 g1 x=ic(-15)
+N350 g3 x=ic(-30) y=ic(-30) cr=30
+N355 g1 y=ic(-40)
+N360 g3 x=ic(30) y=ic(-30) cr=30
+N365 g0 z=r56
+
+;*** o *** 2
+g0 x=ic(33.34+75)
+N320 g1 z=r55
+N325 x=ic(15)
+N330 g3 x=ic(30) y=ic(30) cr=30
+N335 g1 y=ic(40)
+N340 g3 x=ic(-30) y=ic(30) cr=30
+N345 g1 x=ic(-15)
+N350 g3 x=ic(-30) y=ic(-30) cr=30
+N355 g1 y=ic(-40)
+N360 g3 x=ic(30) y=ic(-30) cr=30
+N365 g0 z=r56
+
+;*** r *** 2
+g0 x=ic(30.83+45) y=ic(100)
+N230 g1 z=r55
+N235 y=ic(-100)
+N240 y=ic(46.32)
+N245 g2 x=ic(75) y=ic(54.3) cr=60.21
+N250 g0 z=r56 cprecof
+
+N370 rot
+N375 g53 g0 g40 d0 z340 s0 
+N380 x3000
+N385 m30

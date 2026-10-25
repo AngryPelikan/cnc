@@ -1,0 +1,167 @@
+N5 IF R2==19 GOTOF WZOR_CLASSIC_7
+N10 IF R2==20 GOTOF WZOR_CLASSIC_6
+IF R2==21 GOTOF WZOR_FRESA
+N20 M17
+;--------------------------------
+
+WZOR_FRESA:
+;-----------
+
+
+
+;~~~~~~~~~~~~
+N255 WZOR_CLASSIC_6:
+;~~~~~~~~~~~~
+
+;Parametry
+N260 r51=125+2 ; odleglosc od krawedzi do szpr. w osi x
+N265 r52=1089; wysokosc szprosu bez luku
+N270 r53=266+(R3*100) ;szerokosc wzoru
+N275 r50=(r6-r53)/2; odleglosc od krawedzi do szpr. w osi y
+N280 r54=-3; glebokosc robocza
+N285 r55=132; odstep gornej od dolnej
+N290 r56=470; wysokosc dolnego wzoru
+N295 r57=r52+r55
+N300 r58=r57+r56
+N305 r59=r51-48
+N310 r61=133; odstep miedzy wzorkami
+N315 r60=(r6-r61-(2*r50))/2; szerokosc jednego pola
+N320 r61=133; odstep miedzy wzorkami
+
+;Program
+N325 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N330 wechsel(5,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N335 g0 g41 d1 x=r51 y=r50 z50 m21
+N340 z2
+
+;pierwsze pole
+N345 g1 x=r51+200 z=r54 f15000
+N350 x=r51+r52 
+N355 y=r50+r60
+N360 x=r51 
+N365 y=r50
+N370 x=r51+250
+N375 x=r51+400 z2
+N380 z10
+
+;drugie pole
+N385 g0 x=r51 y=r50+r53-r60 G41
+N390 z2
+N395 g1 x=r51+200 z=r54 f15000
+N400 x=r51+r52
+N405 y=r50+r53
+N410 x=r51
+N415 y=r50+r53-r60
+N420 x=r51+250
+N425 x=r51+400 z2
+N430 z10
+
+;trzecie pole
+N435 g0 x=r51+r57 y=r50 G41
+N440 z2
+N445 g1 x=r51+r57+200 z=r54 f15000
+N450 x=r51+r58
+N455 y=r50+r53
+N460 x=r51+r57
+N465 y=r50
+N470 x=r51+r57+250
+N475 x=r51+r57+400 z2
+N480 z10
+
+;zakonczenie
+N485 g53 g0 g40 d0 z340 S0
+N490 m17
+
+;------------------------------
+
+N495 WZOR_CLASSIC_7:
+;--------------
+
+;Parametry
+N500 r51=125+2 ; odleglosc od krawedzi do szpr. w osi x
+N505 r53=266+(R3*100) ;szerokosc wzoru
+N510 r50=(r6-r53)/2; odleglosc od krawedzi do szpr. w osi y
+N515 r54=-3 ; glebokosc robocza
+N520 r55=80 ; odstep gornej od dolnej
+N525 r56=200; wysokosc srodkowego pola
+N530 r61=80 ; odstep miedzy wzorkami
+N535 r60=(r6-r61-(2*r50))/2; szerokosc jednego pola
+N540 r52=(r7-r51-(r55*2)-r56-218)/2 ;665.5; wysokosc gornego i dolnego pola
+
+
+;Program
+N545 g53 g40 g0 g90 d0 z340
+
+;Narzedzie
+N550 wechsel(5,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N555 g0 g41 d1 x=r51 y=r50 z50 m21
+N560 z2
+
+;pierwsze pole
+N565 g1 x=r51+200 z=r54 f15000
+N570 x=r51+r52 
+N575 y=r50+r60
+N580 x=r51 
+N585 y=r50
+N590 x=r51+250
+N595 x=r51+400 z2
+N600 z10
+
+;drugie pole
+N605 g0 x=r51 y=r50+r53-r60 G41
+N610 z2
+N615 g1 x=r51+200 z=r54 f15000
+N620 x=r51+r52
+N625 y=r50+r53
+N630 x=r51
+N635 y=r50+r53-r60
+N640 x=r51+250
+N645 x=r51+400 z2
+N650 z10
+
+;trzecie pole
+N655 g0 x=r51+r52+r55 y=r50 G41
+N660 z2
+N665 g1 x=r51+r52+r55+50 z=r54 f15000
+N670 x=r51+r52+r55+r56
+N675 y=r50+r53
+N680 x=r51+r52+r55
+N685 y=r50
+N690 x=r51+r52+r55+70
+N695 x=r51+r52+r55+110 z2
+N700 z10
+
+;czwarte pole
+N705 g0 x=r51+r52+r55+r56+r55 y=r50 G41
+N710 z2
+N715 g1 x=r51+r52+r55+r56+r55+200 z=r54 f15000
+N720 x=r51+r52+r55+r56+r55+r52
+N725 y=r50+r60
+N730 x=r51+r52+r55+r56+r55
+N735 y=r50
+N740 x=r51+r52+r55+r56+r55+250
+N745 x=r51+r52+r55+r56+r55+400 z2
+N750 z10
+
+;piate pole
+N755 g0 x=r51+r52+r55+r56+r55 y=r50+r53-r60 G41
+N760 z2
+N765 g1 x=r51+r52+r55+r56+r55+200 z=r54 f15000
+N770 x=r51+r52+r55+r56+r55+r52
+N775 y=r50+r53
+N780 x=r51+r52+r55+r56+r55
+N785 y=r50+r53-r60
+N790 x=r51+r52+r55+r56+r55+250
+N795 x=r51+r52+r55+r56+r55+400 z2
+N800 z10
+
+;zakonczenie
+N805 g53 g0 g40 d0 z340 S0
+N810 m17
+

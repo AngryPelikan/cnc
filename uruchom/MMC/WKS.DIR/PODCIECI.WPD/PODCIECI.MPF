@@ -1,0 +1,65 @@
+N5 r100=1
+
+N10 r6=915.3  ; szerokosc skrzydla
+N15 r7=2016-.6 ; dlugosc skrzydla
+N20 r15=43  ; grubosc skrzydla
+N25 r17=20  ; glebokosc wciecia
+N30 r18=70-.2  ; odleg. od krawedzi skrz. do poczatku frezowania
+
+
+N35 IF R100==1 GOTOF STOL1
+N40 IF R100==2 GOTOF STOL2
+N45 M30
+
+N50 STOL1:
+N55 m70 h11 g54 m51 g64
+N60 g53 g40 g0 g90 d0 z340
+N65 GOTOF DALEJ
+
+N70 STOL2:
+N75 m70 h11 g56 m52 g64
+N80 g53 g40 g0 g90 d0 z340
+N85 GOTOF DALEJ
+
+N90 DALEJ:
+
+
+N95 wechsel(3,3,15000)
+;N100 m21
+
+N105 cprecon
+N110 g0 x=r7+50 y=r6-r18 g41 d1
+N115 g0 z=-37+r15-25; -37+(r15/2); -37-5;grubosc
+N120 g0 x=r7+25
+N125 g1 x=r7 f500
+N130 g3 x=r7-r17 y=r6-r18-r17 cr=r17
+N135 g0 z=-37+r15+50
+
+N140 g0 x=r7+30 y=r18 g42
+N145 g0 z=-37+r15-25; -37-5; -37+(r15/2);grubosc
+N150 g1 x=r7 f500
+N155 g2 x=r7-r17 y=r18+r17 cr=r17
+N160 g1 y=r6-r18-r17 f3000
+N165 g2 x=r7 y=r6-r18 cr=r17
+N170 g1 x=r7+30
+N175 g0 z=-37+r15+50
+
+
+N220 g0 g90 g40 g53 d0 z340 s0
+N170 g0 x=4000
+
+N225 IF R100==1 GOTOF PLUS_100
+N230 IF R100==2 GOTOF MINUS_100
+N235 M30
+
+N240 PLUS_100:
+N245 R100=R100+1
+N250 GOTOF DALEJ
+N255 MINUS_100:
+N260 R100=R100-1
+N265 GOTOF DALEJ
+
+N270 DALEJ:
+
+N275 m30
+

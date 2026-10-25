@@ -1,0 +1,38 @@
+N5 m70 h11 g54 m51 g64
+N10 g53 g40 g0 g90 d0 z340
+
+N15 r7=955  ; wysokosc skrzydla
+N20 r6=800   ; szerokosc skrzydla
+N25 r15=20   ; grubosc skrzydla
+
+N30 wechsel(9,3,50)
+N35 g0 x=r7 y=r6+50 d1 c0
+N40 g0 z=-37+r15+20
+N45 g1 z=-37+r15-12 f3000 ; pierwsza glebokosc ciecia
+N50 y=-50
+N55 g0 z=-37+r15+20
+N60 g0 x=r7 y=-70
+N65 g1 z=-40 f2500 ; druga glebokosc ciecia
+N70 y=r6+50
+N75 g0 z=20
+
+N80 g53 g40 g0 g90 d0 z340 s0
+N85 m30
+
+
+dalej:
+
+N5 m70 h11 g54 m51 g64
+N10 g53 g40 g0 g90 d0 z340
+
+N30 wechsel(9,3,50)
+N35 g0 x=1040 y=-70 d1 c0
+N40 z=-37-2
+N50 g1 y=1000 f5000
+N55 g0 z=-37+50
+
+N80 g53 g40 g0 g90 d0 z340 s0
+g0 x=2500
+m41
+N85 m30
+

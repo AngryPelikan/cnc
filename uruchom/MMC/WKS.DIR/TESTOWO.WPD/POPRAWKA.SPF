@@ -1,0 +1,22 @@
+N101 g54
+N102 m51
+
+N103 r1=2150 ;dlugosc
+N104 r2=37.79 ;grubosc
+N105 r3=41 ;szerokosc
+
+
+N106 wechsel(7,3,6000)
+N107 d1
+
+N108 g0 x=0 y=0
+N109 g0 x=-75 y=r3 g42
+N110 g1 z=r2 f4000
+N111 g1 x=r1+100
+N112 g1 z=150
+
+
+N113 goup
+N114 x4000
+N115 s0
+N116 m30

@@ -1,0 +1,273 @@
+N5  r0=2 ; wybor stolu
+N10 r6=816 ; szerokosc skrz.
+N15 r16=123
+N20 r101=1 ; 1-lewe  2-prawe
+
+
+;   Uwaga !!!!!!!!      wywalic punkty zerowe
+; program do bolcow przeciwwywazeniowych PN lewe i prawe
+; r16-ilosc bolcow 123-wszystkie trzy; 13-pierwszy i trzeci
+;                  12- pierwszy i drugi; 23 drugi i trzeci
+;                  1-pierwszy; 2-drugi; 3-trzeci
+; program bez funkcji frame   w G18
+
+;Program
+
+N25 if r0==1 gotof stol1
+N30 if r0==2 gotof stol2
+N35 m30
+
+N40 stol1:
+N45 m70 h11 g54 m51 g64; pierwszy stol
+N50 gotof prog
+
+N55 stol2:
+N60 m70 h11 g56 m52 g64; drugi stol
+N65 gotof prog
+
+N70 prog:
+N75 g53 g40 g0 g90 d0 z340
+
+N80 r120=176 ;wysokosc w x (1)
+N85 r121=71.5 ;dlugosc elementu
+N90 r122=-16.5 ;wysokosc w z
+N95 r123=18.5 ;szerokosc elementu
+N100 r124=713 ;wysokosc w x (2)
+N105 r125=1658 ;wysokosc w x (3)
+N110 r126=2.5 ;glebokosc 
+;lewe czy prawe
+N115 if r101==1 gotof lewe
+N120 if r101==2 gotof prawe
+N125 m17
+
+N130 lewe:
+
+;parametry 
+N135 if r16==0 gotof end
+N140 if r16==1 gotof anty1
+N145 if r16==2 gotof anty2
+N150 if r16==3 gotof anty3
+N155 if r16==123 gotof anty1
+N160 if r16==12 gotof anty1
+N165 if r16==13 gotof anty1
+N170 if r16==23 gotof anty2
+N175 if r16==3 gotof anty3
+
+N180 m17
+
+N185 anty1:
+;Program
+
+;Narzedzie
+N190 wechsel(4,3,30)
+N195 c0
+N200 g18
+N205 cprecon
+
+N210 x=r120+30 y=-20 g41 d1
+N215 z=r122 
+;N65 g1 y=2 f3000
+N220 g1 x=r120+r121-(r123/2) y=r126 f3000
+N225 g3 z=r122-r123 cr=r123/2
+N230 g1 x=r120+(r123/2)
+N235 g3 z=r122 cr=r123/2
+N240 g1 x=r120+r121-(r123/2)
+N245 g0 y=-20
+N250 x=ic(1) g40 d1
+N255 x=r120+22 y=-2 z=r122-(r123/2)
+N260 g1 y=6 f2000
+N265 g0 y=-2
+N270 x=ic(25.5)
+N275 g1 y=6 f2000
+N280 g0 y=-20
+N285 z50
+
+
+N290 cprecof
+N295 g17
+N300 if r16==1 gotof end
+N305 if r16==13 gotof anty3
+
+N310 anty2:
+;Program
+
+;Narzedzie
+N315 wechsel(4,3,30)
+N320 g18
+N325 cprecon
+
+N330 x=r124+30 y=-20 g41 d1
+N335 z=r122 
+;N65 g1 y=2 f3000
+N340 g1 x=r124+r121-(r123/2) y=r126 f3000
+N345 g3 z=r122-r123 cr=r123/2
+N350 g1 x=r124+(r123/2)
+N355 g3 z=r122 cr=r123/2
+N360 g1 x=r124+r121-(r123/2)
+N365 g0 y=-20
+N370 x=ic(1) g40 d1
+N375 x=r124+22 y=-2 z=r122-(r123/2)
+N380 g1 y=6 f2000
+N385 g0 y=-2
+N390 x=ic(25.5)
+N395 g1 y=6 f2000
+N400 g0 y=-20
+N405 z50
+
+
+N410 cprecof
+N415 g17
+N420 if r16==2 gotof end
+N425 if r16==12 gotof end
+
+N430 anty3:
+;Program
+
+;Narzedzie
+N435 wechsel(4,3,30)
+N440 g18
+N445 cprecon
+
+N450 x=r125+30 y=-20 g41 d1
+N455 z=r122 
+;N65 g1 y=2 f3000
+N460 g1 x=r125+r121-(r123/2) y=r126 f3000
+N465 g3 z=r122-r123 cr=r123/2
+N470 g1 x=r125+(r123/2)
+N475 g3 z=r122 cr=r123/2
+N480 g1 x=r125+r121-(r123/2)
+N485 g0 y=-20
+N490 x=ic(1) g40 d1
+N495 x=r125+22 y=-2 z=r122-(r123/2)
+N500 g1 y=6 f2000
+N505 g0 y=-2
+N510 x=ic(25.5)
+N515 g1 y=6 f2000
+N520 g0 y=-20
+N525 z50
+
+N530 cprecof
+N535 g17
+
+N540 end:
+N545 g90 g53 g0 g40 d0 z340 s0 
+N550 m30
+
+
+;                 *** drzwi prawe ***
+N555 prawe:
+
+;parametry 
+N560 if r16==0 gotof end
+N565 if r16==1 gotof anty1
+N570 if r16==2 gotof anty2
+N575 if r16==3 gotof anty3
+N580 if r16==123 gotof anty1
+N585 if r16==12 gotof anty1
+N590 if r16==13 gotof anty1
+N595 if r16==23 gotof anty2
+N600 if r16==3 gotof anty3
+
+N605 m17
+
+N610 anty1:
+;Program
+
+;Narzedzie
+N615 wechsel(4,3,30)
+N620 g18
+N625 c180 d3
+N630 cprecon
+
+N635 x=r120+30 y=r6+20 g41 d3
+N640 z=r122 
+;N65 g1 y=2 f3000
+N645 g1 x=r120+r121-(r123/2) y=r6-r126 f3000
+N650 g3 z=r122-r123 cr=r123/2
+N655 g1 x=r120+(r123/2)
+N660 g3 z=r122 cr=r123/2
+N665 g1 x=r120+r121-(r123/2)
+N670 g0 y=r6+20
+N675 x=ic(1) g40 d3
+N680 x=r120+22 y=r6+2 z=r122-(r123/2)
+N685 g1 y=r6-6 f2000
+N690 g0 y=r6+2
+N695 x=ic(25.5)
+N700 g1 y=r6-6 f2000
+N705 g0 y=r6+20
+N710 z50
+
+
+N715 cprecof
+N720 g17
+N725 if r16==1 gotof end
+N730 if r16==13 gotof anty3
+
+N735 anty2:
+;Program
+
+;Narzedzie
+N740 wechsel(4,3,30)
+N745 g18
+N750 c180 d3
+N755 cprecon
+
+N760 x=r124+30 y=r6+20 g41 d3
+N765 z=r122 
+;N65 g1 y=2 f3000
+N770 g1 x=r124+r121-(r123/2) y=r6-r126 f3000
+N775 g3 z=r122-r123 cr=r123/2
+N780 g1 x=r124+(r123/2)
+N785 g3 z=r122 cr=r123/2
+N790 g1 x=r124+r121-(r123/2)
+N795 g0 y=r6+20
+N800 x=ic(1) g40 d3
+N805 x=r124+22 y=r6+2 z=r122-(r123/2)
+N810 g1 y=r6-6 f2000
+N815 g0 y=r6+2
+N820 x=ic(25.5)
+N825 g1 y=r6-6 f2000
+N830 g0 y=r6+20
+N835 z50
+
+
+N840 cprecof
+N845 g17
+N850 if r16==2 gotof end
+N855 if r16==12 gotof end
+
+N860 anty3:
+;Program
+
+;Narzedzie
+N865 wechsel(4,3,30)
+N870 g18
+N875 c180 d3
+N880 cprecon
+
+N885 x=r125+30 y=r6+20 g41 d3
+N890 z=r122 
+;N65 g1 y=2 f3000
+N895 g1 x=r125+r121-(r123/2) y=r6-r126 f3000
+N900 g3 z=r122-r123 cr=r123/2
+N905 g1 x=r125+(r123/2)
+N910 g3 z=r122 cr=r123/2
+N915 g1 x=r125+r121-(r123/2)
+N920 g0 y=r6+20
+N925 x=ic(1) g40 d3
+N930 x=r125+22 y=r6+2 z=r122-(r123/2)
+N935 g1 y=r6-6 f2000
+N940 g0 y=r6+2
+N945 x=ic(25.5)
+N950 g1 y=r6-6 f2000
+N955 g0 y=r6+20
+N960 z50
+
+N965 cprecof
+N970 g17
+
+N975 end:
+N980 g90 g53 g0 g40 d0 z340 s0 
+N985 m30
+
+

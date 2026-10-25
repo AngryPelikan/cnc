@@ -1,0 +1,8 @@
+;VERSION: 06.04.24 Mar 26, 2004
+;CHANGE : 06.04.19 Nov 05, 2003
+;Makrodefinitionen fuer Zyklen allgemein und fuer Standardzyklen
+;DEFINE M13 AS M3 M7
+;DEFINE M14 AS M4 M7
+;DEFINE M15 AS M5 M9
+DEFINE RL AS REAL
+N99 M30

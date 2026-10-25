@@ -1,0 +1,134 @@
+
+N5 prametry:
+; szyld i kieszen:
+N10 r6=750
+N15 r7=2030
+N20 r27=912-168-200;rozmieszczenie zamka od gory drzwi do pocz. szyu
+N25 r40=226 ;dlugosc szyldu
+N30 r41=23 ;szerokosc szyldu
+N35 r42=3 ;glebokosc szyldu
+N40 r43=33 ;odstep miedzy szyldem a kieszenia w x
+N45 r44=-3.8 ;wysokosc szyldu w z
+N50 r39=15 ;felc
+N55 r45=160 ;dlugosc kieszeni
+N60 r46=20 ;szerokosc kieszeni
+N65 r47=1.5 ;odstep miedzy szyldem a kieszenia w z
+N70 otwory:
+N75 r51=51 ;odleglosc od szyldu do centrum otworu w osi y
+N80 r52=63.5 ;odleglosc miedzypoczatkiem szyldu a pierwszym otwo
+N85 r57=20 ;srednica otworu
+N90 r53=169 ;odleglosc miedzypoczatkiem szyldu a drugim otworem
+N95 r58=20 ;srednica otworu
+N100 r54=173 ;odleglosc miedzypoczatkiem szyldu a trzecim otworm 168-zwy 173-pat
+N105 r59=18 ;srednica otworu
+N110 r56=30 ;bezpieczna wysokosc
+N115 r60=2 ;ilosc otworow
+
+; program dla otworow:
+
+N120 m70 h11 g54 m51 g64
+N125 g53 g40 g0 g90 d0 z340
+gotof aaa
+;Narzedzie
+N130 g17
+N135 wechsel(1,3,150)
+
+;N65 atrans x=r7
+;N60 amirror x0 
+
+N140 pierwszy:
+N145 g0 g90 x=r27+r52 y=r6-r51-(r57/2) z=r56 g41 d1
+N150 g3 g91 x0 y0 i0 j=r57/2 z=ac(-45) f3000
+N155 g3 x0 y0 i0 j=r57/2
+N160 g3 x0 y0 i0 j=r57/2 z=ac(r56)
+
+N165 drugi:
+N170 if r60==1 gotof end
+N175 g0 g90 x=r27+r53 y=r6-r51-(r58/2)
+N180 g3 g91 x0 y0 i0 j=r58/2 z=ac(-45) f3000
+N185 g3 x0 y0 i0 j=r58/2
+N190 g3 x0 y0 i0 j=r58/2 z=ac(r56)
+
+N195 trzeci:
+N200 if r60==2 gotof end
+N205 g0 g90 x=r27+r54 y=r6-r51-(r59/2)
+N210 g3 g91 x0 y0 i0 j=r59/2 z=ac(-45)
+N215 g3 x0 y0 i0 j=r59/2
+N220 g3 x0 y0 i0 j=r59/2 z=r56
+
+N225 end:
+N230 g90 g53 g0 g40 d0 z340 s0 
+N235 g1 x=ic(1) g40 d1
+aaa:
+; program dla kieszeni:
+N240 h12
+N245 g18 t13 d3
+N250 h92
+N255 m3
+N260 s180
+
+N265 g0 x=r27+r41 y=r6+r39+10 g41 d3
+N270 z=r44
+N275 g1 x=r27+r40-(r41/2) y=r6+r39-8 f3000
+N280 g3 z=ic(-r41) cr=r41/2
+N285 g1 x=r27+(r41/2)
+N290 g3 z=r44 cr=r41/2
+
+N295 g1 y=r6-r42
+N300 g1 x=r27+r40-(r41/2) 
+N305 g3 z=ic(-r41) cr=r41/2
+N310 g1 x=r27+(r41/2)
+N315 g3 z=r44 cr=r41/2
+N320 g1 x=r27+r40-(r41/2)
+
+N325 kieszen:
+N330 g1 x=r27+r43 z=r44-r47-r46 f6000
+N335 ruch1:
+N340 y=ic(-6.6) 
+N345 g3 z=r44-r47 cr=200
+N350 g1 x=r27+r43+r45
+N355 y=ic(-6.6) 
+N360 g3 z=r44-r47-r46 cr=200
+N365 g1 x=r27+r43
+N370 ruch2:
+N375 y=ic(-6.6) z=r44-r47
+N380 x=r27+r43+r45
+N385 y=ic(-6.6) z=r44-r47-r46
+N390 x=r27+r43
+N395 ruch3:
+N400 y=ic(-6.6) z=r44-r47
+N405 x=r27+r43+r45
+N410 y=ic(-6.6) z=r44-r47-r46
+N415 x=r27+r43
+N420 ruch4:
+N425 y=ic(-6.6) z=r44-r47
+N430 x=r27+r43+r45
+N435 y=ic(-6.6) z=r44-r47-r46
+N440 x=r27+r43
+N445 ruch5:
+N450 y=ic(-6.6) z=r44-r47
+N455 x=r27+r43+r45
+N460 y=ic(-6.6) z=r44-r47-r46
+N465 x=r27+r43
+N470 ruch6:
+N475 y=ic(-6.6) z=r44-r47
+N480 x=r27+r43+r45
+N485 y=ic(-6.6) z=r44-r47-r46
+N490 x=r27+r43
+
+N495 zakonczenie:
+N500 z=r44-r47
+N505 x=r27+r45 
+N510 z=r44-r47-r46
+N515 x=r27+r43 y=r6+r39+20
+N520 y=ic(1) g40 d3
+
+N525 koniec:
+N530 h90
+N535 s0
+N540 h11
+N545 g17
+N550 g90 g53 g0 g40 d0 z340 s0 
+N555 m30
+
+

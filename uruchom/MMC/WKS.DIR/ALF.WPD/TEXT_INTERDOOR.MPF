@@ -1,0 +1,140 @@
+N5  r27=16 ;promien frezu
+N10 r50=0
+N15 r51=0
+N20 r52=470-16 ;przesuniecie w x
+N25 r53=36+16 ;przesuniecie w y
+N30 r55=-3 ;wysokosc pracy
+N35 r56=-20+(27*2) ;odstep pomiedzy znakami
+N40 r57=0.6 ;skala x szerokosc tekstu
+N45 r58=0.6 ;skala y wysokosc tekstu
+
+;Program
+N50 m70 h11 g54 m51 g64
+N55 g53 g40 g0 g90 d0 z340
+;m20
+;Narzedzie
+N60 wechsel(5,3,180)
+m21
+N65 atrans x=r52 y=r53
+arot z90
+N70 ascale x=r57 y=r58
+
+;*** I ***
+N75 g0 g90 x=r50 y=r51 d1 z30 cprecon
+;arot z50
+N80 g1 z=r55 f10000
+N85 g1 g91 y=150
+N90 g0 g90 z=30
+
+;*** N ***
+atrans x=r56
+N95 g0 g90 x=r50+r56 y=r51
+N100 g1 z=r55
+N105 g1 g91 y=150
+N110 g1 x=90 y=-150
+N115 y=150
+N120 g0 g90 z=30
+
+;*** T ***
+N125 atrans x=r56
+N130 g0 g90 x=r50+r56+160 y=r51
+N135 g1 z=r55
+N140 g1 g91 y=150
+N145 g0 g90 z=30
+N150 x=ic(-45)
+N155 g1 z=r55
+N160 g1 g91 x=90
+N165 g0 g90 z=30
+
+;*** E ***
+N170 atrans x=r56
+N175 g0 g90 x=r50+230+r56 y=r51
+N180 g1 z=r55
+N185 g1 g91 y=150
+N190 x=75
+N195 g0 g90 z=30
+N200 g0 x=r50+230+r56 y=r51+75
+N205 g1 z=r55
+N210 g1 g91 x=45
+N215 g0 g90 z=30
+N220 g0 x=r50+230+r56 y=r51
+N225 g1 z=r55
+N230 g1 g91 x=75
+N235 g0 g90 z=30
+
+;*** R ***
+N240 atrans x=r56
+N245 g0 g90 x=r50+330+r56 y=r51
+N250 g1 z=r55
+N255 g1 g91 y=150
+N260 x=50
+N265 g2 x=30 y=-30 cr=30
+N270 g1 y=-15
+N275 g2 x=-30 y=-30 cr=30
+N280 g1 x=-50
+N285 g0 g90 z=30
+N290 x=ic(50)
+N295 g1 z=r55
+N300 g1 g91 x=40 y=ac(r51)
+N305 g0 g90 z=30
+
+;*** D ***
+N310 atrans x=r56
+N315 g0 g90 x=r50+445+r56 y=r51
+N320 g1 z=r55
+N325 g1 g91 y=150
+N330 x=60
+N335 g2 x=30 y=-30 cr=30
+N340 g1 y=-90
+N345 g2 x=-30 y=-30 cr=30
+N350 g1 x=-60
+N355 g0 g90 z=30
+
+;*** O ***
+N360 atrans x=r56
+N365 g0 g90 x=r50+560+r56 y=r51+30
+N370 g1 z=r55
+N375 g1 g91 y=90
+N380 g2 x=30 y=30 cr=30
+N385 g1 x=30
+N390 g2 x=30 y=-30 cr=30
+N395 g1 y=-90
+N400 g2 x=-30 y=-30 cr=30
+N405 g1 x=-30
+N410 g2 x=-30 y=30 cr=30
+N415 g0 g90 z=30
+
+;*** O ***
+N420 atrans x=r56
+N425 g0 g90 x=r50+675+r56 y=r51+30
+N430 g1 z=r55
+N435 g1 g91 y=90
+N440 g2 x=30 y=30 cr=30
+N445 g1 x=30
+N450 g2 x=30 y=-30 cr=30
+N455 g1 y=-90
+N460 g2 x=-30 y=-30 cr=30
+N465 g1 x=-30
+N470 g2 x=-30 y=30 cr=30
+N475 g0 g90 z=30
+
+;*** R ***
+N480 atrans x=r56
+N485 g0 g90 x=r50+790+r56 y=r51
+N490 g1 z=r55
+N495 g1 g91 y=150
+N500 x=50
+N505 g2 x=30 y=-30 cr=30
+N510 g1 y=-15
+N515 g2 x=-30 y=-30 cr=30
+N520 g1 x=-50
+N525 g0 g90 z=30
+N530 x=ic(50)
+N535 g1 z=r55
+N540 g1 g91 x=40 y=ac(r51)
+N545 g0 g90 z=30 cprecof
+
+N550 rot
+N555 g53 g0 g40 d0 z340 s0 
+N560 x4000
+N565 m30

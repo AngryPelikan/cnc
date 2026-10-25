@@ -1,0 +1,137 @@
+;Program
+N5 m70 h11 g56 m52 g64
+N10 g53 g40 g0 g90 d0 z340
+
+N15 r6=616.5
+N20 r10=3
+
+N25 gotof sfs15
+
+N420 sfs15:
+;N425 gotof aaa
+;Narzedzie
+N430 wechsel(6,4,30)
+
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+
+;pierwszy zawias
+
+;N150 atrans x13.5 y13.5
+
+N435 g0 d2 x=148 y=r6+17
+N440 c90
+N445 g1 z=2 f8000 ;1.3+2+1+1
+
+N450 arot x9           ;PRAWE
+N455 g91 g1 y-30 f1000  ;1
+N460 y=30 f3000
+N465 y=-30 f3000        ;2
+N470 y=-10 f1000
+N475 y=40 f3000
+N480 y=-40 f3000        ;3
+N485 y=-10 f1000
+N490 y=50 f3000
+N495 y=-50 f3000        ;4
+N500 y=-10 f1000
+N505 y=65 f3000       ;wyjscie
+
+N510 rot
+N515 z50 f5000
+
+;N205 atrans x13.5 y13.5
+N520 g90 g0  x=ic(24) y=r6+17
+
+N525 g1 z=2 f8000 ;1.3+2+1+1
+
+N530 arot x9
+N535 g91 g1 y-30 f1000
+;N230 y20
+;N235 y-30
+N540 y65
+
+N545 rot
+N550 z50 f5000
+
+N555 if r10==2 gotof trzeci
+
+;drugi zawias
+
+;N255 atrans x13.5 y13.5
+
+N570 g90 g0 d2 x=897 y=r6+17
+N575 g1 z=2 f8000 ;1.3+2+1+1
+
+N580 arot x9           ;PRAWE
+N585 g91 g1 y-30 f1000  ;1
+N590 y=30 f3000
+N595 y=-30 f3000        ;2
+N600 y=-10 f1000
+N605 y=40 f3000
+N610 y=-40 f3000        ;3
+N615 y=-10 f1000
+N620 y=50 f3000
+N625 y=-50 f3000        ;4
+N630 y=-10 f1000
+N635 y=65 f3000       ;wyjscie
+
+N640 rot
+N645 z50 f5000
+
+;N305 atrans x13.5 y13.5
+N650 g90 g0 x=ic(24) y=r6+17
+
+N655 g1 z=2 f8000 ;1.3+2+1+1
+N660 arot x9
+N665 g91 g1 y-30 f1000
+;N330 y20
+;N335 y-30
+N670 y65
+
+N675 rot
+N680 z50 f5000
+
+N685 trzeci:
+
+;trzeci zawias
+
+;N355 atrans x13.5 y13.5
+
+N690 g90 g0 d2 x=1655 y=r6+17
+N695 c90
+N700 g1 z=2 f8000 ;1.3+2+1+1
+
+N705 arot x9           ;PRAWE
+N710 g91 g1 y-30 f1000  ;1
+N715 y=30 f3000
+N720 y=-30 f3000        ;2
+N725 y=-10 f1000
+N730 y=40 f3000
+N735 y=-40 f3000        ;3
+N740 y=-10 f1000
+N745 y=50 f3000
+N750 y=-50 f3000        ;4
+N755 y=-10 f1000
+N760 y=65 f3000       ;wyjscie
+
+N765 rot
+N770 z50 f5000
+
+;N405 atrans x13.5 y13.5
+N775 g90 g0 x=ic(24) y=r6+17
+
+N780 g1 z=2 f8000 ;1.3+2+1+1
+
+N785 arot x9
+N790 g91 g1 y-30 f1000
+;N430 y20
+;N435 y-30
+N795 y65
+
+N800 rot
+N805 z50 f5000
+
+
+N810 koniec:
+N815 g90 g53 g0 g40 d0 z340 s0
+N820 m17

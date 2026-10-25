@@ -1,0 +1,337 @@
+
+; program przygotowany pod dlugi frez (kieszen)
+
+N5 prametry:
+; szyld i kieszen:
+N10 r6=915.2 ; szerokosc skrzydla
+N15 r7=2015 ; dlugosc skrzydla
+N20 r27=758 ;rozmieszczenie zamka odgory drzwi do pocz.szyldu; wysokosc dla amerykki? 771
+; Wysokosc dla PN = 758 zle_3038
+; Wysokosc dla PN = 758 zle_0787_2009
+; Wysokosc dla zle_0911 - R27=758 R44=-37+3.3+R41 19.02.2008
+
+N25 r40=236   ;dlugosc szyldu
+N30 r41=20.5  ;szerokosc szyldu
+N35 r42=5     ;glebokosc szyldu
+N40 r43=28+2  ;odstep miedzy szyldem a kieszenia w x
+N45 r44=-37+3.3+R41   ;wys. szyldu w z 
+N50 r39=13    ;felc
+N55 r45=176   ;dlugosc kieszeni
+N60 r46=17    ;szerokosc kieszeni
+N65 r47=2     ;odstep miedzy szyldem a kieszenia w z
+N70 otwory:
+N75 r51=70 ;odleglosc od szyldu do centrum otworu w osi y
+N80 r52=19 ;odleglosc miedzypoczatkiem szyldu a pierwszym otwore
+N85 r57=32 ;srednica otworu
+N90 r53=90 ;odleglosc miedzypoczatkiem szyldu a drugim otworem
+N95 r58=22 ;srednica otworu
+N100 r54=152 ;odleglosc miedzypoczatkiem szyldu a trzecim otworm
+N105 r59=32 ;srednica otworu
+N110 r56=30 ;bezpieczna wysokosc
+N115 r60=3 ;ilosc otworow
+N120 r100=1
+N125 IF R100==1 GOTOF STOL1
+N130 IF R100==2 GOTOF STOL2
+N135 M30
+
+N140 STOL1:
+N145 m70 h11 g54 m51 g64
+N150 g53 g40 g0 g90 d0 z340
+N155 GOTOF DALEJ
+
+N160 STOL2:
+N165 m70 h11 g56 m52 g64
+N170 g53 g40 g0 g90 d0 z340
+N175 GOTOF DALEJ
+
+N180 DALEJ:
+
+;gotof inaczej
+
+;Narzedzie
+N185 g17
+N190 wechsel(1,3,180)
+
+N140 atrans x=r7 ; dla prawych uaktywnic;
+N145 amirror x0  ; dla prawych
+
+N200 pierwszy:
+N205 g0 g90 x=r27+r52 y=r6-r51-(r57/2) z=r56 g41 d1
+N210 g3 g91 x0 y0 i0 j=r57/2 z=ac(-45) f3000
+N215 g3 x0 y0 i0 j=r57/2
+N220 g3 x0 y0 i0 j=r57/2 z=ac(r56)
+
+N225 drugi:
+N230 if r60==1 gotof end
+N235 g0 g90 x=r27+r53 y=r6-r51-(r58/2)
+N240 g3 g91 x0 y0 i0 j=r58/2 z=ac(-45) f3000
+N245 g3 x0 y0 i0 j=r58/2
+N250 g3 x0 y0 i0 j=r58/2 z=ac(r56)
+
+N255 trzeci:
+N260 if r60==2 gotof end
+N265 g0 g90 x=r27+r54 y=r6-r51-(r59/2)
+N270 g3 g91 x0 y0 i0 j=r59/2 z=ac(-45)
+N275 g3 x0 y0 i0 j=r59/2
+N280 g3 x0 y0 i0 j=r59/2 z=ac(r56)
+
+N285 czwarty:
+
+N290 r54=212 ;odleglosc miedzypoczatkiem szyldu a trzecim otworm
+N295 r59=35 ;srednica otworu
+
+N300 g0 g90 x=r27+r54 y=r6-r51-(r59/2)
+N305 g3 g91 x0 y0 i0 j=r59/2 z=ac(-45)
+N310 g3 x0 y0 i0 j=r59/2
+N315 g3 x0 y0 i0 j=r59/2 z=ac(r56)
+
+N320 G0 g90 g53 g40 d0 z340
+
+N325 G0 X=R27+9 Y=R6-44.5 D1 G40
+N330 G0 Z=r56
+N335 G1 Z=-45 F1000
+N340 G0 Z=R56
+
+N345 G0 X=R27+9 Y=R6-95.5
+N350 G0 Z=R56
+N355 G1 Z=-45 F1000
+N360 G0 Z=R56
+
+N365 G0 X=R27+209 Y=R6-41.8 D1 G40
+N370 G0 Z=R56
+N375 G1 Z=-45 F1000
+N380 G0 Z=R56
+
+N385 G0 X=R27+209 Y=R6-98.2
+N390 G0 Z=R56
+N395 G1 Z=-45 F1000
+N400 G0 Z=R56
+
+N405 end:
+N410 g90 g53 g0 g40 d0 z340 s0 
+N415 g1 x=ic(1) g40 d1
+
+N420 gotof inaczej
+
+N425 inaczej:
+
+; program dla kieszeni:
+;************************************
+N430 wechsel(4,3,30)
+N435 g18
+N440 c180 d3
+N445 cprecon
+
+N450 g0 x=r27+r41 y=r6+r39+30 g41 d3
+N455 z=r44
+N460 G1 x=r27+r41+1 Y=R6+13 F6000
+N465 g1 y=r6
+N470 g1 x=r27+r40-(r41/2) y=r6-(r42/2)
+N475 g3 z=ic(-r41) cr=r41/2
+N480 g1 x=r27+(r41/2)
+N485 g3 z=r44 cr=r41/2
+
+N490 g1 x=r27+r40-(r41/2) y=r6-r42
+N495 g3 z=ic(-r41) cr=r41/2
+N500 g1 x=r27+(r41/2)
+N505 g3 z=r44 cr=r41/2
+N510 g1 x=r27+r40-(r41/2)
+
+N515 y=r6+r39+10 g41 d3
+
+N520 g90 g53 g0 g40 d0 z340 s0 cprecof
+xxx:
+N525 wechsel(0,0,0)
+
+;*********************************
+N530 h12
+N535 g18 t13 d3
+N540 h92
+N545 m3
+N550 s120
+;**********************************
+N555 g0 x=r27+r40-(r41/2) y=r6+r39+10 g41 d3
+N560 z=r44 
+;N360 g1 y=r6 f6000
+N565 kieszen:
+N570 g1 x=r27+r43 z=r44-r47-r46 f6000
+N575 y=r6-r42 
+
+N580 ruch1:
+N585 y=ic(-3) 
+N590 g3 z=r44-r47 cr=200
+N595 g1 x=r27+r43+r45
+N600 y=ic(-3) 
+N605 g3 z=r44-r47-r46 cr=200
+N610 g1 x=r27+r43
+
+N615 ruch2:
+N620 y=ic(-3) z=r44-r47
+N625 x=r27+r43+r45
+N630 y=ic(-3) z=r44-r47-r46
+N635 x=r27+r43
+
+N640 ruch3:
+N645 y=ic(-3) z=r44-r47
+N650 x=r27+r43+r45
+N655 y=ic(-3) z=r44-r47-r46
+N660 x=r27+r43
+
+N665 ruch4:
+N670 y=ic(-3) z=r44-r47
+N675 x=r27+r43+r45
+N680 y=ic(-3) z=r44-r47-r46
+N685 x=r27+r43
+
+N690 ruch5:
+N695 y=ic(-3) z=r44-r47
+N700 x=r27+r43+r45
+N705 y=ic(-3) z=r44-r47-r46
+N710 x=r27+r43
+
+N715 ruch6:
+N720 y=ic(-3) z=r44-r47
+N725 x=r27+r43+r45
+N730 y=ic(-3) z=r44-r47-r46
+N735 x=r27+r43
+
+N740 ruch7:
+N745 y=ic(-3) z=r44-r47
+N750 x=r27+r43+r45
+N755 y=ic(-3) z=r44-r47-r46
+N760 x=r27+r43
+
+N765 ruch8:
+N770 y=ic(-3) z=r44-r47
+N775 x=r27+r43+r45
+N780 y=ic(-3) z=r44-r47-r46
+N785 x=r27+r43
+
+N790 ruch9:
+N795 y=ic(-3) z=r44-r47
+N800 x=r27+r43+r45
+N805 y=ic(-3) z=r44-r47-r46
+N810 x=r27+r43
+
+N815 ruch10:
+N820 y=ic(-3) z=r44-r47
+N825 x=r27+r43+r45
+N830 y=ic(-3) z=r44-r47-r46
+N835 x=r27+r43
+
+N840 ruch2:
+N845 y=ic(-3) z=r44-r47
+N850 x=r27+r43+r45
+N855 y=ic(-3) z=r44-r47-r46
+N860 x=r27+r43
+
+N865 ruch3:
+N870 y=ic(-3) z=r44-r47
+N875 x=r27+r43+r45
+N880 y=ic(-3) z=r44-r47-r46
+N885 x=r27+r43
+
+N890 ruch4:
+N895 y=ic(-3) z=r44-r47
+N900 x=r27+r43+r45
+N905 y=ic(-3) z=r44-r47-r46
+N910 x=r27+r43
+
+N915 ruch5:
+N920 y=ic(-3) z=r44-r47
+N925 x=r27+r43+r45
+N930 y=ic(-3) z=r44-r47-r46
+N935 x=r27+r43
+
+N940 ruch6:
+N945 y=ic(-3) z=r44-r47
+N950 x=r27+r43+r45
+N955 y=ic(-3) z=r44-r47-r46
+N960 x=r27+r43
+
+N965 ruch7:
+N970 y=ic(-3) z=r44-r47
+N975 x=r27+r43+r45
+N980 y=ic(-3) z=r44-r47-r46
+N985 x=r27+r43
+
+N990 ruch8:
+N995 y=ic(-3) z=r44-r47
+N1000 x=r27+r43+r45
+N1005 y=ic(-3) z=r44-r47-r46
+N1010 x=r27+r43
+
+N1015 ruch9:
+N1020 y=ic(-3) z=r44-r47
+N1025 x=r27+r43+r45
+N1030 y=ic(-3) z=r44-r47-r46
+N1035 x=r27+r43
+
+N1040 ruch10:
+N1045 y=ic(-3) z=r44-r47
+N1050 x=r27+r43+r45
+N1055 y=ic(-3) z=r44-r47-r46
+N1060 x=r27+r43
+
+
+N1065 zakonczenie:
+N1070 z=r44-r47
+N1075 x=r27+r45+r43
+N1080 z=r44-r47-r46
+N1085 x=r27+r43 y=r6+r39+20
+N1090 y=ic(1) g40 d3
+
+N1095 gotof dodatek
+
+N1100 koniec:
+N1105 h90
+N1110 s0
+N1115 h11
+N1120 g17
+N1125 g90 g53 g0 g40 d0 z340 s0 
+
+N1130 IF R100==1 GOTOF PLUS_100
+N1135 IF R100==2 GOTOF MINUS_100
+N1140 M30
+
+N1145 PLUS_100:
+N1150 R100=R100+1
+N1155 GOTOF DALEJ
+N1160 MINUS_100:
+N1165 R100=R100-1
+N1170 GOTOF DALEJ
+
+N1175 DALEJ:
+
+
+N1180 m30
+
+N1185 dodatek:
+N1190 g0 x=r27+r40-(r41/2) y=r6+r39+10 g41 d3
+N1195 z=r44-0.5 
+;N360 g1 y=r6 f6000
+N1200 kieszen:
+N1205 g1 x=r27+r43+r45-30-75 z=r44-r41 f6000
+N1210 y=r6-r42 
+N1215 ruch1:
+N1220 y=ic(-6.6) 
+N1225 g3 z=r44-0.5 cr=200
+N1230 g1 x=r27+r43+r45-30
+N1235 y=ic(-6.6) 
+N1240 g3 z=r44-r41 cr=200
+N1245 g1 x=r27+r43+r45-30-75
+N1250 ruch2:
+N1255 y=ic(-6.6) z=r44-0.5
+N1260 x=r27+r43+r45-30
+N1265 y=ic(-6.6) z=r44-r41
+N1270 x=r27+r43+r45-30-75
+
+N1275 zakonczenie2:
+N1280 z=r44-r47
+N1285 x=r27+r45+r43-30
+N1290 z=r44-r47-r46
+N1295 x=r27+r43 y=r6+r39+20
+N1300 y=ic(1) g40 d3
+N1305 gotob koniec
+
+

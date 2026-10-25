@@ -1,0 +1,11 @@
+N5 if r100==1 gotof plus
+N10 if r100==2 gotof minus
+
+N15 plus:
+N20 r100=r100+1
+N25 m17
+
+N30 minus:
+N35 r100=r100-1
+N40 m17
+

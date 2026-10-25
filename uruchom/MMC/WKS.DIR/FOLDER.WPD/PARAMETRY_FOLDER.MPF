@@ -1,0 +1,5 @@
+R100=1 ;wybor stolu 1 2
+R1=0 ;formatowanie
+R6=812-.5 ;szerokosc skrzydla
+R7=2000-.05 ;wysokosc skrzydla
+M17

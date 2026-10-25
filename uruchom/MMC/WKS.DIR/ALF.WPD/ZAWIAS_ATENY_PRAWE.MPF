@@ -1,0 +1,145 @@
+;-------ZAWIASY DO FUTRYNY METALOWEJ------------
+;Program
+N5 m70 h11 g54 m51 g64
+N10 g53 g40 g0 g90 d0 z340
+
+N15 r6=916.3
+N20 r10=3
+
+;PoprawioneN25 sfs15:;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+;Narzedzie
+N30 wechsel(6,4,30)
+
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+
+;pierwszy zawias
+
+;N150 atrans x13.5 y13.5
+;N35 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N40 g0 d2 x=238-9-24-4 y=r6+11.7+5 ;pierwszy x=238-14-24
+N45 c90
+N50 g1 z=1.3+3 f8000 ;1.3+2+1+1
+
+N55 arot x9           ;PRAWE
+N60 g91 g1 y-30 f1000  ;1
+N65 y=30 f3000
+N70 y=-30 f3000        ;2
+N75 y=-10 f1000
+N80 y=40 f3000
+N85 y=-40 f3000        ;3
+N90 y=-10 f1000
+N95 y=50 f3000
+N100 y=-50 f3000        ;4
+N105 y=-10 f1000
+N110 y=65 f3000       ;wyjscie
+
+N115 rot
+N120 z50 f5000
+
+;N205 atrans x13.5 y13.5
+;N125 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N130 g90 g0  x=ic(24) y=r6+11.7+5
+
+N135 g1 z=1.3+3 f8000 ;1.3+2+1+1
+
+N140 arot x9
+N145 g91 g1 y-30 f1000
+;N230 y20
+;N235 y-30
+N150 y65
+
+N155 rot
+N160 z50 f5000
+
+N165 if r10==2 gotof trzeci
+
+;drugi zawias
+
+;N255 atrans x13.5 y13.5
+;N170 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N175 g90 g0 d2 x=776-9-24+1-4 y=r6+11.7+5
+N180 g1 z=1.3+3 f8000 ;1.3+2+1+1
+
+N185 arot x9           ;PRAWE
+N190 g91 g1 y-30 f1000  ;1
+N195 y=30 f3000
+N200 y=-30 f3000        ;2
+N205 y=-10 f1000
+N210 y=40 f3000
+N215 y=-40 f3000        ;3
+N220 y=-10 f1000
+N225 y=50 f3000
+N230 y=-50 f3000        ;4
+N235 y=-10 f1000
+N240 y=65 f3000       ;wyjscie
+
+N245 rot
+N250 z50 f5000
+
+;N305 atrans x13.5 y13.5
+;N255 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N260 g90 g0 x=ic(24) y=r6+11.7+5
+
+N265 g1 z=1.3+3 f8000 ;1.3+2+1+1
+N270 arot x9
+N275 g91 g1 y-30 f1000
+;N330 y20
+;N335 y-30
+N280 y65
+
+N285 rot
+N290 z50 f5000
+
+N295 trzeci:
+
+;trzeci zawias
+
+;N355 atrans x13.5 y13.5
+;N300 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N305 g90 g0 d2 x=1718-9-24-4 y=r6+11.7+5
+N310 c90
+N315 g1 z=1.3+3 f8000 ;1.3+2+1+1
+
+N320 arot x9           ;PRAWE
+N325 g91 g1 y-30 f1000  ;1
+N330 y=30 f3000
+N335 y=-30 f3000        ;2
+N340 y=-10 f1000
+N345 y=40 f3000
+N350 y=-40 f3000        ;3
+N355 y=-10 f1000
+N360 y=50 f3000
+N365 y=-50 f3000        ;4
+N370 y=-10 f1000
+N375 y=65 f3000       ;wyjscie
+
+N380 rot
+N385 z50 f5000
+
+;N405 atrans x13.5 y13.5
+;N390 atrans x=-5 ;przesuniecie o -5 w X zewzg. na zle zawiasy
+
+N395 g90 g0 x=ic(24) y=r6+11.7+5
+
+N400 g1 z=1.3+3 f8000 ;1.3+2+1+1
+
+N405 arot x9
+N410 g91 g1 y-30 f1000
+;N430 y20
+;N435 y-30
+N415 y65
+
+N420 rot
+N425 z50 f5000
+
+
+N430 koniec:
+N435 g90 g53 g0 g40 d0 z340 s0
+N440 m30

@@ -1,0 +1,43 @@
+N5 parametry
+
+;zassanie
+N10 if r100==1 gotof stol1; m51
+N15 if r100==2 gotof stol2; m52
+N20 zassany:
+
+;program
+
+N25 m70
+N30 h11
+N35 g53 g0 g64 g90 d0 z630
+N40 if r0==2 gotof wzor
+
+N45 format
+
+N50 otwory
+N55 tuleje
+N60 okienko
+N65 wzor:
+N70 wzor
+N75 s0
+N80 if r0==2 gotof koniec
+N85 kieszen
+
+N90 ZAW_AMER
+
+N95 suwane
+
+N100 koniec:
+;N115 s0
+N105 m17
+
+N110 stol1:
+N115 m51
+
+N120 gotob zassany ;powrot do zassany
+
+N125 stol2:
+N130 m52
+
+N135 gotob zassany
+

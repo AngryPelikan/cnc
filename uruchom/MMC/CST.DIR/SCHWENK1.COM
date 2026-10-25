@@ -1,0 +1,2318 @@
+;VERSION: 06.04.24 Mar 26, 2004
+;CHANGE : 06.04.09 Mar 21, 2003
+; Version fuer PCU50
+;IBN-Maske Schwenkzyklus ab SW 6.2
+//M(SCHWENK1a/$82044/)
+DEF SWKINEM=(S/*//,$82046/wr2,ac1///8,29,80/80,29,195/),
+SWDSNAME=(S32///,$82001/wr2,ac1///275,29,50/325,29,160/),
+A_NRSDS=(I///,$82118/wr2,ac1///485,29,24/510,29,16/),
+PL0_L=(V////wr1///0,49,0/5,49,560,1/,10/)
+DEF SWFRMOD=(S/*//,$82002/wr2,ac1///5,53,105/165,53,110/),
+DEF SWFRX = (S///,$82027,,/wr1,,al2///165,68,90/290,68,0/),
+SWFRY = (S///,$82026,,/wr1,,al2///280,68,90/370,68,0/),
+SWFRZ = (S///,$82028,,/wr1,,al2///395,68,90/485,68,0/)
+DEF SWFRPOS=(S///,$82047/wr1///5,85,195/200,85,0),
+SWFRPOSX = (R////wr2,ac1///200,85,0/165,85,110/),
+SWFRPOSY= (R////wr2,ac1///315,85,0/280,85,110/),
+SWFRPOSZ = (R////wr2,ac1///430,85,0/395,85,110/),
+SWFRPOS_L=(V////wr1///5,101,0/5,101,560,1/,10/),
+DEF PL1_BEZ = (S////wr1///5,110,195/200,110,0),
+PL1_SWOVI1X = (R////wr0,ac1///200,110,0/165,110,110/),
+PL1_SWOVI1Y = (R////wr0,ac1///315,110,0/280,110,110/),
+PL1_SWOVI1Z = (R////wr0,ac1///430,110,0/395,110,110/),
+DEF PL2_BEZ=(S////wr1///5,129,195/200,129,0),
+PL2_SWDVV1X = (R////wr0,ac1///200,129,0/165,129,110/),
+PL2_SWDVV1Y = (R////wr0,ac1///315,129,0/280,129,110/),
+PL2_SWDVV1Z = (R////wr0,ac1///430,129,0/395,129,110/),
+DEF PL3_BEZ=(S////wr1///5,148,195/165,148,0),
+PL3_SWOVI2X = (R////wr0,ac1///200,148,0/165,148,110/),
+PL3_SWOVI2Y = (R////wr0,ac1///315,148,0/280,148,110/),
+PL3_SWOVI2Z = (R////wr0,ac1///430,148,0/395,148,110/),
+DEF PL4_BEZ=(S////wr1///5,167,195/200,167,0),
+PL4_SWDVV2X = (R////wr0,ac1///200,167,0/165,167,110/),
+PL4_SWDVV2Y = (R////wr0,ac1///315,167,0/280,167,110/),
+PL4_SWDVV2Z = (R////wr0,ac1///430,167,0/395,167,110/),
+PL4_SWOVI3X = (R////wr0,ac1///200,167,0/165,167,110/),
+PL4_SWOVI3Y = (R////wr0,ac1///315,167,0/280,167,110/),
+PL4_SWOVI3Z = (R////wr0,ac1///430,167,0/395,167,110/),
+DEF PL5_BEZ=(S////wr1///5,186,195/200,186,0),
+PL5_SWOVI3X = (R////wr0,ac1///200,186,0/165,186,110/),
+PL5_SWOVI3Y = (R////wr0,ac1///315,186,0/280,186,110/),
+PL5_SWOVI3Z = (R////wr0,ac1///430,186,0/395,186,110/),
+PL5_SWOVI4X = (R////wr0,ac1///200,186,0/165,186,110/),
+PL5_SWOVI4Y = (R////wr0,ac1///315,186,0/280,186,110/),
+PL5_SWOVI4Z = (R////wr0,ac1///430,186,0/395,186,110/),
+PL5_SWDVV2X = (R////wr0,ac1///200,186,0/165,186,110/),
+PL5_SWDVV2Y = (R////wr0,ac1///315,186,0/280,186,110/),
+PL5_SWDVV2Z = (R////wr0,ac1///430,186,0/395,186,110/),
+DEF PL6_BEZ=(S////wr1///5,205,195/200,205,0),
+PL6_SWOVI4X = (R////wr2,ac1///200,205,0/165,205,110/),
+PL6_SWOVI4Y = (R////wr2,ac1///315,205,0/280,205,110/),
+PL6_SWOVI4Z = (R////wr2,ac1///430,205,0/395,205,110/),
+PL6_L=(V////wr1///5,221,0/5,221,560,1/,10/)
+DEF SWAO=(S/*//,$82048/wr1,ac1///5,225,100,40//)
+DEF SWAOSM=(S/*//,$82010/wr2,ac1///5,241,125/165,241,340/),
+SWAOVR=(S/*//,$82017/wr2,ac1///5,260,125/165,260,120/),
+SWAONWZ=(S/*//,$82018/wr2,ac1///5,279,125/165,279,120/),
+SWAOAWZ=(S/*///wr0,ac1///5,298,125/165,298,120/),
+DEF HILF = (I////wr0///10,10,0/10,10,0/),
+ANZ_DATS_PRO_CH = (I////wr0///10,10,0/10,10,0/),
+FOC_S = (I////wr0///10,10,0/10,10,0/),
+LEVEL =(I////wr0///10,10,0/10,10,0/)
+DEF INDEX_KINEM
+DEF INDEX_SWAOVR
+DEF ANZ_CHANNELS
+DEF GC_MI
+DEF NRSDS
+DEF NRCH
+DEF INIT_1
+DEF ERROR_BOX
+DEF ERROR_STR
+DEF CH_Z
+DEF CH_X
+DEF CH_Y
+DEF DAT_NAM
+DEF DAT_EX
+DEF HM_ADAT
+DEF TC1
+DEF TC2
+DEF TC3
+DEF TC4
+DEF TC5
+DEF TC6
+DEF TC7
+DEF TC8
+DEF TC9
+DEF TC10
+DEF TC11
+DEF TC12
+DEF TC13
+DEF TC14
+DEF TC15
+DEF TC16
+DEF TC17
+DEF TC18
+DEF TC19
+DEF TC20
+DEF TC21
+DEF TC22
+DEF TC23
+DEF TC24
+DEF TC25
+DEF TC26
+DEF TC27
+DEF TC28
+DEF TC29
+DEF TC30
+DEF TC31
+DEF TC32
+DEF TC33
+DEF TC34
+DEF TC35
+DEF TC36
+DEF TC37
+DEF TC38
+DEF TC39
+DEF TC40
+DEF SUCH
+DEF L_FOC
+DEF VSK_AK
+HS1=("",,se2)
+HS2=("",,se2)
+HS3=("",,se2)
+HS4=("",,se2)
+HS5=("",,se2)
+HS6=("",,se2)
+HS7=("",,sw2)
+HS8=("",,se2)
+VS1=("",,se2)
+VS2=("",,se2)
+VS3=("",,se2)
+VS4=("",,se2)
+VS5=($82049,,se1)
+VS6=("",,se2)
+VS7=("",,se2)
+VS8=($81509,,se1)
+RECALL=()
+FOCUS
+If ANZ_DATS_PRO_CH > 1
+If FOC <> L_FOC
+If L_FOC =="SWDSNAME"
+If SWDSNAME ==""
+REG[0]="SWDSNAME"
+CALL("CHECK_1")
+EndIf
+EndIf
+EndIf
+EndIf
+END_FOCUS
+PRESS(VS1)
+INIT_1=1
+CALL("SU_KAPL")
+SUCH=0
+CALL("ERM_ANZDATS")
+CALL("SET_SFKEYS")
+CALL("LOAD_NAME")
+Hd = $82044<< NRCH
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG")
+INIT_1=1
+CALL("FREIFAHREN")
+CALL("KINEMATIK")
+INIT_1=0
+A_NRSDS=NRSDS
+END_PRESS
+PRESS(VS2)
+INIT_1=1
+CALL("SU_KAMI")
+SUCH=0
+CALL("ERM_ANZDATS")
+CALL("SET_SFKEYS")
+CALL("LOAD_NAME")
+Hd = $82044<< NRCH
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG")
+INIT_1=1
+CALL("FREIFAHREN")
+CALL("KINEMATIK")
+INIT_1=0
+A_NRSDS=NRSDS
+END_PRESS
+PRESS(VS3)
+VSK_AK=1
+INIT_1=1
+NRSDS = NRSDS + 1
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==1
+NRSDS=1
+EndIf
+CALL("LOAD_NAME")
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG")
+INIT_1=1
+CALL("FREIFAHREN")
+CALL("KINEMATIK")
+INIT_1=0
+If SWDSNAME==""
+FOC="SWDSNAME"
+EndIf
+A_NRSDS=NRSDS
+VSK_AK=0
+END_PRESS
+PRESS(VS4)
+VSK_AK=1
+INIT_1=1
+IF NRSDS > 1
+NRSDS = NRSDS - 1
+CALL("LOAD_NAME")
+ENDIF
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG")
+CALL("FREIFAHREN")
+CALL("KINEMATIK")
+INIT_1=0
+If SWDSNAME==""
+FOC="SWDSNAME"
+EndIf
+A_NRSDS=NRSDS
+VSK_AK=0
+END_PRESS
+PRESS(VS5)
+If ANZ_DATS_PRO_CH > 1
+If SWDSNAME==""
+REG[0]="SWDSNAME"
+CALL("CHECK_1")
+Else
+LM("SCHWENK1b",,1, ANZ_DATS_PRO_CH,NRSDS,ANZ_CHANNELS,NRCH)
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG")
+CALL("FREIFAHREN")
+CALL("KINEMATIK")
+EndIf
+Else
+LM("SCHWENK1b",,1, ANZ_DATS_PRO_CH,NRSDS,ANZ_CHANNELS,NRCH)
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG")
+CALL("FREIFAHREN")
+CALL("KINEMATIK")
+EndIf
+END_PRESS
+PRESS(VS6)
+TC1=RNP("/Tool/Toolcarrier/tcCarr1[u"<< NRCH <<"," << NRSDS << "]")
+TC2=RNP("/Tool/Toolcarrier/tcCarr2[u"<< NRCH <<"," << NRSDS << "]")
+TC3=RNP("/Tool/Toolcarrier/tcCarr3[u"<< NRCH <<"," << NRSDS << "]")
+TC4=RNP("/Tool/Toolcarrier/tcCarr4[u"<< NRCH <<"," << NRSDS << "]")
+TC5=RNP("/Tool/Toolcarrier/tcCarr5[u"<< NRCH <<"," << NRSDS << "]")
+TC6=RNP("/Tool/Toolcarrier/tcCarr6[u"<< NRCH <<"," << NRSDS << "]")
+TC7=RNP("/Tool/Toolcarrier/tcCarr7[u"<< NRCH <<"," << NRSDS << "]")
+TC8=RNP("/Tool/Toolcarrier/tcCarr8[u"<< NRCH <<"," << NRSDS << "]")
+TC9=RNP("/Tool/Toolcarrier/tcCarr9[u"<< NRCH <<"," << NRSDS << "]")
+TC10=RNP("/Tool/Toolcarrier/tcCarr10[u"<< NRCH <<"," << NRSDS << "]")
+TC11=RNP("/Tool/Toolcarrier/tcCarr11[u"<< NRCH <<"," << NRSDS << "]")
+TC12=RNP("/Tool/Toolcarrier/tcCarr12[u"<< NRCH <<"," << NRSDS << "]")
+TC13=RNP("/Tool/Toolcarrier/tcCarr13[u"<< NRCH <<"," << NRSDS << "]")
+TC14=RNP("/Tool/Toolcarrier/tcCarr14[u"<< NRCH <<"," << NRSDS << "]")
+TC15=RNP("/Tool/Toolcarrier/tcCarr15[u"<< NRCH <<"," << NRSDS << "]")
+TC16=RNP("/Tool/Toolcarrier/tcCarr16[u"<< NRCH <<"," << NRSDS << "]")
+TC17=RNP("/Tool/Toolcarrier/tcCarr17[u"<< NRCH <<"," << NRSDS << "]")
+TC18=RNP("/Tool/Toolcarrier/tcCarr18[u"<< NRCH <<"," << NRSDS << "]")
+TC19=RNP("/Tool/Toolcarrier/tcCarr19[u"<< NRCH <<"," << NRSDS << "]")
+TC20=RNP("/Tool/Toolcarrier/tcCarr20[u"<< NRCH <<"," << NRSDS << "]")
+TC21="X"
+TC22="X"
+TC23=RNP("/Tool/Toolcarrier/tcCarr23[u"<< NRCH <<"," << NRSDS << "]")
+TC24=RNP("/Tool/Toolcarrier/tcCarr24[u"<< NRCH <<"," << NRSDS << "]")
+TC25=RNP("/Tool/Toolcarrier/tcCarr25[u"<< NRCH <<"," << NRSDS << "]")
+TC26=RNP("/Tool/Toolcarrier/tcCarr26[u"<< NRCH <<"," << NRSDS << "]")
+TC27=RNP("/Tool/Toolcarrier/tcCarr27[u"<< NRCH <<"," << NRSDS << "]")
+TC28=RNP("/Tool/Toolcarrier/tcCarr28[u"<< NRCH <<"," << NRSDS << "]")
+TC29=RNP("/Tool/Toolcarrier/tcCarr29[u"<< NRCH <<"," << NRSDS << "]")
+TC30=RNP("/Tool/Toolcarrier/tcCarr30[u"<< NRCH <<"," << NRSDS << "]")
+TC31=RNP("/Tool/Toolcarrier/tcCarr31[u"<< NRCH <<"," << NRSDS << "]")
+TC32=RNP("/Tool/Toolcarrier/tcCarr32[u"<< NRCH <<"," << NRSDS << "]")
+TC33=RNP("/Tool/Toolcarrier/tcCarr33[u"<< NRCH <<"," << NRSDS << "]")
+TC34=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+TC35=RNP("/Tool/Toolcarrier/tcCarr35[u"<< NRCH <<"," << NRSDS << "]")
+TC36=RNP("/Tool/Toolcarrier/tcCarr36[u"<< NRCH <<"," << NRSDS << "]")
+TC37=RNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]")
+TC38=RNP("/Tool/Toolcarrier/tcCarr38[u"<< NRCH <<"," << NRSDS << "]")
+TC39=RNP("/Tool/Toolcarrier/tcCarr39[u"<< NRCH <<"," << NRSDS << "]")
+TC40=RNP("/Tool/Toolcarrier/tcCarr40[u"<< NRCH <<"," << NRSDS << "]")
+If SWDSNAME <> ""
+DAT_NAM="\mpf.dir\"<<SWDSNAME<<".mpf"
+Else
+DAT_NAM="\mpf.dir\TC1.mpf"
+EndIf
+EP(DAT_NAM,DAT_EX)
+If DAT_EX=="M" OR DAT_EX=="N"
+DP(DAT_NAM)
+EndIf
+GC("NC0",DAT_NAM,1)
+END_PRESS
+PRESS(VS7)
+CALL("SWD_LOE")
+END_PRESS
+PRESS(VS8)
+REG[0]= RNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]")
+DEBUG("REG[0]: "<<REG[0])
+DLGL("")
+EXIT
+END_PRESS
+PRESS(SR)
+If FOC=="SWDSNAME"
+If ANZ_DATS_PRO_CH > 1
+REG[0]="SWDSNAME"
+CALL("CHECK_1")
+EndIf
+EndIf
+END_PRESS
+PRESS(SD)
+If FOC=="SWDSNAME"
+If ANZ_DATS_PRO_CH > 1
+REG[0]="SWDSNAME"
+CALL("CHECK_1")
+EndIf
+EndIf
+END_PRESS
+CHANGE(FOC_S)
+If FOC_S==1
+FOC_S=0
+FOC="SWDSNAME"
+EndIf
+END_CHANGE
+CHANGE(SWDSNAME)
+If SUCH==0
+REG[0]="SWDSNAME"
+CALL("CHECK_1")
+IF REG[1]==0
+WNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]",SWDSNAME)
+ELSE
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+EndIf
+END_CHANGE
+CHANGE(SWKINEM)
+IF INDEX_KINEM == "T"
+SWKINEM = $82052
+INDEX_KINEM = "P"
+ELSE
+IF INDEX_KINEM == "P"
+SWKINEM = $82050
+INDEX_KINEM = "M"
+ELSE
+IF INDEX_KINEM == "M"
+SWKINEM = $82051
+INDEX_KINEM = "T"
+WNP("/Tool/Toolcarrier/tcCarr18[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr19[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr20[u"<< NRCH <<"," << NRSDS << "]",0.0)
+ENDIF
+ENDIF
+ENDIF
+WNP("/Tool/Toolcarrier/tcCarr23[u"<< NRCH <<","<< NRSDS <<"]",INDEX_KINEM)
+CALL("INITIALISIERUNG")
+CALL("KINEMATIK")
+END_CHANGE
+CHANGE(A_NRSDS)
+IF VSK_AK==0
+NRSDS=A_NRSDS
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==1
+NRSDS=1
+EndIf
+CALL("LOAD_NAME")
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG")
+INIT_1=1
+CALL("FREIFAHREN")
+CALL("KINEMATIK")
+INIT_1=0
+If SWDSNAME==""
+FOC="SWDSNAME"
+EndIf
+A_NRSDS=NRSDS
+EndIf
+END_CHANGE
+CHANGE(SWAOSM)
+IF REG[10] == 0
+SWAOSM = $82055
+REG[10] = 1
+ELSE
+IF REG[10] == 1
+SWAOSM = $82053
+REG[10] = 2
+ELSE
+IF REG[10] == 2
+SWAOSM = $82054
+REG[10] = 0
+ENDIF
+ENDIF
+ENDIF
+CALL("ANZ_OPT_RECH")
+END_CHANGE
+CHANGE(SWAOAWZ)
+IF REG[16] == 0
+SWAOAWZ = $82022
+REG[16] = 1
+ELSE
+SWAOAWZ = $82023
+REG[16] = 0
+ENDIF
+CALL("ANZ_OPT_RECH")
+END_CHANGE
+CHANGE(SWAONWZ)
+IF REG[15] == 0
+SWAONWZ = $82022
+REG[15] = 1
+ELSE
+SWAONWZ = $82023
+REG[15] = 0
+ENDIF
+CALL("ANZ_OPT_RECH")
+END_CHANGE
+CHANGE(SWAOVR)
+IF INDEX_SWAOVR == 0
+REG[13] = 1
+REG[14] = 0
+SWAOVR = $82056
+INDEX_SWAOVR =1
+ELSE
+IF INDEX_SWAOVR == 1
+REG[13] = 1
+REG[14] = 1
+SWAOVR = $82057
+INDEX_SWAOVR =2
+ELSE
+IF INDEX_SWAOVR == 2
+REG[13] = 0
+REG[14] = 1
+SWAOVR = $82023
+INDEX_SWAOVR =0
+ENDIF
+ENDIF
+ENDIF
+CALL("ANZ_OPT_RECH")
+END_CHANGE
+CHANGE(SWFRMOD)
+IF REG[17] == 0
+SWFRMOD = $82032
+REG[17] = 1
+ELSE
+SWFRMOD = $82031
+REG[17] = 0
+ENDIF
+CALL("FREIFAHREN")
+CALL("ANZ_OPT_RECH")
+END_CHANGE
+CHANGE(SWFRPOSZ)
+If CH_Z==1
+If SWFRPOSZ.VLD==0
+SWFRPOSZ=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr40[u"<< NRCH <<"," << NRSDS << "]",SWFRPOSZ)
+EndIf
+CH_Z=1
+END_CHANGE
+CHANGE(SWFRPOSX)
+If CH_X==1
+If SWFRPOSX.VLD==0
+SWFRPOSX=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr38[u"<< NRCH <<"," << NRSDS << "]",SWFRPOSX)
+EndIf
+CH_X=1
+END_CHANGE
+CHANGE(SWFRPOSY)
+If CH_Y==1
+If SWFRPOSY.VLD==0
+SWFRPOSY=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr39[u"<< NRCH <<"," << NRSDS << "]",SWFRPOSY)
+EndIf
+CH_Y=1
+END_CHANGE
+CHANGE(PL1_SWOVI1X)
+If PL1_SWOVI1X.VLD==0
+PL1_SWOVI1X=0.0
+EndIf
+IF INDEX_KINEM == "P"
+WNP("/Tool/Toolcarrier/tcCarr4[u"<< NRCH <<"," << NRSDS << "]",PL1_SWOVI1X)
+Else
+WNP("/Tool/Toolcarrier/tcCarr1[u"<< NRCH <<"," << NRSDS << "]",PL1_SWOVI1X)
+EndIf
+END_CHANGE
+CHANGE(PL1_SWOVI1Y)
+If PL1_SWOVI1Y.VLD==0
+PL1_SWOVI1Y=0.0
+EndIf
+IF INDEX_KINEM == "P"
+WNP("/Tool/Toolcarrier/tcCarr5[u"<< NRCH <<"," << NRSDS << "]",PL1_SWOVI1Y)
+Else
+WNP("/Tool/Toolcarrier/tcCarr2[u"<< NRCH <<"," << NRSDS << "]",PL1_SWOVI1Y)
+EndIf
+END_CHANGE
+CHANGE(PL1_SWOVI1Z)
+If PL1_SWOVI1Z.VLD==0
+PL1_SWOVI1Z=0.0
+EndIf
+IF INDEX_KINEM == "P"
+WNP("/Tool/Toolcarrier/tcCarr6[u"<< NRCH <<"," << NRSDS << "]",PL1_SWOVI1Z)
+Else
+WNP("/Tool/Toolcarrier/tcCarr3[u"<< NRCH <<"," << NRSDS << "]",PL1_SWOVI1Z)
+EndIf
+END_CHANGE
+CHANGE(PL2_SWDVV1X)
+If PL2_SWDVV1X.VLD==0
+PL2_SWDVV1X=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr7[u"<< NRCH <<"," << NRSDS << "]",PL2_SWDVV1X)
+END_CHANGE
+CHANGE(PL2_SWDVV1Y)
+If PL2_SWDVV1Y.VLD==0
+PL2_SWDVV1Y=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr8[u"<< NRCH <<"," << NRSDS << "]",PL2_SWDVV1Y)
+END_CHANGE
+CHANGE(PL2_SWDVV1Z)
+If PL2_SWDVV1Z.VLD==0
+PL2_SWDVV1Z=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr9[u"<< NRCH <<"," << NRSDS << "]",PL2_SWDVV1Z)
+END_CHANGE
+CHANGE(PL3_SWOVI2X)
+If PL3_SWOVI2X.VLD==0
+PL3_SWOVI2X=0.0
+EndIf
+IF INDEX_KINEM == "P"
+WNP("/Tool/Toolcarrier/tcCarr15[u"<< NRCH <<"," << NRSDS << "]",PL3_SWOVI2X)
+Else
+WNP("/Tool/Toolcarrier/tcCarr4[u"<< NRCH <<"," << NRSDS << "]",PL3_SWOVI2X)
+EndIf
+END_CHANGE
+CHANGE(PL3_SWOVI2Y)
+If PL3_SWOVI2Y.VLD==0
+PL3_SWOVI2Y=0.0
+EndIf
+IF INDEX_KINEM == "P"
+WNP("/Tool/Toolcarrier/tcCarr16[u"<< NRCH <<"," << NRSDS << "]",PL3_SWOVI2Y)
+Else
+WNP("/Tool/Toolcarrier/tcCarr5[u"<< NRCH <<"," << NRSDS << "]",PL3_SWOVI2Y)
+EndIf
+END_CHANGE
+CHANGE(PL3_SWOVI2Z)
+If PL3_SWOVI2Z.VLD==0
+PL3_SWOVI2Z=0.0
+EndIf
+IF INDEX_KINEM == "P"
+WNP("/Tool/Toolcarrier/tcCarr17[u"<< NRCH <<"," << NRSDS << "]",PL3_SWOVI2Z)
+Else
+WNP("/Tool/Toolcarrier/tcCarr6[u"<< NRCH <<"," << NRSDS << "]",PL3_SWOVI2Z)
+EndIf
+END_CHANGE
+CHANGE(PL4_SWDVV2X)
+If PL4_SWDVV2X.VLD==0
+PL4_SWDVV2X=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr10[u"<< NRCH <<"," << NRSDS << "]",PL4_SWDVV2X)
+END_CHANGE
+CHANGE(PL4_SWDVV2Y)
+If PL4_SWDVV2Y.VLD==0
+PL4_SWDVV2Y=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr11[u"<< NRCH <<"," << NRSDS << "]",PL4_SWDVV2Y)
+END_CHANGE
+CHANGE(PL4_SWDVV2Z)
+If PL4_SWDVV2Z.VLD==0
+PL4_SWDVV2Z=0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr12[u"<< NRCH <<"," << NRSDS << "]",PL4_SWDVV2Z)
+END_CHANGE
+CHANGE(PL4_SWOVI3X)
+If PL4_SWOVI3X.VLD==0
+PL4_SWOVI3X=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr15[u"<< NRCH <<"," << NRSDS << "]",PL4_SWOVI3X)
+END_CHANGE
+CHANGE(PL4_SWOVI3Y)
+If PL4_SWOVI3Y.VLD==0
+PL4_SWOVI3Y=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr16[u"<< NRCH <<"," << NRSDS << "]",PL4_SWOVI3Y)
+END_CHANGE
+CHANGE(PL4_SWOVI3Z)
+If PL4_SWOVI3Z.VLD==0
+PL4_SWOVI3Z=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr17[u"<< NRCH <<"," << NRSDS << "]",PL4_SWOVI3Z)
+END_CHANGE
+CHANGE(PL5_SWOVI3X)
+If PL5_SWOVI3X.VLD==0
+PL5_SWOVI3X=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr15[u"<< NRCH <<"," << NRSDS << "]",PL5_SWOVI3X)
+END_CHANGE
+CHANGE(PL5_SWOVI3Y)
+If PL5_SWOVI3Y.VLD==0
+PL5_SWOVI3Y=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr16[u"<< NRCH <<"," << NRSDS << "]",PL5_SWOVI3Y)
+END_CHANGE
+CHANGE(PL5_SWOVI3Z)
+If PL5_SWOVI3Z.VLD==0
+PL5_SWOVI3Z=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr17[u"<< NRCH <<"," << NRSDS << "]",PL5_SWOVI3Z)
+END_CHANGE
+CHANGE(PL5_SWOVI4X)
+If PL5_SWOVI4X.VLD==0
+PL5_SWOVI4X=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr18[u"<< NRCH <<"," << NRSDS << "]",PL5_SWOVI4X)
+END_CHANGE
+CHANGE(PL5_SWOVI4Y)
+If PL5_SWOVI4Y.VLD==0
+PL5_SWOVI4Y=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr19[u"<< NRCH <<"," << NRSDS << "]",PL5_SWOVI4Y)
+END_CHANGE
+CHANGE(PL5_SWOVI4Z)
+If PL5_SWOVI4Z.VLD==0
+PL5_SWOVI4Z=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr20[u"<< NRCH <<"," << NRSDS << "]",PL5_SWOVI4Z)
+END_CHANGE
+CHANGE(PL5_SWDVV2X)
+If PL5_SWDVV2X.VLD==0
+PL5_SWDVV2X=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr10[u"<< NRCH <<"," << NRSDS << "]",PL5_SWDVV2X)
+END_CHANGE
+CHANGE(PL5_SWDVV2Y)
+If PL5_SWDVV2Y.VLD==0
+PL5_SWDVV2Y=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr11[u"<< NRCH <<"," << NRSDS << "]",PL5_SWDVV2Y)
+END_CHANGE
+CHANGE(PL5_SWDVV2Z)
+If PL5_SWDVV2Z.VLD==0
+PL5_SWDVV2Z=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr12[u"<< NRCH <<"," << NRSDS << "]",PL5_SWDVV2Z)
+END_CHANGE
+CHANGE(PL6_SWOVI4X)
+If PL6_SWOVI4X.VLD==0
+PL6_SWOVI4X=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr18[u"<< NRCH <<"," << NRSDS << "]",PL6_SWOVI4X)
+END_CHANGE
+CHANGE(PL6_SWOVI4Y)
+If PL6_SWOVI4Y.VLD==0
+PL6_SWOVI4Y=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr19[u"<< NRCH <<"," << NRSDS << "]",PL6_SWOVI4Y)
+END_CHANGE
+CHANGE(PL6_SWOVI4Z)
+If PL6_SWOVI4Z.VLD==0
+PL6_SWOVI4Z=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr20[u"<< NRCH <<"," << NRSDS << "]",PL6_SWOVI4Z)
+END_CHANGE
+LOAD
+ANZ_DATS_PRO_CH=RNP("$MN_MM_NUM_TOOL_CARRIER")
+If ANZ_DATS_PRO_CH==0
+DLGL("")
+EXIT
+EndIf
+CH_Z=0
+CH_Y=0
+CH_X=0
+VSK_AK=1
+REG[0]=0
+REG[1]=0
+If SYSTEM ==1
+LEVEL=RNP("/Nck/Configuration/accessLevel")
+Else
+LEVEL=RNP("P_N_Y_accessLevel")
+EndIf
+If LEVEL <= 1
+VS6.st=$82103
+VS6.se=1
+VS7.st=$82102
+VS7.se=1
+EndIf
+LB("UPS_1")
+LB("UPS_1u2")
+ANZ_CHANNELS = RNP("/Nck/Configuration/numChannels")
+IF ANZ_CHANNELS == 0
+ANZ_CHANNELS = 1
+ENDIF
+If System==1
+NRCH=RNP("/nck/nck/channel")
+Else
+NRCH=RNP("DB19.DBB22")
+EndIf
+NRCH=NRCH-1
+CALL("SU_KAPL")
+SUCH=0
+NRSDS = 1
+CALL("ERM_ANZDATS")
+CALL("SET_SFKEYS")
+If System==1
+NRCH=RNP("/nck/nck/channel")
+Else
+NRCH=RNP("DB19.DBB22")
+EndIf
+Hd = $82044<< NRCH
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG")
+CALL("FREIFAHREN")
+CALL("KINEMATIK")
+SWAOAWZ = $82023
+REG[16] = 0
+CALL("ANZ_OPT_RECH")
+A_NRSDS=NRSDS
+FOC="SWKINEM"
+L_FOC="SWKINEM"
+DLGL("")
+VSK_AK=0
+END_LOAD
+OUTPUT(NC0,0)
+"N10 $TC_CARR1[" NRSDS "]=" TC1
+"N20 $TC_CARR2[" NRSDS "]=" TC2
+"N30 $TC_CARR3[" NRSDS "]=" TC3
+"N40 $TC_CARR4[" NRSDS "]=" TC4
+"N50 $TC_CARR5[" NRSDS "]=" TC5
+"N60 $TC_CARR6[" NRSDS "]=" TC6
+"N70 $TC_CARR7[" NRSDS "]=" TC7
+"N80 $TC_CARR8[" NRSDS "]=" TC8
+"N90 $TC_CARR9[" NRSDS "]=" TC9
+"N100 $TC_CARR10[" NRSDS "]=" TC10
+"N110 $TC_CARR11[" NRSDS "]=" TC11
+"N120 $TC_CARR12[" NRSDS "]=" TC12
+"N130 $TC_CARR13[" NRSDS "]=" TC13
+"N140 $TC_CARR14[" NRSDS "]=" TC14
+"N150 $TC_CARR15[" NRSDS "]=" TC15
+"N160 $TC_CARR16[" NRSDS "]=" TC16
+"N170 $TC_CARR17[" NRSDS "]=" TC17
+"N180 $TC_CARR18[" NRSDS "]=" TC18
+"N190 $TC_CARR19[" NRSDS "]=" TC19
+"N200 $TC_CARR20[" NRSDS "]=" TC20
+"N210 $TC_CARR21[" NRSDS "]=" TC21
+"N220 $TC_CARR22[" NRSDS "]=" TC22
+"N230 $TC_CARR23[" NRSDS "]=" """" TC23 """"
+"N240 $TC_CARR24[" NRSDS "]=" TC24
+"N250 $TC_CARR25[" NRSDS "]=" TC25
+"N260 $TC_CARR26[" NRSDS "]=" TC26
+"N270 $TC_CARR27[" NRSDS "]=" TC27
+"N280 $TC_CARR28[" NRSDS "]=" TC28
+"N290 $TC_CARR29[" NRSDS "]=" TC29
+"N300 $TC_CARR30[" NRSDS "]=" TC30
+"N310 $TC_CARR31[" NRSDS "]=" TC31
+"N320 $TC_CARR32[" NRSDS "]=" TC32
+"N330 $TC_CARR33[" NRSDS "]=" TC33
+"N340 $TC_CARR34[" NRSDS "]=" """" TC34 """"
+"N350 $TC_CARR35[" NRSDS "]=" """" TC35 """"
+"N360 $TC_CARR36[" NRSDS "]=" """" TC36 """"
+"N370 $TC_CARR37[" NRSDS "]=" TC37
+"N380 $TC_CARR38[" NRSDS "]=" TC38
+"N390 $TC_CARR39[" NRSDS "]=" TC39
+"N400 $TC_CARR40[" NRSDS "]=" TC40
+"M30"
+END_OUTPUT
+//END
+//M(SCHWENK1b/$82045/)
+DEF SWKINEM=(S/*//,$82046/wr1,ac1///8,29,80/80,29,195/),
+SWDSNAME=(S32///,$82001/wr1,ac1///275,29,50/325,29,160/),
+A_NRSDS=(I///,$82118/wr1,ac1///485,29,24/510,29,16/),
+PL0_L=(V////wr1///0,49,0/5,49,560,1/,10/)
+DEF SWDRA1=(S////wr1///5,68,0/5,68,120,17/),
+SWDRA1BEZ=(V///,$82058/wr2,ac1///110,68,80/220,68,90/),
+SWDRA1MOD=(S/*//,$82059/wr2,ac1///330,68,95/430,68,90/),
+SWDRA1BEZ_L=(V////wr1///5,68,0/5,84,530,1/,1/),
+SWDRA1WBMIN=(R///,$82061/wr2,ac1///110,97,105/220,97,90/),
+SWDRA1WBMAX=(R///,"-",,$82012/wr2,ac1///360,97,20/430,97,140/),
+SWDRA1HI=(S/*//,$82063/wr2,ac1///110,137,105/220,137,90/),
+SWDRA1WOFF=(R///,"",,$82012/wr0,ac1///325,118,105/430,118,140/),
+SWDRA1AK=(R///,$82221,,/wr2,ac1///110,118,105/220,118,90/),
+SWDRA1WR=(R///,"",,$82012/wr0,ac1///325,137,105/430,137,140/),
+SWDRA1WR_L=(V////wr1///5,162,0/5,156,560,1/,10/)
+DEF SWDRA2=(S////wr1///5,168,0/5,168,120,17/),
+SWDRA2BEZ=(V///,$82058/wr2,ac1///110,168,80/220,168,90/),
+SWDRA2MOD=(S/*//,$82059/wr2,ac1///330,168,95/430,168,90/),
+SWDRA2BEZ_L=(V////wr1///5,184,0/5,184,530,1/,1/),
+SWDRA2WBMIN=(R///,$82061/wr2,ac1///110,197,105/220,197,90/),
+SWDRA2WBMAX=(R///,"-",,$82012/wr2,ac1///360,197,20/430,197,140/),
+SWDRA2HI=(S/*//,$82063/wr2,ac1///110,240,105/220,240,90/),
+SWDRA2WOFF=(R///,"",,$82012/wr0,ac1///325,221,105/430,221,140/),
+SWDRA2AK=(R/ //,$82221/wr2,ac1///110,221,105/220,221,90/),
+SWDRA2WR=(R///,"",,$82012/wr0,ac1///325,240,105/430,240,140/),
+SWDRA2WR_L=(V////wr1///35,259,0/5,259,560,1/,10/)
+DEF SDW_T=(S////wr1,ac1///3,271,0/5,271,200/),
+SWDATWE=(S/*///wr2,ac1///200,271,0/220,271,90/),
+WZW_T=(S////wr1,ac1///3,290,0/5,290,200/),
+WZW=(S/*///wr2,ac1///35,290,0/220,290,90/)
+DEF HILF = (I////wr0///10,10,0/10,10,0/)
+DEF INDEX_KINEM
+DEF INIT_2
+DEF ERROR_BOX
+DEF ERROR_STR
+DEF INDEX_SWDRA1SWE
+DEF INDEX_SWDRA2SWE
+DEF INDEX_SWDRA1HI
+DEF INDEX_SWDRA2HI
+DEF CH_S1
+DEF CH_S2
+DEF HM_ADAT
+DEF SUCH
+DEF L_FOC
+DEF VSK_AK
+DEF LOBL_AK
+DEF HM_TV
+HS1=("",,se2)
+HS2=("",,se2)
+HS3=("",,se2)
+HS4=("",,se2)
+HS5=("",,se2)
+HS6=("",,se2)
+HS7=("",,sw2)
+HS8=("",,se2)
+VS1=("",,se2)
+VS2=("",,se2)
+VS3=("",,se2)
+VS4=("",,se2)
+VS5=($82083,,se1)
+VS6=("",,se2)
+VS7=("",,se2)
+VS8=("",,se2)
+RECALL=()
+FOCUS
+If FOC=="SWDRA1MOD" OR L_FOC=="SWDRA1BEZ"
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+EndIf
+If ISNUM(SWDRA1BEZ)==1
+EndIf
+EndIf
+L_FOC=FOC
+END_FOCUS
+PRESS(SD)
+If FOC=="SWDRA1BEZ"
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+DLGL($80520<<$82058)
+EndIf
+If ISNUM(SWDRA1BEZ)==1
+DLGL($80593<<$82058)
+EndIf
+EndIf
+If FOC=="SWDRA2BEZ"
+If SWDRA2BEZ.VLD==0 OR SWDRA2BEZ==""
+DLGL($80520<<$82058)
+EndIf
+If ISNUM(SWDRA2BEZ)==1
+DLGL($80593<<$82058)
+EndIf
+EndIf
+END_PRESS
+PRESS(SR)
+If FOC=="SWDRA1BEZ"
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+DLGL($80520<<$82058)
+EndIf
+If ISNUM(SWDRA1BEZ)==1
+DLGL($80593<<$82058)
+EndIf
+EndIf
+If FOC=="SWDRA2BEZ"
+If SWDRA2BEZ.VLD==0 OR SWDRA2BEZ==""
+DLGL($80520<<$82058)
+EndIf
+If ISNUM(SWDRA2BEZ)==1
+DLGL($80593<<$82058)
+EndIf
+EndIf
+END_PRESS
+PRESS(VS5)
+DLGL("")
+EXIT(ANZ_DATS_PRO_CH,NRSDS,ANZ_CHANNELS,NRCH)
+END_PRESS
+PRESS(VS1)
+CALL("SU_KAPL")
+SUCH=0
+CALL("ERM_ANZDATS")
+CALL("SET_SFKEYS")
+CALL("LOAD_NAME")
+Hd = $82045<< NRCH
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG_2")
+A_NRSDS=NRSDS
+DLGL("")
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+FOC="SWDRA1BEZ"
+EndIf
+END_PRESS
+PRESS(VS2)
+CALL("SU_KAMI")
+SUCH=0
+CALL("ERM_ANZDATS")
+CALL("SET_SFKEYS")
+CALL("LOAD_NAME")
+Hd = $82045<< NRCH
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG_2")
+A_NRSDS=NRSDS
+DLGL("")
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+FOC="SWDRA1BEZ"
+EndIf
+END_PRESS
+PRESS(VS3)
+VSK_AK=1
+NRSDS = NRSDS + 1
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==1
+NRSDS=1
+EndIf
+CALL("LOAD_NAME")
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG_2")
+A_NRSDS=NRSDS
+VSK_AK=0
+DLGL("")
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+FOC="SWDRA1BEZ"
+EndIf
+END_PRESS
+PRESS(VS4)
+VSK_AK=1
+IF NRSDS > 1
+NRSDS = NRSDS - 1
+CALL("LOAD_NAME")
+ENDIF
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG_2")
+A_NRSDS=NRSDS
+VSK_AK=0
+DLGL("")
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+FOC="SWDRA1BEZ"
+EndIf
+END_PRESS
+CHANGE(A_NRSDS)
+LOBL_AK=1
+IF VSK_AK==0
+NRSDS=A_NRSDS
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==1
+NRSDS=1
+EndIf
+CALL("LOAD_NAME")
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG_2")
+A_NRSDS=NRSDS
+EndIf
+LOBL_AK=0
+END_CHANGE
+CHANGE(SWDRA1HI)
+If LOBL_AK==0
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+IF INDEX_SWDRA1HI == 1
+INDEX_SWDRA1HI = 0
+ELSE
+INDEX_SWDRA1HI = 1
+ENDIF
+CALL("HIRTH_1")
+END_CHANGE
+CHANGE(SWDRA2HI)
+If LOBL_AK==0
+If SWDRA2BEZ.VLD==0 OR SWDRA2BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+IF INDEX_SWDRA2HI == 1
+INDEX_SWDRA2HI = 0
+ELSE
+INDEX_SWDRA2HI = 1
+ENDIF
+CALL("HIRTH_2")
+END_CHANGE
+CHANGE(SWDRA1AK)
+If LOBL_AK==0
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+DLGL($80520<<$82058)
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr24[u"<< NRCH <<"," << NRSDS << "]",SWDRA1AK)
+DEBUG("SWDRA1AK_S: "<<SWDRA1AK)
+EndIf
+END_CHANGE
+CHANGE(SWDRA2AK)
+If LOBL_AK==0
+If SWDRA2BEZ.VLD==0 OR SWDRA2BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr25[u"<< NRCH <<"," << NRSDS << "]",SWDRA2AK)
+END_CHANGE
+CHANGE(SWDRA1MOD)
+If LOBL_AK==0
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+IF REG[11] == 0
+SWDRA1MOD = $82064
+REG[11] = 1
+ELSE
+If REG[11] ==1
+SWDRA1MOD = $82220
+REG[11] = 2
+Else
+SWDRA1MOD = $82065
+REG[11] = 0
+EndIf
+ENDIF
+CALL("ANZ_OPT_RECH")
+END_CHANGE
+CHANGE(SWDRA2MOD)
+If LOBL_AK==0
+If SWDRA2BEZ.VLD==0 OR SWDRA2BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+IF REG[12] == 0
+SWDRA2MOD = $82064
+REG[12] = 1
+ELSE
+If REG[12] ==1
+SWDRA2MOD = $82220
+REG[12] = 2
+Else
+SWDRA2MOD = $82065
+REG[12] = 0
+EndIf
+ENDIF
+CALL("ANZ_OPT_RECH")
+END_CHANGE
+CHANGE(SWDRA1BEZ)
+If SWDRA1BEZ.VLD==0
+SWDRA1BEZ=""
+WNP("/Tool/Toolcarrier/tcCarr35[u"<< NRCH <<"," << NRSDS << "]",SWDRA1BEZ)
+EndIf
+If ISNUM(SWDRA1BEZ)==0
+If SWDRA1BEZ.VLD==0
+SWDRA1BEZ=""
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr35[u"<< NRCH <<"," << NRSDS << "]",SWDRA1BEZ)
+Else
+If CH_S1==1
+DLGL($80520<<$82058)
+FOC="SWDRA1BEZ"
+EndIf
+EndIf
+CH_S1=1
+END_CHANGE
+CHANGE(SWDRA2BEZ)
+If SWDRA2BEZ.VLD==0
+SWDRA2BEZ=""
+WNP("/Tool/Toolcarrier/tcCarr36[u"<< NRCH <<"," << NRSDS << "]",SWDRA2BEZ)
+EndIf
+If ISNUM(SWDRA2BEZ)==0
+WNP("/Tool/Toolcarrier/tcCarr36[u"<< NRCH <<"," << NRSDS << "]",SWDRA2BEZ)
+Else
+If CH_S2==1
+DLGL($80520<<$82058)
+FOC="SWDRA2BEZ"
+EndIf
+EndIf
+CH_S2=1
+END_CHANGE
+CHANGE(SWDRA1WBMIN)
+If LOBL_AK==0
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+REG[0]="SWDRA1WBMIN"
+REG[22]=$82061
+CALL("CHECK_2")
+IF REG[1]==0
+If SWDRA1WBMIN.VLD==0
+SWDRA1WBMIN=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr30[u"<< NRCH <<"," << NRSDS << "]",SWDRA1WBMIN)
+ELSE
+SWDRA1WBMIN=RNP("/Tool/Toolcarrier/tcCarr30[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+END_CHANGE
+CHANGE(SWDRA1WBMAX)
+If LOBL_AK==0
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+REG[0]="SWDRA1WBMAX"
+REG[22]=$82061
+CALL("CHECK_2")
+IF REG[1]==0
+If SWDRA1WBMAX.VLD==0
+SWDRA1WBMAX=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr32[u"<< NRCH <<"," << NRSDS << "]",SWDRA1WBMAX)
+ELSE
+SWDRA1WBMAX=RNP("/Tool/Toolcarrier/tcCarr32[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+END_CHANGE
+CHANGE(SWDRA2WBMIN)
+If LOBL_AK==0
+If SWDRA2BEZ.VLD==0 OR SWDRA2BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+REG[0]="SWDRA2WBMIN"
+REG[22]=$82061
+CALL("CHECK_2")
+IF REG[1]==0
+If SWDRA2WBMIN.VLD==0
+SWDRA2WBMIN=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr31[u"<< NRCH <<"," << NRSDS << "]",SWDRA2WBMIN)
+ELSE
+SWDRA2WBMIN=RNP("/Tool/Toolcarrier/tcCarr31[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+END_CHANGE
+CHANGE(SWDRA2WBMAX)
+If LOBL_AK==0
+If SWDRA2BEZ.VLD==0 OR SWDRA2BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+REG[0]="SWDRA2WBMAX"
+REG[22]=$82061
+CALL("CHECK_2")
+IF REG[1]==0
+If SWDRA2WBMAX.VLD==0
+SWDRA2WBMAX=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr33[u"<< NRCH <<"," << NRSDS << "]",SWDRA2WBMAX)
+ELSE
+SWDRA2WBMAX=RNP("/Tool/Toolcarrier/tcCarr33[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+END_CHANGE
+CHANGE(SWDRA1WOFF)
+If LOBL_AK==0
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+REG[0]="SWDRA1WOFF"
+REG[22]=$82081
+CALL("CHECK_2")
+IF REG[1]==0
+If SWDRA1WOFF.VLD==0
+SWDRA1WOFF=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr26[u"<< NRCH <<"," << NRSDS << "]",SWDRA1WOFF)
+ELSE
+SWDRA1WOFF=RNP("/Tool/Toolcarrier/tcCarr26[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+END_CHANGE
+CHANGE(SWDRA2WOFF)
+If LOBL_AK==0
+If SWDRA2BEZ.VLD==0 OR SWDRA2BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+REG[0]="SWDRA2WOFF"
+REG[22]=$82081
+CALL("CHECK_2")
+IF REG[1]==0
+If SWDRA2WOFF.VLD==0
+SWDRA2WOFF=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr27[u"<< NRCH <<"," << NRSDS << "]",SWDRA2WOFF)
+ELSE
+SWDRA2WOFF=RNP("/Tool/Toolcarrier/tcCarr27[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+END_CHANGE
+CHANGE(SWDRA1WR)
+If LOBL_AK==0
+If SWDRA1BEZ.VLD==0 OR SWDRA1BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+REG[0]="SWDRA1WR"
+REG[22]=$82082
+CALL("CHECK_2")
+IF REG[1]==0
+If SWDRA1WR.VLD==0
+SWDRA1WR=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr28[u"<< NRCH <<"," << NRSDS << "]",SWDRA1WR)
+ELSE
+SWDRA1WR=RNP("/Tool/Toolcarrier/tcCarr28[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+END_CHANGE
+CHANGE(SWDRA2WR)
+If LOBL_AK==0
+If SWDRA2BEZ.VLD==0 OR SWDRA2BEZ==""
+DLGL($80520<<$82058)
+EndIf
+EndIf
+REG[0]="SWDRA2WR"
+REG[22]=$82082
+CALL("CHECK_2")
+IF REG[1]==0
+If SWDRA2WR.VLD==0
+SWDRA2WR=0.0
+EndIf
+WNP("/Tool/Toolcarrier/tcCarr29[u"<< NRCH <<"," << NRSDS << "]",SWDRA2WR)
+ELSE
+SWDRA2WR=RNP("/Tool/Toolcarrier/tcCarr29[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+END_CHANGE
+CHANGE(SWDATWE)
+If SWDATWE ==$82023
+SWDATWE=$82064
+If SWKINEM <> $82052
+WZW_T.wr=1
+WZW_T=$82117
+WZW.wr=2
+EndIf
+Else
+If SWDATWE ==$82064
+SWDATWE=$82065
+Else
+SWDATWE=$82023
+WZW_T.wr=0
+WZW.wr=0
+EndIf
+EndIf
+CALL("ERM_DS_WZ")
+CALL("ANZ_OPT_RECH")
+END_CHANGE
+CHANGE(WZW)
+If WZW ==$82065
+WZW=$82064
+Else
+WZW=$82065
+EndIf
+CALL("ERM_DS_WZ")
+CALL("ANZ_OPT_RECH")
+END_CHANGE
+LOAD
+SDW_T=$82116
+WZW_T=$82117
+CH_S1=0
+CH_S2=0
+LOBL_AK=1
+SWDRA1=$82056
+SWDRA2=$82057
+INDEX_SWDRA1SWE = 0
+INDEX_SWDRA2SWE = 0
+REG[0]=0
+REG[1]=0
+LB("UPS_1u2")
+LB("UPS_2")
+CALL("SET_SFKEYS")
+Hd = $82045<< NRCH
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG_2")
+FOC="SWDRA1BEZ"
+L_FOC="SWDRA1BEZ"
+A_NRSDS=NRSDS
+LOBL_AK=0
+END_LOAD
+//END
+//B(UPS_1)
+SUB(SWD_LOE)
+INIT_1=1
+WNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]",0)
+WNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]","")
+WNP("/Tool/Toolcarrier/tcCarr35[u"<< NRCH <<"," << NRSDS << "]","")
+WNP("/Tool/Toolcarrier/tcCarr36[u"<< NRCH <<"," << NRSDS << "]","")
+WNP("/Tool/Toolcarrier/tcCarr38[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr39[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr40[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr1[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr2[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr3[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr4[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr5[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr6[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr7[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr8[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr9[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr10[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr11[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr12[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr15[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr16[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr17[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr18[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr19[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr20[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr23[u"<< NRCH <<","<< NRSDS <<"]","T")
+WNP("/Tool/Toolcarrier/tcCarr26[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr27[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr28[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr29[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr30[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr31[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr32[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr33[u"<< NRCH <<"," << NRSDS << "]",0.0)
+WNP("/Tool/Toolcarrier/tcCarr35[u"<< NRCH <<"," << NRSDS << "]","")
+WNP("/Tool/Toolcarrier/tcCarr36[u"<< NRCH <<"," << NRSDS << "]","")
+CALL("ANZ_OPT_DECO")
+CALL("LESEN_KIN")
+CALL("INITIALISIERUNG")
+CALL("FREIFAHREN")
+CALL("KINEMATIK")
+INIT_1=0
+END_SUB
+SUB(CHECK_1)
+REG[1]=0
+IF INIT_1 ==0
+IF REG[0] == "SWDSNAME"
+IF SWDSNAME == ""
+IF ANZ_DATS_PRO_CH == 1
+ELSE
+DLGL($80520<<$82001)
+FOC_S=1
+ENDIF
+Else
+DLGL("")
+EndIf
+ENDIF
+ENDIF
+END_SUB
+SUB(KINEMATIK)
+IF INDEX_KINEM == "T"
+PL1_BEZ.st=$82067
+PL1_SWOVI1X.wr=2
+PL1_SWOVI1Y.wr=2
+PL1_SWOVI1Z.wr=2
+PL2_BEZ.st=$82071
+PL2_SWDVV1X.wr=2
+PL2_SWDVV1Y.wr=2
+PL2_SWDVV1Z.wr=2
+PL3_BEZ.st=$82068
+PL3_SWOVI2X.wr=2
+PL3_SWOVI2Y.wr=2
+PL3_SWOVI2Z.wr=2
+PL4_BEZ.st=$82072
+PL4_SWDVV2X.wr=2
+PL4_SWDVV2Y.wr=2
+PL4_SWDVV2Z.wr=2
+PL4_SWOVI3X.wr=0
+PL4_SWOVI3Y.wr=0
+PL4_SWOVI3Z.wr=0
+PL5_BEZ.st=$82069
+PL5_SWOVI3X.wr=2
+PL5_SWOVI3Y.wr=2
+PL5_SWOVI3Z.wr=2
+PL5_SWDVV2X.wr=0
+PL5_SWDVV2Y.wr=0
+PL5_SWDVV2Z.wr=0
+PL5_SWOVI4X.wr=0
+PL5_SWOVI4Y.wr=0
+PL5_SWOVI4Z.wr=0
+PL6_BEZ.st=""
+PL6_SWOVI4X.wr=0
+PL6_SWOVI4Y.wr=0
+PL6_SWOVI4Z.wr=0
+ENDIF
+IF INDEX_KINEM == "P"
+PL1_BEZ.st=$82068
+PL1_SWOVI1X.wr=2
+PL1_SWOVI1Y.wr=2
+PL1_SWOVI1Z.wr=2
+PL2_BEZ.st=$82071
+PL2_SWDVV1X.wr=2
+PL2_SWDVV1Y.wr=2
+PL2_SWDVV1Z.wr=2
+PL3_BEZ.st=$82069
+PL3_SWOVI2X.wr=2
+PL3_SWOVI2Y.wr=2
+PL3_SWOVI2Z.wr=2
+PL4_BEZ.st=$82072
+PL4_SWDVV2X.wr=2
+PL4_SWDVV2Y.wr=2
+PL4_SWDVV2Z.wr=2
+PL4_SWOVI3X.wr=0
+PL4_SWOVI3Y.wr=0
+PL4_SWOVI3Z.wr=0
+PL5_BEZ.st=$82070
+PL5_SWOVI3X.wr=0
+PL5_SWOVI3Y.wr=0
+PL5_SWOVI3Z.wr=0
+PL5_SWDVV2X.wr=0
+PL5_SWDVV2Y.wr=0
+PL5_SWDVV2Z.wr=0
+PL5_SWOVI4X.wr=2
+PL5_SWOVI4Y.wr=2
+PL5_SWOVI4Z.wr=2
+PL6_BEZ.st=""
+PL6_SWOVI4X.wr=0
+PL6_SWOVI4Y.wr=0
+PL6_SWOVI4Z.wr=0
+ENDIF
+IF INDEX_KINEM == "M"
+PL1_BEZ.st=$82067
+PL1_SWOVI1X.wr=2
+PL1_SWOVI1Y.wr=2
+PL1_SWOVI1Z.wr=2
+PL2_BEZ.st=$82071
+PL2_SWDVV1X.wr=2
+PL2_SWDVV1Y.wr=2
+PL2_SWDVV1Z.wr=2
+PL3_BEZ.st=$82068
+PL3_SWOVI2X.wr=2
+PL3_SWOVI2Y.wr=2
+PL3_SWOVI2Z.wr=2
+PL4_BEZ.st=$82069
+PL4_SWDVV2X.wr=0
+PL4_SWDVV2Y.wr=0
+PL4_SWDVV2Z.wr=0
+PL4_SWOVI3X.wr=2
+PL4_SWOVI3Y.wr=2
+PL4_SWOVI3Z.wr=2
+PL5_BEZ.st=$82072
+PL5_SWOVI3X.wr=0
+PL5_SWOVI3Y.wr=0
+PL5_SWOVI3Z.wr=0
+PL5_SWDVV2X.wr=2
+PL5_SWDVV2Y.wr=2
+PL5_SWDVV2Z.wr=2
+PL5_SWOVI4X.wr=0
+PL5_SWOVI4Y.wr=0
+PL5_SWOVI4Z.wr=0
+PL6_BEZ.st=$82070
+PL6_SWOVI4X.wr=2
+PL6_SWOVI4Y.wr=2
+PL6_SWOVI4Z.wr=2
+PL6_L.wr=1
+ENDIF
+END_SUB
+SUB(FREIFAHREN)
+SWFRMOD.wr=2
+IF REG[17] == 0
+SWFRPOS.st=$82047
+SWFRPOSX.wr=0
+SWFRPOSY.wr=0
+SWFRPOSZ.wr=2
+SWFRPOS_L.wr=1
+ENDIF
+IF REG[17] == 1
+SWFRPOS.st=$82047
+SWFRPOSX.wr=2
+SWFRPOSY.wr=2
+SWFRPOSZ.wr=2
+SWFRPOS_L.wr=1
+ENDIF
+END_SUB
+SUB(INITIALISIERUNG)
+INIT_1 = 1
+IF INDEX_KINEM == "P"
+PL1_SWOVI1X=RNP("/Tool/Toolcarrier/tcCarr4[u"<< NRCH <<"," << NRSDS << "]")
+PL1_SWOVI1Y=RNP("/Tool/Toolcarrier/tcCarr5[u"<< NRCH <<"," << NRSDS << "]")
+PL1_SWOVI1Z=RNP("/Tool/Toolcarrier/tcCarr6[u"<< NRCH <<"," << NRSDS << "]")
+Else
+PL1_SWOVI1X=RNP("/Tool/Toolcarrier/tcCarr1[u"<< NRCH <<"," << NRSDS << "]")
+PL1_SWOVI1Y=RNP("/Tool/Toolcarrier/tcCarr2[u"<< NRCH <<"," << NRSDS << "]")
+PL1_SWOVI1Z=RNP("/Tool/Toolcarrier/tcCarr3[u"<< NRCH <<"," << NRSDS << "]")
+EndIf
+If INDEX_KINEM == "P"
+PL3_SWOVI2X=RNP("/Tool/Toolcarrier/tcCarr15[u"<< NRCH <<"," << NRSDS << "]")
+PL3_SWOVI2Y=RNP("/Tool/Toolcarrier/tcCarr16[u"<< NRCH <<"," << NRSDS << "]")
+PL3_SWOVI2Z=RNP("/Tool/Toolcarrier/tcCarr17[u"<< NRCH <<"," << NRSDS << "]")
+Else
+PL3_SWOVI2X=RNP("/Tool/Toolcarrier/tcCarr4[u"<< NRCH <<"," << NRSDS << "]")
+PL3_SWOVI2Y=RNP("/Tool/Toolcarrier/tcCarr5[u"<< NRCH <<"," << NRSDS << "]")
+PL3_SWOVI2Z=RNP("/Tool/Toolcarrier/tcCarr6[u"<< NRCH <<"," << NRSDS << "]")
+EndIf
+PL2_SWDVV1X=RNP("/Tool/Toolcarrier/tcCarr7[u"<< NRCH <<"," << NRSDS << "]")
+PL2_SWDVV1Y=RNP("/Tool/Toolcarrier/tcCarr8[u"<< NRCH <<"," << NRSDS << "]")
+PL2_SWDVV1Z=RNP("/Tool/Toolcarrier/tcCarr9[u"<< NRCH <<"," << NRSDS << "]")
+IF INDEX_KINEM == "T"
+PL4_SWDVV2X=RNP("/Tool/Toolcarrier/tcCarr10[u"<< NRCH <<"," << NRSDS << "]")
+PL4_SWDVV2Y=RNP("/Tool/Toolcarrier/tcCarr11[u"<< NRCH <<"," << NRSDS << "]")
+PL4_SWDVV2Z=RNP("/Tool/Toolcarrier/tcCarr12[u"<< NRCH <<"," << NRSDS << "]")
+PL5_SWOVI3X=RNP("/Tool/Toolcarrier/tcCarr15[u"<< NRCH <<"," << NRSDS << "]")
+PL5_SWOVI3Y=RNP("/Tool/Toolcarrier/tcCarr16[u"<< NRCH <<"," << NRSDS << "]")
+PL5_SWOVI3Z=RNP("/Tool/Toolcarrier/tcCarr17[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+IF INDEX_KINEM == "P"
+PL4_SWDVV2X=RNP("/Tool/Toolcarrier/tcCarr10[u"<< NRCH <<"," << NRSDS << "]")
+PL4_SWDVV2Y=RNP("/Tool/Toolcarrier/tcCarr11[u"<< NRCH <<"," << NRSDS << "]")
+PL4_SWDVV2Z=RNP("/Tool/Toolcarrier/tcCarr12[u"<< NRCH <<"," << NRSDS << "]")
+PL5_SWOVI4X=RNP("/Tool/Toolcarrier/tcCarr18[u"<< NRCH <<"," << NRSDS << "]")
+PL5_SWOVI4Y=RNP("/Tool/Toolcarrier/tcCarr19[u"<< NRCH <<"," << NRSDS << "]")
+PL5_SWOVI4Z=RNP("/Tool/Toolcarrier/tcCarr20[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+IF INDEX_KINEM == "M"
+PL4_SWOVI3X=RNP("/Tool/Toolcarrier/tcCarr15[u"<< NRCH <<"," << NRSDS << "]")
+PL4_SWOVI3Y=RNP("/Tool/Toolcarrier/tcCarr16[u"<< NRCH <<"," << NRSDS << "]")
+PL4_SWOVI3Z=RNP("/Tool/Toolcarrier/tcCarr17[u"<< NRCH <<"," << NRSDS << "]")
+PL6_SWOVI4X=RNP("/Tool/Toolcarrier/tcCarr18[u"<< NRCH <<"," << NRSDS << "]")
+PL6_SWOVI4Y=RNP("/Tool/Toolcarrier/tcCarr19[u"<< NRCH <<"," << NRSDS << "]")
+PL6_SWOVI4Z=RNP("/Tool/Toolcarrier/tcCarr20[u"<< NRCH <<"," << NRSDS << "]")
+PL5_SWDVV2X=RNP("/Tool/Toolcarrier/tcCarr10[u"<< NRCH <<"," << NRSDS << "]")
+PL5_SWDVV2Y=RNP("/Tool/Toolcarrier/tcCarr11[u"<< NRCH <<"," << NRSDS << "]")
+PL5_SWDVV2Z=RNP("/Tool/Toolcarrier/tcCarr12[u"<< NRCH <<"," << NRSDS << "]")
+ENDIF
+CALL("ANZ_OPT_DECO")
+IF REG[13] == 0
+INDEX_SWAOVR = 0
+SWAOVR =$82023
+ENDIF
+IF REG[13] == 1
+IF REG[14] == 0
+INDEX_SWAOVR = 1
+SWAOVR =$82056
+ELSE
+INDEX_SWAOVR = 2
+SWAOVR =$82057
+ENDIF
+ENDIF
+IF REG[10] == 0
+SWAOSM = $82054
+ELSE
+IF REG[10] == 1
+SWAOSM = $82055
+ELSE
+IF REG[10] == 2
+SWAOSM = $82053
+ENDIF
+ENDIF
+ENDIF
+IF REG[16] == 0
+SWAOAWZ = $82023
+ELSE
+SWAOAWZ = $82022
+ENDIF
+IF REG[15] == 0
+SWAONWZ = $82023
+ELSE
+SWAONWZ = $82022
+ENDIF
+IF REG[17] == 0
+SWFRMOD = $82031
+ELSE
+SWFRMOD = $82032
+ENDIF
+SWFRPOSX = RNP("/Tool/Toolcarrier/tcCarr38[u"<< NRCH <<"," << NRSDS << "]")
+SWFRPOSY = RNP("/Tool/Toolcarrier/tcCarr39[u"<< NRCH <<"," << NRSDS << "]")
+SWFRPOSZ = RNP("/Tool/Toolcarrier/tcCarr40[u"<< NRCH <<"," << NRSDS << "]")
+IF ANZ_DATS_PRO_CH > 1
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+IF SWDSNAME == ""
+ENDIF
+ELSE
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<","<< 1 <<"]")
+EndIf
+INIT_1 = 0
+RETURN
+END_SUB
+//END
+//B(UPS_1u2)
+SUB(SU_KAPL)
+SUCH=1
+NRCH=NRCH+1
+NRSDS=1
+If NRCH > ANZ_CHANNELS OR NRCH==1
+NRCH=1
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+EndIf
+EndIf
+If NRCH==2
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH < ANZ_CHANNELS
+NRCH=NRCH+1
+Else
+NRCH=1
+EndIf
+EndIf
+EndIf
+If NRCH==3
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH < ANZ_CHANNELS
+NRCH=NRCH+1
+Else
+If NRCH < ANZ_CHANNELS
+NRCH=NRCH+1
+Else
+NRCH=1
+EndIf
+EndIf
+EndIf
+EndIf
+If NRCH==4
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH < ANZ_CHANNELS
+NRCH=NRCH+1
+Else
+NRCH=1
+EndIf
+EndIf
+EndIf
+If NRCH==5
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH < ANZ_CHANNELS
+NRCH=NRCH+1
+Else
+NRCH=1
+EndIf
+EndIf
+EndIf
+If NRCH==6
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH < ANZ_CHANNELS
+NRCH=NRCH+1
+Else
+NRCH=1
+EndIf
+EndIf
+EndIf
+If NRCH==7
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH < ANZ_CHANNELS
+NRCH=NRCH+1
+Else
+NRCH=1
+EndIf
+EndIf
+EndIf
+If NRCH==8
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH < ANZ_CHANNELS
+NRCH=NRCH+1
+Else
+NRCH=1
+EndIf
+EndIf
+EndIf
+If NRCH==9
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH < ANZ_CHANNELS
+NRCH=NRCH+1
+Else
+NRCH=1
+EndIf
+EndIf
+EndIf
+If NRCH==10
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH < ANZ_CHANNELS
+NRCH=NRCH+1
+Else
+NRCH=1
+EndIf
+EndIf
+EndIf
+If NRCH > ANZ_CHANNELS OR NRCH==1
+NRCH=1
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+EndIf
+EndIf
+If NRCH==2
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH+1
+EndIf
+EndIf
+If NRCH==3
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH+1
+EndIf
+EndIf
+If NRCH==4
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH+1
+EndIf
+EndIf
+If NRCH==5
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH+1
+EndIf
+EndIf
+If NRCH==6
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH+1
+EndIf
+EndIf
+If NRCH==7
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH+1
+EndIf
+EndIf
+If NRCH==8
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH+1
+EndIf
+EndIf
+If NRCH==9
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH+1
+EndIf
+EndIf
+If NRCH==10
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH
+EndIf
+EndIf
+SUCH=0
+END_SUB
+SUB(SU_KAMI)
+SUCH=1
+If NRCH==1
+NRCH=ANZ_CHANNELS
+Else
+NRCH=NRCH-1
+EndIf
+NRSDS=1
+If NRCH > ANZ_CHANNELS OR NRCH==1
+NRCH=1
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+EndIf
+EndIf
+If NRCH==10
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH > 1
+NRCH=NRCH-1
+Else
+NRCH=ANZ_CHANNELS
+EndIf
+EndIf
+EndIf
+If NRCH==9
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH > 1
+NRCH=NRCH-1
+Else
+NRCH=ANZ_CHANNELS
+EndIf
+EndIf
+EndIf
+If NRCH==8
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH > 1
+NRCH=NRCH-1
+Else
+NRCH=ANZ_CHANNELS
+EndIf
+EndIf
+EndIf
+If NRCH==7
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH > 1
+NRCH=NRCH-1
+Else
+NRCH=ANZ_CHANNELS
+EndIf
+EndIf
+EndIf
+If NRCH==6
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH > 1
+NRCH=NRCH-1
+Else
+NRCH=ANZ_CHANNELS
+EndIf
+EndIf
+EndIf
+If NRCH==5
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH > 1
+NRCH=NRCH-1
+Else
+NRCH=ANZ_CHANNELS
+EndIf
+EndIf
+EndIf
+If NRCH==4
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH > 1
+NRCH=NRCH-1
+Else
+NRCH=ANZ_CHANNELS
+EndIf
+EndIf
+EndIf
+If NRCH==3
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH > 1
+NRCH=NRCH-1
+Else
+NRCH=ANZ_CHANNELS
+EndIf
+EndIf
+EndIf
+If NRCH==2
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+If NRCH > 1
+NRCH=NRCH-1
+Else
+NRCH=ANZ_CHANNELS
+EndIf
+EndIf
+EndIf
+If NRCH==1
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=ANZ_CHANNELS
+EndIf
+EndIf
+If NRCH==10
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH-1
+EndIf
+EndIf
+If NRCH==9
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH-1
+EndIf
+EndIf
+If NRCH==8
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH-1
+EndIf
+EndIf
+If NRCH==7
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH-1
+EndIf
+EndIf
+If NRCH==6
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH-1
+EndIf
+EndIf
+If NRCH==5
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH-1
+EndIf
+EndIf
+If NRCH==4
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH-1
+EndIf
+EndIf
+If NRCH==3
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH-1
+EndIf
+EndIf
+If NRCH==2
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH-1
+EndIf
+EndIf
+If NRCH==1
+SWDSNAME=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+RETURN
+Else
+NRCH=NRCH
+EndIf
+EndIf
+SUCH=0
+END_SUB
+SUB(ERM_ANZDATS)
+HM_ADAT=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==1
+If NRSDS==1
+ANZ_DATS_PRO_CH=0
+RETURN
+Else
+NRSDS=1
+HM_ADAT=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==1
+ANZ_DATS_PRO_CH=0
+RETURN
+EndIf
+EndIf
+Else
+ANZ_DATS_PRO_CH=1
+EndIf
+NRSDS=NRSDS+1
+HM_ADAT=RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+If ERR==0
+ANZ_DATS_PRO_CH=2
+EndIf
+NRSDS=NRSDS-1
+END_SUB
+SUB(LOAD_NAME)
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+IF SWDSNAME == ""
+ENDIF
+RETURN
+END_SUB
+SUB(ANZ_OPT_DECO)
+REG[2]=0
+REG[2] = RNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]")
+HILF.VLD=0
+REG[6]=0
+REG[10]=REG[2] MOD 10
+If REG[10] < 0 OR REG[10] > 2
+REG[10]=0
+REG[6]=1
+EndIf
+HILF=(REG[2] / 10) MOD 10
+REG[11] = HILF
+If REG[11] < 0 OR REG[11] > 2
+REG[11]=0
+REG[6]=1
+EndIf
+HILF=(REG[2] / 100) MOD 10
+REG[12] = HILF
+If REG[12] < 0 OR REG[12] > 2
+REG[12]=0
+REG[6]=1
+EndIf
+HILF=(REG[2] / 1000) MOD 10
+If HILF < 0 OR HILF > 2
+HILF=0
+REG[6]=1
+EndIf
+IF HILF == 0
+REG[13] = 0
+REG[14] = 0
+ENDIF
+IF HILF == 1
+REG[13] = 1
+REG[14] = 0
+ENDIF
+IF HILF == 2
+REG[13] = 1
+REG[14] = 1
+ENDIF
+HILF=(REG[2] / 10000) MOD 10
+REG[15] = HILF
+If REG[15] < 0 OR REG[15] > 1
+REG[15]=0
+REG[6]=1
+EndIf
+HILF=(REG[2] / 100000) MOD 10
+REG[16] = HILF
+HILF=(REG[2] / 1000000) MOD 10
+REG[17] = HILF
+If REG[17] < 1 OR REG[17] > 1
+REG[17]=0
+REG[6]=1
+Endif
+HILF=(REG[2] / 10000000) MOD 10
+If HILF < 0 OR HILF > 3
+HILF=0
+EndIf
+IF HILF == 0
+REG[18] = 0
+REG[19] = 0
+ENDIF
+HILF=(REG[2] / 100000000) MOD 10
+REG[20]=HILF
+If REG[20] < 0 OR REG[20] > 5
+REG[20]=0
+REG[6]=1
+EndIf
+If REG[6] ==1
+CALL("ANZ_OPT_RECH")
+DEBUG("REG[2]: "<<REG[2])
+EndIf
+END_SUB
+SUB(SET_SFKEYS)
+IF ANZ_CHANNELS > 1
+VS1.st=$82075
+VS1.se=1
+VS2.st=$82076
+VS2.se=1
+ELSE
+VS1.st=""
+VS1.se=2
+VS2.st=""
+VS2.se=2
+ENDIF
+IF ANZ_DATS_PRO_CH > 1
+VS3.st=$82078
+VS3.se=1
+VS4.st=$82077
+VS4.se=1
+A_NRSDS.wr=2
+ELSE
+VS3.st=""
+VS3.se=2
+VS4.st=""
+VS4.se=2
+A_NRSDS.wr=1
+ENDIF
+VS5.se=1
+END_SUB
+SUB(ANZ_OPT_RECH)
+REG[2] = 0
+REG[2] = REG[2] + REG[10]
+REG[2] = REG[2] + REG[11]*10
+REG[2] = REG[2] + REG[12]*100
+IF REG[13] == 1
+REG[2] = REG[2] + (REG[13]+REG[14])*1000
+ENDIF
+REG[2] = REG[2] + REG[15] * 10000
+REG[2] = REG[2] + REG[16] * 100000
+REG[2] = REG[2] + REG[17] * 1000000
+REG[3]=0
+REG[2] = REG[2] + (REG[3]+REG[18])*10000000
+HILF=REG[20]*100000000
+REG[2]=REG[2]+HILF
+WNP("/Tool/Toolcarrier/tcCarr37[u"<< NRCH <<"," << NRSDS << "]",REG[2])
+END_SUB
+SUB(LESEN_KIN)
+INDEX_KINEM = RNP("/Tool/Toolcarrier/tcCarr23[u"<< NRCH <<","<< NRSDS <<"]")
+IF INDEX_KINEM == "T"
+SWKINEM = $82051
+ENDIF
+IF INDEX_KINEM == "P"
+SWKINEM = $82052
+ENDIF
+IF INDEX_KINEM == "M"
+SWKINEM = $82050
+ENDIF
+RETURN
+END_SUB
+//END
+//B(UPS_2)
+SUB(ANW_DS_WZ)
+DEBUG("REG[20]: "<<REG[20])
+If REG[20] < 3
+WZW=$82065
+If REG[20] ==0
+SWDATWE=$82023
+WZW_T.wr=0
+WZW.wr=0
+EndIf
+If REG[20] ==1
+SWDATWE=$82064
+EndIf
+If REG[20] ==2
+SWDATWE=$82065
+EndIf
+Else
+WZW=$82064
+If REG[20] ==3
+SWDATWE=$82023
+WZW_T.wr=0
+WZW.wr=0
+EndIf
+If REG[20] ==4
+SWDATWE=$82064
+EndIf
+If REG[20] ==5
+SWDATWE=$82065
+EndIf
+EndIf
+If SWKINEM ==$82052
+WZW_T.wr=0
+WZW_T.st=""
+WZW.wr=0
+Else
+If SWDATWE <> $82023
+WZW_T.wr=1
+WZW_T=$82117
+WZW.wr=2
+EndIf
+EndIf
+END_SUB
+SUB(ERM_DS_WZ)
+If WZW ==$82065
+If SWDATWE ==$82023
+REG[20]=0
+EndIf
+If SWDATWE ==$82064
+REG[20]=1
+EndIf
+If SWDATWE ==$82065
+REG[20]=2
+EndIf
+Else
+If SWDATWE ==$82023
+REG[20]=3
+EndIf
+If SWDATWE ==$82064
+REG[20]=4
+EndIf
+If SWDATWE ==$82065
+REG[20]=5
+EndIf
+EndIf
+END_SUB
+SUB(CHECK_2)
+REG[1]=0
+IF INIT_2 ==0
+IF EVAL(REG[0]) < -360
+REG[1]=1
+DLGL($80593<<REG[22])
+RETURN
+ENDIF
+IF EVAL(REG[0]) > 360
+REG[1]=1
+DLGL($80593<<REG[22])
+RETURN
+ENDIF
+ENDIF
+RETURN
+END_SUB
+SUB(HIRTH_1)
+IF INDEX_SWDRA1HI == 0
+SWDRA1HI = $82023
+SWDRA1WOFF=0.0
+SWDRA1WOFF.st = ""
+SWDRA1WOFF.wr = 0
+SWDRA1WR=0.0
+SWDRA1WR.st = ""
+SWDRA1WR.ut = ""
+SWDRA1WR.wr = 0
+REG[18] = 0
+CALL("ANZ_OPT_RECH")
+ELSE
+SWDRA1HI = $82022
+SWDRA1WOFF.st = $82081
+SWDRA1WOFF.ut = $82012
+SWDRA1WOFF.wr = 2
+SWDRA1WR.st = $82082
+SWDRA1WR.ut = $82012
+SWDRA1WR.wr = 2
+SWDRA1WR_L.wr = 1
+END_SUB
+SUB(HIRTH_2)
+IF INDEX_SWDRA2HI == 0
+SWDRA2HI = $82023
+SWDRA2WOFF = 0.0
+SWDRA2WOFF.st = ""
+SWDRA2WOFF.wr = 0
+SWDRA2WR = 0.0
+SWDRA2WR.st = ""
+SWDRA2WR.ut = ""
+SWDRA2WR.wr = 0
+REG[19] = 0
+CALL("ANZ_OPT_RECH")
+ELSE
+SWDRA2HI = $82022
+SWDRA2WOFF.st = $82081
+SWDRA2WOFF.ut = $82012
+SWDRA2WOFF.wr = 2
+SWDRA2WR.st = $82082
+SWDRA2WR.ut = $82012
+SWDRA2WR.wr = 2
+SWDRA2WR_L.wr = 1
+END_SUB
+SUB(INITIALISIERUNG_2)
+INIT_2 = 1
+SWDRA1BEZ = RNP("/Tool/Toolcarrier/tcCarr35[u"<< NRCH <<"," << NRSDS << "]")
+SWDRA1WBMIN = RNP("/Tool/Toolcarrier/tcCarr30[u"<< NRCH <<","<< NRSDS <<"]")
+SWDRA1WBMAX = RNP("/Tool/Toolcarrier/tcCarr32[u"<< NRCH <<","<< NRSDS <<"]")
+SWDRA1WOFF = RNP("/Tool/Toolcarrier/tcCarr26[u"<< NRCH <<","<< NRSDS <<"]")
+SWDRA1WR = RNP("/Tool/Toolcarrier/tcCarr28[u"<< NRCH <<","<< NRSDS <<"]")
+SWDRA1AK = RNP("/Tool/Toolcarrier/tcCarr24[u"<< NRCH <<","<< NRSDS <<"]")
+SWDRA2BEZ = RNP("/Tool/Toolcarrier/tcCarr36[u"<< NRCH <<"," << NRSDS << "]")
+SWDRA2WBMIN = RNP("/Tool/Toolcarrier/tcCarr31[u"<< NRCH <<","<< NRSDS <<"]")
+SWDRA2WBMAX = RNP("/Tool/Toolcarrier/tcCarr33[u"<< NRCH <<","<< NRSDS <<"]")
+SWDRA2WOFF = RNP("/Tool/Toolcarrier/tcCarr27[u"<< NRCH <<","<< NRSDS <<"]")
+SWDRA2WR = RNP("/Tool/Toolcarrier/tcCarr29[u"<< NRCH <<","<< NRSDS <<"]")
+SWDRA2AK = RNP("/Tool/Toolcarrier/tcCarr25[u"<< NRCH <<","<< NRSDS <<"]")
+CALL("ANZ_OPT_DECO")
+CALL("ANW_DS_WZ")
+IF REG[11] == 1
+SWDRA1MOD = $82064
+ELSE
+If REG[11] ==0
+SWDRA1MOD = $82065
+Else
+SWDRA1MOD = $82220
+EndIf
+ENDIF
+IF REG[12] == 1
+SWDRA2MOD = $82064
+ELSE
+If REG[12] ==0
+SWDRA2MOD = $82065
+Else
+SWDRA2MOD = $82220
+EndIf
+ENDIF
+IF SWDRA1WR == 0.0
+INDEX_SWDRA1HI = 0
+ELSE
+INDEX_SWDRA1HI = 1
+ENDIF
+IF SWDRA2WR == 0.0
+INDEX_SWDRA2HI = 0
+ELSE
+INDEX_SWDRA2HI = 1
+ENDIF
+CALL("HIRTH_1")
+CALL("HIRTH_2")
+IF ANZ_DATS_PRO_CH > 1
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]")
+IF SWDSNAME == ""
+WNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<"," << NRSDS << "]",SWDSNAME)
+ENDIF
+ELSE
+SWDSNAME = RNP("/Tool/Toolcarrier/tcCarr34[u"<< NRCH <<","<< 1 <<"]")
+ENDIF
+INIT_2 = 0
+RETURN
+END_SUB
+//END

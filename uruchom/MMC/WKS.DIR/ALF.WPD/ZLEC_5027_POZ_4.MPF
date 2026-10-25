@@ -1,0 +1,113 @@
+ZLE_5027_POZ_4:
+;----------------
+
+N15 M70 H11 G54 M51 G64
+N20 G53 G40 G0 G90 D0 Z340
+
+R6=487
+
+ATRANS Z=5 X=0 Y=13
+
+N14225 r51=125+2 ; odleglosc od krawedzi do szpr. w osi x
+N14230 r52=1089 ; wysokosc szprosu bez luku
+N14235 r53=237  ; szerokosc wzoru
+N14240 r50=(r6-r53)/2; odleglosc od krawedzi do szpr. w osi y
+N14245 r54=-3  ; glebokosc frezowania
+N14250 r55=132 ; odstep gornej od dolnej
+N14255 r56=470 ; wysokosc dolnego wzoru
+N14260 r57=r52+r55
+N14265 r58=r57+r56
+N14270 r59=r51-48
+N14275 r60=-47 ; glebokosc wycinania szprosow
+;Program
+N14280 g53 g40 g0 g90 d0 z340
+
+N14285 if r4==2 gotof msz
+N14290 if r4==3 gotof dsz
+
+;Narzedzie
+N14295 wechsel(5,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N14300 x=r51+50 y=r50 z50 g41 d1
+N14305 z2
+N14310 g1 x=r51+250 z=r54 m21 f15000; zjazd w materjal
+N14315 x=r51+r52 
+N14320 y=r50+r53
+N14325 x=r51
+N14330 y=r50
+N14335 g1 x=r51+270 f15000
+N14340 x=r51+450 z2
+N14345 z10
+
+;Dolne pole
+
+N14350 g0 g90 g41 d1 x=r51+r57+100 y=r50
+N14355 z2
+N14360 g1 x=r51+r57+250 z=r54 f15000
+N14365 x=r51+r58
+N14370 y=r50+r53
+N14375 x=r51+r57
+N14380 y=r50
+N14385 x=r51+r57+270
+N14390 x=ic(100) z2
+N14395 z10
+N14400 gotof end
+
+N14405 msz: ;  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+N14410 if r0==2 gotof drugastrona
+;Narzedzie
+N14415 wechsel(1,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N14420 x=r51+50 y=r50 z50 g41 d1
+
+N14425 g1 x=r51+250 z=r60 m21 f5000; zjazd w materjal
+N14430 x=r51+r52 
+N14435 y=r50+r53
+N14440 x=r51
+N14445 y=r50
+N14450 g1 x=r51+270 f6000
+N14455 x=r51+450 z50
+N14460 x=ic(1) g40 d1
+
+N14465 drugastrona:
+
+N14470 wechsel(5,3,180)
+
+;Dolne pole
+
+N14475 g0 g90 g41 d1 x=r51+r57+100 y=r50 
+N14480 z2
+N14485 g1 x=r51+r57+250 z=r54 f15000
+N14490 x=r51+r58
+N14495 y=r50+r53
+N14500 x=r51+r57
+N14505 y=r50
+N14510 x=r51+r57+270
+N14515 x=ic(100) z2
+N14520 z10
+N14525 gotof end
+
+N14530 dsz: ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+;Narzedzie
+N14535 wechsel(1,3,180)
+
+;Pozycja start wlaczona korekcja zjazd nad materjal
+N14540 x=r51+50 y=r50 z50 g41 d1
+
+N14545 g1 x=r51+150 z=r60 m21 f6000; zjazd w materjal
+N14550 x=r51+r58
+N14555 y=r50+r53
+N14560 x=r51
+N14565 y=r50
+N14570 g1 x=r51+200 f6000
+N14575 x=r51+250 z50
+
+N14580 end:
+;zakonczenie
+N14585 g53 g0 g40 d0 z340 ;s0 
+N14590 m17
+
+

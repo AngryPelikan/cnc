@@ -1,0 +1,66 @@
+N5 R100=2    ; 1-pierwszy stol 2-drugi stol
+N10 R101=2   ; 1-Szersza strona 2-Zmiartsza strona
+
+N15 R6=789.5   ; SZEROKOSC SKRZYDLA
+N20 R7=2022   ; WYSOKOASC SKRZYDLA
+N25 R15=42  ; GRUBOSC SKRZYDLA
+N30 R55=2.2   ; GLEBOKOSC FREZU
+N35 r8=150    ; Odsuniecie paska pierwszego w "Y" do srodka
+N40 r9=r6-r8  ; Odsuniecie paska drugiego   w "Y" do srodka
+
+
+N45 IF R100==1                      
+N50 m70 h11 g54 m51 g64
+N55 g53 g40 g0 g90 d0 z340
+N60 ENDIF
+
+N65 IF R100==2                      
+N70 m70 h11 g56 m52 g64
+N75 g53 g40 g0 g90 d0 z340
+N80 ENDIF
+
+N85 IF R101==1
+N90 atrans x=12.3 y=12.3 ;odchacz dla szerszej strony
+N95 ENDIF
+
+
+N100 WECHSEL(8,3,16000)
+N105 CPRECON
+
+; PIERWSZY
+N110 g0 x=-50 y=R8 g40 d3
+N115 g0 z=r15+30
+N120 g1 z=r15-r55   f9000
+N125 g1 x=r7+100
+N130 g0 z=r15+50
+
+; DRUGI
+N135 g0 x=r7+50 y=R9
+N140 g0 z=r15+30
+N145 g1 z=r15-r55   f9000
+N150 g1 x=-50
+N155 g0 z=r15+100
+
+N160 G0 G90 G53 G40 D0 Z340 S0
+
+N165 IF R100==1 GOTOF PLUS_100
+N170 IF R100==2 GOTOF MINUS_100
+N175 M30
+
+N180 PLUS_100:
+N185 G0 X=4000
+N190 R100=R100+1
+N195 GOTOF DALEJ
+
+N200 MINUS_100:
+N205 G0 x=-2500
+N210 R100=R100-1
+N215 GOTOF DALEJ
+
+N220 DALEJ:
+;-----
+
+N225 M30
+
+
+

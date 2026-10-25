@@ -1,0 +1,63 @@
+
+;PROGRAM
+
+N5 m70 h11 g56 m52 g64
+N10 g53 g40 g0 g90 d0 z340
+
+
+N15 R15=20 ; grubosc materialu
+N20 R17=12 ; Glebokosc puszki
+N25 R7=508 ; dlugosc materialu
+N30 r50=22.5 ; odleglosc w osi y
+N35 r53=35 ; srednica otworu
+N40 r54=-37+R15-R17 ; glebokosc puszki
+
+N45 R60=-37+R15+5 ; bezpieczna wysokosc
+
+;N40 atrans x=r7
+;N45 amirror x0
+
+;NARZEDZIE
+N50 WECHSEL(10,3,180)
+
+N55 r51=100   ; 1 puszka
+N60 r52=R7-100   ; 2 puszka
+N65 R55=955   ; 3 puszka
+N70 R57=1337  ; 4 puszka
+N75 R58=1719  ; 5 puszka
+
+N85 m20
+N90 g0 x=r51 y=r50-(r53/2) g41 d3
+N95 z=R60
+N100 g3 g91 x=0 y=0 i=0 j=r53/2 z=ac(r54) f2000
+N105 g3 x=0 y=0 i=0 j=r53/2 
+N110 g3 x=0 y=0 i=0 j=r53/2 z=ac(R60)
+
+N115 g0 g90 x=r52 y=r50-(r53/2)
+N120 z=R60
+N125 g3 g91 x=0 y=0 i=0 j=r53/2 z=ac(r54) f2000
+N130 g3 x=0 y=0 i=0 j=r53/2
+N135 g3 x=0 y=0 i=0 j=r53/2 z=ac(R60)
+
+N140 g0 g90 x=r55 y=r50-(r53/2)
+N145 z=R60
+N150 g3 g91 x=0 y=0 i=0 j=r53/2 z=ac(r54) f2000
+N155 g3 x=0 y=0 i=0 j=r53/2
+N160 g3 x=0 y=0 i=0 j=r53/2 z=ac(R60)
+
+N165 g0 g90 x=r57 y=r50-(r53/2)
+N170 z=R60
+N175 g3 g91 x=0 y=0 i=0 j=r53/2 z=ac(r54) f2000
+N180 g3 x=0 y=0 i=0 j=r53/2
+N185 g3 x=0 y=0 i=0 j=r53/2 z=ac(R60)
+
+N165 g0 g90 x=r58 y=r50-(r53/2)
+N170 z=R60
+N175 g3 g91 x=0 y=0 i=0 j=r53/2 z=ac(r54) f2000
+N180 g3 x=0 y=0 i=0 j=r53/2
+N185 g3 x=0 y=0 i=0 j=r53/2 z=ac(R60)
+
+
+N190 s0 G90 G53 G0 G40 D0 Z340
+N195 M30
+
